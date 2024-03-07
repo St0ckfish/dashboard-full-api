@@ -67,7 +67,7 @@ const Login = () => {
                                     type="email"
                                     name="email"
                                     id="email"
-                                    className="px-10 py-2 rounded-md bg-[#2b2e38] border border-[#41434d] focus:outline outline-[#41434d] text-white"
+                                    className="px-[140px] py-2 rounded-md bg-[#2b2e38] border border-[#41434d] focus:outline outline-[#41434d] text-white"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     required
@@ -80,7 +80,7 @@ const Login = () => {
                                     type="phone"
                                     name="phone"
                                     id="phone"
-                                    className="px-10 py-2 rounded-md bg-[#2b2e38] border border-[#41434d] focus:outline outline-[#41434d] text-white"
+                                    className="px-[140px] py-2 rounded-md bg-[#2b2e38] border border-[#41434d] focus:outline outline-[#41434d] text-white"
                                     value={phone}
                                     onChange={(e) => setPhone(e.target.value)}
                                     required
@@ -92,7 +92,7 @@ const Login = () => {
                                     type="password"
                                     name="password"
                                     id="password"
-                                    className="px-10 py-2 rounded-md bg-[#2b2e38] border border-[#41434d] focus:outline outline-[#41434d] text-white"
+                                    className="px-[140px] py-2 rounded-md bg-[#2b2e38] border border-[#41434d] focus:outline outline-[#41434d] text-white"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                     required
@@ -105,9 +105,6 @@ const Login = () => {
                                 </button>
                             </div>
                             <hr />
-                            <div className="grid gap-2 justify-items-start">
-                                <Link className="text-[#8465F2] hover:underline" to="/Register">Create account</Link>
-                            </div>
                         </form>
                     </div>
 
