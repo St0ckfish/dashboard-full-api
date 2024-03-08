@@ -6,7 +6,6 @@ import NavBar from '../components/NavBar';
 const Rootlayout = () => {
     return ( 
         <>
-        
             <Outlet/>
         </>
     );

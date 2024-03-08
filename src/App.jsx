@@ -6,12 +6,14 @@ import Home from './pages/Home';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import './App.css'
+import AddNewProduct from './pages/AddNewProduct';
 
 const router = createBrowserRouter(
   
   createRoutesFromElements(
   <Route path="/" element={<RootLayuot/>}>
       <Route path="Home" element={<Home />} />
+      <Route path="AddNewProduct" element={<AddNewProduct />} />
       <Route index element={<Login />} />
   </Route>
   )
