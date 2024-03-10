@@ -28,7 +28,7 @@ const Login = () => {
             });
 
             if (!response.ok) {
-                throw new Error(`Error: ${response.status}`);
+                throw new Error(`Email or Password are not valid`);
             }
             const responseData = await response.json(); // Parse the response
 
@@ -103,6 +103,7 @@ const Login = () => {
                                 <div className="grid gap-2 justify-items-start">
                                     <label htmlFor="password" className="text-gray-300 font-bold">Password</label>
                                     <input
+                                        autoComplete="off"
                                         type="password"
                                         name="password"
                                         id="password"

@@ -63,7 +63,7 @@ const NavBar = () => {
                                                         <Link to="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Earnings</Link>
                                                     </li>
                                                     <li>
-                                                        <Link to="/Login" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Sign out</Link>
+                                                        <Link to="/" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Sign out</Link>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -75,7 +75,7 @@ const NavBar = () => {
                     </div>
                 </nav>
 
-                <aside id="logo-sidebar" className={` text-start fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform ${isOpenn ? '-translate-x-full' : 'translate-x-0'} bg-white border-r  sm:translate-x-0 dark:bg-gray-800 border-gray-700 `} aria-label="Sidebar">
+                <aside id="logo-sidebar" className={` text-start fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform ${isOpenn ? '-translate-x-full' : 'translate-x-0'} bg-white border-r  lg:translate-x-0 dark:bg-gray-800 border-gray-700 `} aria-label="Sidebar">
                     <div className="h-full px-3 pb-4 overflow-y-auto :bg-gray-800">
                         <ul className="space-y-2 font-medium">
                             <li>
@@ -94,10 +94,10 @@ const NavBar = () => {
                                                 <Link to="/AddNewProduct" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Add New Product</Link>
                                             </li>
                                             <li>
-                                                <Link to="#" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Edit Images</Link>
+                                                <Link to="/" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Edit Images</Link>
                                             </li>
                                             <li>
-                                                <Link to="#" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">All Products</Link>
+                                                <Link to="/" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">All Products</Link>
                                             </li>
                                         </ul>
                                     )
