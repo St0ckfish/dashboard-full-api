@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/Auth';
 
 const NavBar = () => {
+    
+    const auth = useAuth();
+    const handleLogout = () =>{
+        auth.logout();
+        navigate("/")
+    }
     const [isOpenn, setIsOpenn] = useState(true);
     const toggleNavbarn = () => {
         setIsOpenn(!isOpenn)
@@ -45,11 +52,18 @@ const NavBar = () => {
                                         isOpen && (
                                             <div className="z-50 absolute right-2 top-12 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600" id="dropdown-user">
                                                 <div className="px-4 py-3" role="none">
+                                                    {
+                                                        auth.user !== null && (
                                                     <p className="text-sm text-gray-900 dark:text-white" role="none">
-                                                        Neil Sims
+                                                    {auth.user.substring(0, auth.user.indexOf('@'))}
                                                     </p>
+
+                                                        )
+                                                            
+                                                        
+                                                    }
                                                     <p className="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
-                                                        Mostapha@Stockfish.com
+                                                        {auth.user}
                                                     </p>
                                                 </div>
                                                 <ul className="py-1" role="none">
@@ -63,7 +77,7 @@ const NavBar = () => {
                                                         <Link to="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Earnings</Link>
                                                     </li>
                                                     <li>
-                                                        <Link to="/" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Sign out</Link>
+                                                        <Link to="/" onClick={handleLogout} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Sign out</Link>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -91,7 +105,7 @@ const NavBar = () => {
                                     isOpen2 && (
                                         <ul id="dropdown-example" className=" py-2 space-y-2">
                                             <li>
-                                                <Link to="/AddNewProduct" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Add New Product</Link>
+                                                <Link to="/addnewproduct" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Add New Product</Link>
                                             </li>
                                             <li>
                                                 <Link to="/" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Edit Images</Link>

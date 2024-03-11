@@ -1,8 +1,10 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/Auth';
 
 const Login = () => {
+    const auth = useAuth();
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
@@ -12,10 +14,9 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         setIsLoading(true);
         setError('');
-
+        
         try {
             const response = await fetch('https://api.vitaparapharma.com/api/v1/auth/login', {
                 method: 'POST',
@@ -26,10 +27,12 @@ const Login = () => {
                     password,
                 }),
             });
-
+            
             if (!response.ok) {
                 throw new Error(`Email or Password are not valid`);
             }
+            auth.login(email);
+            console.log(auth.user);
             const responseData = await response.json(); // Parse the response
 
             // Check for the presence of a token in the response
@@ -49,7 +52,7 @@ const Login = () => {
 
                 // Store authentication state or token on successful login (implementation depends on your app)
 
-                navigate('/home');
+                navigate('/home',{replace: true});
             } // Replace with your desired protected route
 
         } catch (error) {
