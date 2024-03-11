@@ -122,6 +122,21 @@ const AddNewProduct = () => {
             if (!response.ok) {
                 console.log(data);
             }
+            setenglishName('');
+            setarabicName('');
+            setfrenchName('');
+            setarabicAbout('');
+            setenglishAbout('');
+            setfrenchAbout('');
+            setarabicDescription('');
+            setenglishDescription('');
+            setfrenchDescription('');
+            setcategoryId('');
+            setprice('');
+            setstockQuantity('');
+            setpriceAfterDiscount('');
+            setisDiscount('');
+            setSelectedImages(null)
 
             console.log('Product created successfully:', data);
 
@@ -166,7 +181,7 @@ const AddNewProduct = () => {
 
                             <div className='flex justify-center items-center gap-3 max-[1815px]:grid'>
                                 <div className='flex items-center gap-2'>
-                                    <label htmlFor="isDiscount" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Is Discount</label>
+                                    <label htmlFor="isDiscount" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Is Discount?</label>
                                     <input id="isDiscount" type="checkbox" onChange={(e) => setisDiscount(e.target.checked ? 1 : 0)} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" ></input>{/*onChange={handleAfterDiscountChange}*/}
                                     <input placeholder='After Discount:' className='bg-[#2b2e38]  px-2 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d]' type="number" id="afterDiscount" name="afterDiscount" onChange={(e) => setpriceAfterDiscount(e.target.value)} min="0" step="0.01" />
                                 </div>

@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import './App.css'
 import AddNewProduct from './pages/AddNewProduct';
+import Error from './pages/Error';
 
 const router = createBrowserRouter(
   
@@ -14,6 +15,7 @@ const router = createBrowserRouter(
       <Route path="Home" element={<Home />} />
       <Route path="AddNewProduct" element={<AddNewProduct />} />
       <Route index element={<Login />} />
+      <Route path="*" element={<Error />} />
   </Route>
   )
 );
