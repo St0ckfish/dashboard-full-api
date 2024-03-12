@@ -39,13 +39,16 @@ const Login = () => {
             if (responseData.data.token) {
                 const token = responseData.data.token;
                 localStorage.setItem('myAuthorizationToken', token);
-                // Store the token (replace with your chosen storage approach)
-                // Local Storage (not recommended for production due to security concerns)
+                // Store the token 
+                const lool = localStorage.getItem('myAuthorizationToken');
+                console.log(lool);
+                // Local Storage 
                 // localStorage.setItem('myAuthorizationToken', token);
 
                 // OR: Use Context API or State Management Library for secure storage
 
                 console.log('Login successful, token:', token);
+                
 
                 // Handle successful login (e.g., store token, redirect to protected route)
                 console.log('Login successful'); // Assuming you have a mechanism to handle the response in your application

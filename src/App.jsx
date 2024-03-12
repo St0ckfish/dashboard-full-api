@@ -12,6 +12,7 @@ import RequireAuth from './auth/RequireAuth';
 import ActiveProducts from './pages/ActiveProducts';
 import EditImage from './pages/EditImage';
 import InActiveProducts from './pages/InActiveProducts';
+import UpdateProduct from './pages/UpdateProduct';
 
 const router = createBrowserRouter(
 
@@ -33,6 +34,9 @@ const router = createBrowserRouter(
 
         <Route path="inactiveproducts" element={
           <RequireAuth> <InActiveProducts /> </RequireAuth> }/>
+
+        <Route path="updateproduct" element={
+          <RequireAuth> <UpdateProduct /> </RequireAuth> }/>
 
         <Route index element={<Login />} />
         <Route path="*" element={<Error />} />

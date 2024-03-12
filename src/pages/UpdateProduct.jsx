@@ -4,7 +4,7 @@ import Select from 'react-select';
 import { getAllCategory } from '../api/Api';
 import { AddProduct } from '../api/Api';
 
-const AddNewProduct = () => {
+const UpdateProduct = () => {
     const [englishName, setenglishName] = useState('');
     const [arabicName, setarabicName] = useState('');
     const [frenchName, setfrenchName] = useState('');
@@ -21,27 +21,7 @@ const AddNewProduct = () => {
     const [isDiscount, setisDiscount] = useState('');
     const [options, setOptions] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-    const [selectedImages, setSelectedImages] = useState([]);
     const [authorizationToken, setAuthorizationToken] = useState(''); // For authorization token
-
-    const handleImageChange = (event) => {
-        const newImages = event.target.files;
-
-        // Validate image count and size
-        if (newImages.length > 5) {
-            alert('Error: Maximum 5 images allowed.');
-            return;
-        }
-
-        const validImages = Array.from(newImages) // Convert FileList to array for validation
-            .filter((image) => image.size <= 30720); // Maximum 30 KB per image (30 * 1024 bytes)
-
-        if (validImages.length !== newImages.length) {
-            alert('Error: Some images exceed the 30 KB size limit.');
-        }
-
-        setSelectedImages(validImages); // Update state with validated images
-    };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -103,12 +83,6 @@ const AddNewProduct = () => {
         formData.append('priceAfterDiscount', priceAfterDiscount);
         formData.append('isDiscount', isDiscount);
         formData.append('stockQuantity', stockQuantity);
-        
-        for (let i = 0; i < selectedImages.length; i++) {
-            const image = selectedImages[i];
-            const customName = `image${i + 1}`; // names like image1, image2, etc.
-            formData.append(customName, image);
-        }
 
         try {
             const response = await fetch(AddProduct, {
@@ -122,7 +96,6 @@ const AddNewProduct = () => {
             const data = await response.json();
             if (!response.ok) {
                 console.log(data);
-                
             }
             setenglishName('');
             setarabicName('');
@@ -138,7 +111,6 @@ const AddNewProduct = () => {
             setstockQuantity('');
             setpriceAfterDiscount('');
             setisDiscount('');
-            setSelectedImages(null)
 
             console.log('Product created successfully:', data);
 
@@ -150,8 +122,6 @@ const AddNewProduct = () => {
             console.error('Error: No category selected. Please choose a category.');
             return; // Prevent sending the request if category is not selected
         }
-        console.log('Authorization token:', authorizationToken);
-
     };
     return (
         <>
@@ -251,13 +221,6 @@ const AddNewProduct = () => {
                                     onChange={(e) => setfrenchAbout(e.target.value)} />
                             </div>
 
-                            <div className='flex justify-center items-center gap-3 '>
-                                <label className="block mb-2 text-sm font-medium text-white translate-y-1" htmlFor="images">Upload image</label>
-                                <input type="file"
-                                    id="images"// Restrict file types to images
-                                    onChange={handleImageChange} className=" bg-slate-700 text-black text-sm file:cursor-pointer cursor-pointer file:border-0 file:py-2 file:px-4 file:mr-4 file:bg-[#8465F2] file:hover:bg-[#5735d1] file:text-white rounded" required multiple accept="image/*" />
-                            </div>
-
                             <div>
                                 <input value="Add Product" className="w-[150px] py-2 bg-[#8465F2] rounded text-white cursor-pointer" type="submit" />
                             </div>
@@ -269,4 +232,4 @@ const AddNewProduct = () => {
     );
 }
 
-export default AddNewProduct;
+export default UpdateProduct;
