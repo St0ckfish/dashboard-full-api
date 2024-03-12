@@ -16,5 +16,5 @@ const InActiveProducts = () => {
         </>
     );
 }
- 
+
 export default InActiveProducts;
