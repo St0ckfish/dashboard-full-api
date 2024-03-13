@@ -92,7 +92,7 @@ const InActiveProducts = () => {
                             // Display fetched product details
                             <div className='grid gap-6'>
                                 {productData.data.products.map((product) => (
-                                    <div className=' justify-center text-left max-[1700px]:text-center bg-[#1F2937] w-[1400px] max-[1815px]:translate-y-32 p-7 items-center grid grid-cols-2 translate-y-24 max-[1815px]:translate-x-[600px] max-[1626px]:translate-x-[550px] max-[1563px]:translate-x-[620px]  max-[2000px]:translate-x-24 max-[1736px]:w-[1200px]  rounded-xl border border-[#41434d] shadow-[#2c4157] max-[1536px]:w-[1000px] shadow-2xl max-[1430px]:translate-x-[500px] max-[1306px]:translate-x-[400px] max-[1200px]:w-[700px] max-[1056px]:translate-x-[300px] max-[964px]:translate-x-[150px] max-[854px]:translate-x-[100px] max-[764px]:translate-x-[70px] max-[724px]:w-[500px] max-[628px]:translate-x-[210px] max-[557px]:translate-x-[160px] max-[519px]:w-[400px] max-[408px]:w-[370px] max-[467px]:translate-x-[105px] max-[392px]:translate-x-[90px]'
+                                    <div className=' justify-center text-left max-[1700px]:text-center bg-[#1F2937] w-[1400px] max-[1815px]:translate-y-20 px-7 py-2 items-center grid grid-cols-2 translate-y-28 max-[1815px]:translate-x-[600px] max-[1626px]:translate-x-[550px] max-[1563px]:translate-x-[620px]  max-[2000px]:translate-x-24 max-[1736px]:w-[1200px]  rounded-xl border border-[#41434d] shadow-[#2c4157] max-[1536px]:w-[1000px] shadow-2xl max-[1430px]:translate-x-[500px] max-[1306px]:translate-x-[400px] max-[1200px]:w-[700px] max-[1056px]:translate-x-[300px] max-[964px]:translate-x-[150px] max-[854px]:translate-x-[100px] max-[764px]:translate-x-[70px] max-[724px]:w-[500px] max-[628px]:translate-x-[210px] max-[557px]:translate-x-[160px] max-[519px]:w-[400px] max-[408px]:w-[370px] max-[467px]:translate-x-[105px] max-[392px]:translate-x-[90px]'
                                         key={product.productId}>
                                         <div>
                                             <div className='flex items-center gap-3'>
@@ -110,16 +110,15 @@ const InActiveProducts = () => {
                                         </div>
                                         <div className='grid justify-end  gap-3'>
                                             <div className='flex justify-center'>
-                                                <Link to="/updateproduct" className='px-3 py-1 rounded-xl bg-blue-800 text-white '>Update & View</Link>
+                                                <Link to={`/updateproduct/${product.productId}`} className='px-3 py-1 rounded-md bg-blue-800 text-white '>Update & View</Link>
                                             </div>
                                             <div className='flex justify-center'>
-                                                <button className='px-3 py-1 rounded-xl bg-green-600 text-white' onClick={() => {
+                                                <button className='px-3 py-1 rounded-md bg-green-600 text-white' onClick={() => {
                                                     handleProductStatusChange(product.productId, product.status);
                                                     // Call notify after status change
                                                 }}>{product.status === 'deactivate' ?'Done': 'Activate'}</button>
                                             </div>
                                         </div>
-                                        {/* <p>{product.description}</p> */}
                                     </div>
                                 ))}
                             </div>

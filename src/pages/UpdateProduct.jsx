@@ -3,8 +3,11 @@ import NavBar from '../components/NavBar';
 import Select from 'react-select';
 import { getAllCategory } from '../api/Api';
 import { AddProduct } from '../api/Api';
+import { useParams } from 'react-router-dom'; // Import useParams hook
 
 const UpdateProduct = () => {
+    const {ProductId} = useParams()
+    const [productData, setProductData] = useState(null);
     const [englishName, setenglishName] = useState('');
     const [arabicName, setarabicName] = useState('');
     const [frenchName, setfrenchName] = useState('');
@@ -22,6 +25,32 @@ const UpdateProduct = () => {
     const [options, setOptions] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [authorizationToken, setAuthorizationToken] = useState(''); // For authorization token
+    
+    //
+    useEffect(() => {
+        const fetchData = async () => {
+            setIsLoading(true); // Set loading state to true
+
+            try {
+                const response = await fetch(`https://api.vitaparapharma.com/api/v2/public/product/${ProductId}`, {
+                    
+                });
+                const data = await response.json();
+                console.log(data);
+                setProductData(data); // Update product data
+                console.log('Authorization token:', authorizationToken);
+
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                // Handle errors gracefully (e.g., display an error message)
+            } finally {
+                setIsLoading(false); // Set loading state to false
+            }
+        };
+
+        fetchData();
+    }, []);
+    // 
 
     useEffect(() => {
         const fetchData = async () => {
@@ -123,6 +152,7 @@ const UpdateProduct = () => {
             return; // Prevent sending the request if category is not selected
         }
     };
+    console.log(productData);
     return (
         <>
             <div className="">

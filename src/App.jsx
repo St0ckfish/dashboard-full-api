@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css'
-import { createBrowserRouter, createRoutesFromElements, Route,Routes, RouterProvider } from "react-router-dom"; // 
+import { createBrowserRouter, createRoutesFromElements, Route, Routes, RouterProvider } from "react-router-dom"; // 
 import RootLayuot from './layout/Rootlayout';
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -13,43 +13,51 @@ import ActiveProducts from './pages/ActiveProducts';
 import EditImage from './pages/EditImage';
 import InActiveProducts from './pages/InActiveProducts';
 import UpdateProduct from './pages/UpdateProduct';
+import { Outlet } from 'react-router-dom';
 
 const router = createBrowserRouter(
 
   createRoutesFromElements(
 
-      <Route path="/" element={<RootLayuot />}>
+    <Route path="/" element={<RootLayuot />}>
 
-        <Route path="home" element={
-          <RequireAuth> <Home /> </RequireAuth> }/>
+      <Route path="home" element={
+        <RequireAuth> <Home /> </RequireAuth>} />
 
-        <Route path="addnewproduct" element={
-          <RequireAuth> <AddNewProduct /> </RequireAuth> }/>
+      <Route path="addnewproduct" element={
+        <RequireAuth> <AddNewProduct /> </RequireAuth>} />
 
-        <Route path="activeproducts" element={
-          <RequireAuth> <ActiveProducts /> </RequireAuth> }/>
+      <Route path="activeproducts" element={
+        <RequireAuth> <ActiveProducts /> </RequireAuth>} />
 
-        <Route path="editimage" element={
-          <RequireAuth> <EditImage /> </RequireAuth> }/>
+      <Route path="editimage" element={
+        <RequireAuth> <EditImage /> </RequireAuth>} />
 
-        <Route path="inactiveproducts" element={
-          <RequireAuth> <InActiveProducts /> </RequireAuth> }/>
+      <Route path="inactiveproducts" element={
+        <RequireAuth> <InActiveProducts /> </RequireAuth>} />
 
-        <Route path="updateproduct" element={
-          <RequireAuth> <UpdateProduct /> </RequireAuth> }/>
+      <Route path="updateproduct" element={
+        <Outlet />}>
+        <Route path=':ProductId' element={
+          <RequireAuth>
+            <UpdateProduct />
+          </RequireAuth>
+        } />
 
-        <Route index element={<Login />} />
-        <Route path="*" element={<Error />} />
       </Route>
+
+      <Route index element={<Login />} />
+      <Route path="*" element={<Error />} />
+    </Route>
   )
-  );
-  
-  function App() {
-    
-    return (
-      <>
+);
+
+function App() {
+
+  return (
+    <>
       <AuthProvider>
-      <RouterProvider router={router} />
+        <RouterProvider router={router} />
       </AuthProvider>
     </>
   )
