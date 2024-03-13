@@ -105,16 +105,13 @@ const NavBar = () => {
                                     isOpen2 && (
                                         <ul id="dropdown-example" className=" py-2 space-y-2">
                                             <li>
-                                                <Link to="/addnewproduct" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Add New Product</Link>
+                                                <Link to="/addnewproduct" className="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-blue-500 dark:hover:bg-gray-700">Add New Product</Link>
                                             </li>
                                             <li>
-                                                <Link to="/activeproducts" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Active Products</Link>
+                                                <Link to="/activeproducts" className="flex items-center w-full p-2  transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-green-500 dark:hover:bg-gray-700">Active Products</Link>
                                             </li>
                                             <li>
-                                                <Link to="/inactiveproducts" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">InActive Products</Link>
-                                            </li>
-                                            <li>
-                                                <Link to="/updateproduct" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Update Product</Link>
+                                                <Link to="/inactiveproducts" className="flex items-center w-full p-2  transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-red-500 dark:hover:bg-gray-700">InActive Products</Link>
                                             </li>
                                         </ul>
                                     )
