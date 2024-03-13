@@ -2,30 +2,34 @@ import React, { useState, useEffect } from 'react';
 import NavBar from '../components/NavBar';
 import Select from 'react-select';
 import { getAllCategory } from '../api/Api';
-import { AddProduct } from '../api/Api';
+import { Authurization } from '../api/Api';
 import { useParams } from 'react-router-dom'; // Import useParams hook
 
 const UpdateProduct = () => {
-    const {ProductId} = useParams()
+    const [isOpen, setIsOpen] = useState(false);
+    const toggleNavbar = () => {
+        setIsOpen(!isOpen)
+    }
+    const { ProductId } = useParams()
     const [productData, setProductData] = useState(null);
-    const [englishName, setenglishName] = useState('');
+    const [name, setName] = useState('');
     const [arabicName, setarabicName] = useState('');
     const [frenchName, setfrenchName] = useState('');
     const [arabicAbout, setarabicAbout] = useState('');
-    const [englishAbout, setenglishAbout] = useState('');
+    const [about, setAbout] = useState('');
     const [frenchAbout, setfrenchAbout] = useState('');
     const [arabicDescription, setarabicDescription] = useState('');
-    const [englishDescription, setenglishDescription] = useState('');
+    const [description, setDescription] = useState('');
     const [frenchDescription, setfrenchDescription] = useState('');
     const [categoryId, setcategoryId] = useState('');
     const [price, setprice] = useState('');
     const [stockQuantity, setstockQuantity] = useState('');
-    const [priceAfterDiscount, setpriceAfterDiscount] = useState('');
-    const [isDiscount, setisDiscount] = useState('');
+    const [afterDiscount, setpriceAfterDiscount] = useState('');
+    const [discount, setDiscount] = useState('');
     const [options, setOptions] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [authorizationToken, setAuthorizationToken] = useState(''); // For authorization token
-    
+
     //
     useEffect(() => {
         const fetchData = async () => {
@@ -33,7 +37,7 @@ const UpdateProduct = () => {
 
             try {
                 const response = await fetch(`https://api.vitaparapharma.com/api/v2/public/product/${ProductId}`, {
-                    
+
                 });
                 const data = await response.json();
                 console.log(data);
@@ -98,48 +102,43 @@ const UpdateProduct = () => {
         event.preventDefault();
 
         const formData = new FormData();
-        formData.append('arabicName', arabicName);
-        formData.append('englishName', englishName);
-        formData.append('frenchName', frenchName);
-        formData.append('arabicAbout', arabicAbout);
-        formData.append('englishAbout', englishAbout);
-        formData.append('frenchAbout', frenchAbout);
-        formData.append('arabicDescription', arabicDescription);
-        formData.append('englishDescription', englishDescription);
-        formData.append('frenchDescription', frenchDescription);
         formData.append('categoryId', categoryId);
-        formData.append('price', price);
-        formData.append('priceAfterDiscount', priceAfterDiscount);
-        formData.append('isDiscount', isDiscount);
-        formData.append('stockQuantity', stockQuantity);
-
+        // formData.append('isDiscount', isDiscount);
         try {
-            const response = await fetch(AddProduct, {
-                method: 'POST',
-                body: formData,
+            const response = await fetch(`https://api.vitaparapharma.com/api/v2/custom/product/update/${ProductId}`, {
+                method: 'PUT',
                 headers: {
-                    Authorization: `Bearer ${authorizationToken}`, // Include token with Bearer prefix
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${Authurization}`, // Include token with Bearer prefix
                 },
+                body: JSON.stringify({
+                    name,
+                    description,
+                    about,
+                    price,
+                    stockQuantity,
+                    categoryId,
+                    afterDiscount,
+                    discount,
+                    arabicName,
+                    arabicDescription,
+                    arabicAbout,
+                    frenchName,
+                    frenchDescription,
+                    frenchAbout
+                }),
             });
 
             const data = await response.json();
             if (!response.ok) {
                 console.log(data);
+                console.log(Authurization);
             }
-            setenglishName('');
-            setarabicName('');
-            setfrenchName('');
-            setarabicAbout('');
-            setenglishAbout('');
-            setfrenchAbout('');
-            setarabicDescription('');
-            setenglishDescription('');
-            setfrenchDescription('');
             setcategoryId('');
-            setprice('');
-            setstockQuantity('');
-            setpriceAfterDiscount('');
-            setisDiscount('');
+            setDiscount('');
+            setAbout('')
+            setName('')
+            
 
             console.log('Product created successfully:', data);
 
@@ -159,12 +158,101 @@ const UpdateProduct = () => {
 
                 <NavBar />
 
-                <div className='text-white grid justify-center items-center w-[1800px] max-[1815px]:w-[800px] max-[1563px]:w-[600px] h-screen max-[628px]:w-[200px]'>
+                <div className=' relative mt-[50px] grid justify-center items-center  2xl:justify-start 2xl:translate-x-[290px] px-5 py-5'>
+                    {isLoading ? (
+                        <p>Loading product details...</p>
+                    ) : productData ? (
+                        <div className='text-white text-start text-[20px] grid justify-start gap-4 py-4'>
+                            <div className='flex justify-start items-center gap-4'>
+                                    {productData.data.product.pictures.map((picture, index) => (
+                                        <img key={index} src={picture} alt={`picture`} className="product-image rounded-lg w-[300px]" />
+                                    ))}
+                            </div>
+                            <hr />
+                            <div>
+                                <div className='flex justify-start items-center gap-2'>
+                                    <h1 className='font-bold text-[22px]'>English name:</h1>
+                                    <p className='text-gray-300 text-[17px] translate-y-0.5'>{productData.data.product.name}</p>
+                                </div>
+                                <div className='flex justify-start items-center gap-2'>
+                                    <h1 className='font-bold text-[22px]'>Arabic name:</h1>
+                                    <p className='text-gray-300 text-[17px] translate-y-0.5'>{productData.data.product.arabicName}</p>
+                                </div>
+                                <div className='flex justify-start items-center gap-2'>
+                                    <h1 className='font-bold text-[22px]'>French name:</h1>
+                                    <p className='text-gray-300 text-[17px] translate-y-0.5'>{productData.data.product.frenchName}</p>
+                                </div>
+                            </div>
+                            <hr />
+                            <div className='grid gap-2'>
+                                <div className='flex justify-start items-center gap-1'>
+                                    <h1 className='font-bold text-[22px]'>English about:</h1>
+                                    <p className='text-gray-300 text-[17px] translate-y-0.5'>{productData.data.product.about}</p>
+                                </div>
+                                <div className='flex justify-start items-center gap-1'>
+                                    <h1 className='font-bold text-[22px]'>Arabic about:</h1>
+                                    <p className='text-gray-300 text-[17px] translate-y-0.5'>{productData.data.product.arabicAbout}</p>
+                                </div>
+                                <div className='flex justify-start items-center gap-1'>
+                                    <h1 className='font-bold text-[22px]'>French about:</h1>
+                                    <p className='text-gray-300 text-[17px] translate-y-0.5'>{productData.data.product.frenchAbout}</p>
+                                </div>
+                            </div>
+                            <hr />
+                            <div className='grid gap-2'>
+                                <div className='flex justify-start items-center gap-1'>
+                                    <h1 className='font-bold text-[22px]'>English description:</h1>
+                                    <p className='text-gray-300 text-[17px] translate-y-0.5'>{productData.data.product.description}</p>
+                                </div>
+                                <div className='flex justify-start items-center gap-1'>
+                                    <h1 className='font-bold text-[22px]'>Arabic description:</h1>
+                                    <p className='text-gray-300 text-[17px] translate-y-0.5'>{productData.data.product.arabicDescription}</p>
+                                </div>
+                                <div className='flex justify-start items-center gap-1'>
+                                    <h1 className='font-bold text-[22px]'>French description:</h1>
+                                    <p className='text-gray-300 text-[17px] translate-y-0.5'>{productData.data.product.frenchDescription}</p>
+                                </div>
+                            </div>
+                            <hr />
+                            <div className='flex justify-start items-center gap-4'>
+                                <h1 className='font-bold text-[22px]'>Price:</h1>
+                                <p className='text-gray-300 text-[17px] translate-y-0.5'>{productData.data.product.price}</p>
+                            </div>
+                            <hr />
+                            <div className='flex justify-start items-center gap-4'>
+                            <h1 className='font-bold text-[22px]'>IS Discount:</h1>
+                                <p className='text-gray-300 text-[17px] translate-y-0.5'>{productData.data.product.discount.toString()==="false"? "NO" : "YES"}</p>
+                            </div>
+                            <hr />
+                            <div className='flex justify-start items-center gap-4'>
+                            <h1 className='font-bold text-[22px]'>After Discount:</h1>
+                                <p className='text-gray-300 text-[17px] translate-y-0.5'>{productData.data.product.afterDiscount}</p>
+                            </div>
+                            <hr />
+                            <div className='flex justify-start items-center gap-4'>
+                            <h1 className='font-bold text-[22px]'>Category Id:</h1>
+                                <p className='text-gray-300 text-[17px] translate-y-0.5'>{productData.data.product.categoryId}</p>
+                            </div>
+                            <hr />
+                            <div className='flex justify-start items-center gap-4'>
+                            <h1 className='font-bold text-[22px]'>Stock Quantity:</h1>
+                                <p className='text-gray-300 text-[17px] translate-y-0.5'>{productData.data.product.stockQuantity}</p>
+                            </div>
+                            <hr />
+                            <div className='flex justify-center  items-center'>
+                                <button onClick={toggleNavbar} className='bg-sky-700 px-3 py-1 rounded-md'>Edit Product Data</button>
+                            </div>
+                        </div>
+                    ) : (
+                        <p>No product data found.</p>
+                    )}
+                </div>
+{
+    isOpen && (
 
-                    <div className='bg-[#1F2937] w-[1400px] max-[1815px]:translate-y-11 p-7 items-center grid translate-y-8 max-[1815px]:translate-x-[600px] max-[1626px]:translate-x-[550px] max-[1563px]:translate-x-[620px]  max-[2000px]:translate-x-24 max-[1736px]:w-[1200px]  rounded-xl border border-[#41434d] shadow-[#2c4157] max-[1536px]:w-[1000px] shadow-2xl max-[1430px]:translate-x-[500px] max-[1306px]:translate-x-[400px] max-[1200px]:w-[700px] max-[1056px]:translate-x-[300px] max-[964px]:translate-x-[150px] max-[854px]:translate-x-[100px] max-[764px]:translate-x-[70px] max-[724px]:w-[500px] max-[628px]:translate-x-[210px] max-[557px]:translate-x-[160px] max-[519px]:w-[400px] max-[408px]:w-[370px] max-[467px]:translate-x-[105px] max-[392px]:translate-x-[90px]'>
-
+                <div className='text-white grid justify-center w-[1800px] max-[1815px]:w-[800px] max-[1563px]:w-[600px] h-screen max-[628px]:w-[200px]'>
+                    <div className='bg-[#1F2937] w-[1400px] max-[1815px]:translate-y-11 p-7 items-center grid  max-[1815px]:translate-x-[600px] max-[1626px]:translate-x-[550px] max-[1563px]:translate-x-[620px]  max-[2000px]:translate-x-24 max-[1736px]:w-[1200px]  rounded-xl border border-[#41434d] shadow-[#2c4157] max-[1536px]:w-[1000px] shadow-2xl max-[1430px]:translate-x-[500px] max-[1306px]:translate-x-[400px] max-[1200px]:w-[700px] max-[1056px]:translate-x-[300px] max-[964px]:translate-x-[150px] max-[854px]:translate-x-[100px] max-[764px]:translate-x-[70px] max-[724px]:w-[500px] max-[628px]:translate-x-[210px] max-[557px]:translate-x-[160px] max-[519px]:w-[400px] max-[408px]:w-[370px] max-[467px]:translate-x-[105px] max-[392px]:translate-x-[90px]'>
                         <form className='grid justify-center  gap-6 grid-cols-1' onSubmit={handleSubmit}>
-
                             <div className="flex justify-center items-center gap-3 max-[1815px]:grid">
                                 <input placeholder='Product Name: (AR)' className='bg-[#2b2e38] w-[350px] px-6 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d]' type="text"
                                     name="arabicName"
@@ -172,10 +260,10 @@ const UpdateProduct = () => {
                                     value={arabicName}
                                     onChange={(e) => setarabicName(e.target.value)} required />
                                 <input placeholder='Product Name: (EN)' className='bg-[#2b2e38] w-[350px] px-6 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d]' type="text"
-                                    name="englishName"
-                                    id="englishName"
-                                    value={englishName}
-                                    onChange={(e) => setenglishName(e.target.value)} required />
+                                    name="name"
+                                    id="name"
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)} required />
                                 <input placeholder='Product Name: (FR)' className='bg-[#2b2e38] w-[350px] px-6 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d]' type="text"
                                     name="frenchName"
                                     id="frenchName"
@@ -186,7 +274,7 @@ const UpdateProduct = () => {
                             <div className='flex justify-center items-center gap-3 max-[1815px]:grid'>
                                 <div className='flex items-center gap-2'>
                                     <label htmlFor="isDiscount" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Is Discount?</label>
-                                    <input id="isDiscount" type="checkbox" onChange={(e) => setisDiscount(e.target.checked ? 1 : 0)} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" ></input>{/*onChange={handleAfterDiscountChange}*/}
+                                    <input id="isDiscount" type="checkbox" onChange={(e) => setDiscount(e.target.checked ? 1 : 0)} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" ></input>{/*onChange={handleAfterDiscountChange}*/}
                                     <input placeholder='After Discount:' className='bg-[#2b2e38]  px-2 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d]' type="number" id="afterDiscount" name="afterDiscount" onChange={(e) => setpriceAfterDiscount(e.target.value)} min="0" step="0.01" />
                                 </div>
 
@@ -211,7 +299,7 @@ const UpdateProduct = () => {
                                             // Customize option background
                                         }),
                                     }}
-                                ></Select>
+                                    ></Select>
                                 <p>{categoryId}</p>
                             </div>
 
@@ -222,10 +310,10 @@ const UpdateProduct = () => {
                                     value={arabicDescription}
                                     onChange={(e) => setarabicDescription(e.target.value)} required />
                                 <textarea placeholder='Description: (EN)' className='bg-[#2b2e38] max-[1815px]:w-[800px] w-[1070px] px-8 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d] max-[1200px]:w-[500px] max-[724px]:w-[350px]'
-                                    name="englishDescription"
-                                    id="englishDescription"
-                                    value={englishDescription}
-                                    onChange={(e) => setenglishDescription(e.target.value)} required />
+                                    name="description"
+                                    id="description"
+                                    value={description}
+                                    onChange={(e) => setDescription(e.target.value)} required />
                                 <textarea placeholder='Description: (FR)' className='bg-[#2b2e38] max-[1815px]:w-[800px] w-[1070px] px-8 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d] max-[1200px]:w-[500px] max-[724px]:w-[350px]'
                                     name="frenchDescription"
                                     id="frenchDescription"
@@ -240,10 +328,10 @@ const UpdateProduct = () => {
                                     value={arabicAbout}
                                     onChange={(e) => setarabicAbout(e.target.value)} />
                                 <textarea placeholder='About: (EN)' className='bg-[#2b2e38] max-[1815px]:w-[800px] w-[1070px] px-8 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d] max-[1200px]:w-[500px] max-[724px]:w-[350px]'
-                                    name="englishAbout"
-                                    id="englishAbout"
-                                    value={englishAbout}
-                                    onChange={(e) => setenglishAbout(e.target.value)} />
+                                    name="about"
+                                    id="about"
+                                    value={about}
+                                    onChange={(e) => setAbout(e.target.value)} />
                                 <textarea placeholder='About: (FR)' className='bg-[#2b2e38] max-[1815px]:w-[800px] w-[1070px] px-8 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d] max-[1200px]:w-[500px] max-[724px]:w-[350px]'
                                     name="frenchAbout"
                                     id="frenchAbout"
@@ -257,6 +345,8 @@ const UpdateProduct = () => {
                         </form>
                     </div>
                 </div>
+                    )
+                }
             </div>
         </>
     );
