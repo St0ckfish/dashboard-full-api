@@ -108,9 +108,6 @@ const NavBar = () => {
                                                 <Link to="/addnewproduct" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Add New Product</Link>
                                             </li>
                                             <li>
-                                                <Link to="/editimage" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Edit Images</Link>
-                                            </li>
-                                            <li>
                                                 <Link to="/activeproducts" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Active Products</Link>
                                             </li>
                                             <li>
