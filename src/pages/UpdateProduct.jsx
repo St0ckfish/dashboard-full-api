@@ -410,7 +410,7 @@ const UpdateProduct = () => {
                                 {
                                     productData.data.product.pictures.length !== 5?(
 
-                                <div className='flex justify-center items-center gap-3 '>
+                                <div className='grid justify-center items-center gap-3 '>
                                     <label className="block mb-2 text-sm font-medium text-white translate-y-1" htmlFor="imageUpload">Select Image:</label>
                                     <input type="file"
                                             onChange={handleImageChange}
