@@ -52,15 +52,18 @@ const UpdateProduct = () => {
 
             if (response.ok) {
                 console.log('Image uploaded successfully!');
+                alert('Image uploaded successfully!');
 
                 // Update product data to reflect the change (consider refetching data)
                 // ... (implementation details)
             } else {
                 console.error('Error uploading image:', await response.text());
+                alert('Error uploading image:');
                 // Handle upload error (e.g., display an error message)
             }
         } catch (error) {
             console.error('Error:', error);
+            alert('Error uploading image:');
             // Handle errors (e.g., network issues)
         }
     };
