@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import NavBar from '../components/NavBar';
 import { Authurization, Active } from '../api/Api';
 import { Link } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const ActiveProducts = () => {
     const notify = () => toast("Wow so easy!");

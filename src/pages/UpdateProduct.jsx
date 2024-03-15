@@ -4,14 +4,17 @@ import Select from 'react-select';
 import { getAllCategory } from '../api/Api';
 import { Authurization } from '../api/Api';
 import { useParams } from 'react-router-dom'; // Import useParams hook
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 const UpdateProduct = () => {
+
     const [isOpen, setIsOpen] = useState(false);
     const toggleNavbar = () => {
         setIsOpen(!isOpen)
     }
     const [selectedFile, setSelectedFile] = useState(null);
-    const [buttonText, setButtonText] = useState('Delete');
+    // const [buttonText, setButtonText] = useState('Delete');
     const { ProductId } = useParams()
     const [productData, setProductData] = useState(null);
     const [name, setName] = useState('');
@@ -27,10 +30,40 @@ const UpdateProduct = () => {
     const [price, setprice] = useState('');
     const [stockQuantity, setstockQuantity] = useState('');
     const [afterDiscount, setpriceAfterDiscount] = useState('');
-    const [discount, setDiscount] = useState('');
+    const [discount, setDiscount] = useState(false);
     const [options, setOptions] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [authorizationToken, setAuthorizationToken] = useState(''); // For authorization token
+
+    const handleEnglishDescriptionChange = (content) => {
+        setDescription(content);
+    };
+    const handleArabicDescriptionChange = (content) => {
+        setarabicDescription(content);
+    };
+    const handleFrenchDescriptionChange = (content) => {
+        setfrenchDescription(content);
+    };
+    const handleEnglishAboutChange = (content) => {
+        setAbout(content);
+    };
+    const handleArabicAboutChange = (content) => {
+        setarabicAbout(content);
+    };
+    const handleFrenchAboutChange = (content) => {
+        setfrenchAbout(content);
+    };
+    const handleInputChange = (event) => {
+        setpriceAfterDiscount(event.target.value);
+    };
+
+    const handleCheckboxChange = (event) => {
+        event.target.checked ? true : false
+        setDiscount(event.target.checked);
+        if (!event.target.checked === false) {
+            setpriceAfterDiscount(0);
+        }
+    };
 
     const handleImageChange = (event) => {
         setSelectedFile(event.target.files[0]); // Access the first selected file
@@ -58,12 +91,12 @@ const UpdateProduct = () => {
                 // ... (implementation details)
             } else {
                 console.error('Error uploading image:', await response.text());
-                alert('Error uploading image:');
+                alert('Error uploading image: must be less than 30kb');
                 // Handle upload error (e.g., display an error message)
             }
         } catch (error) {
             console.error('Error:', error);
-            alert('Error uploading image:');
+            alert('Error uploading image: 5 max');
             // Handle errors (e.g., network issues)
         }
     };
@@ -77,6 +110,7 @@ const UpdateProduct = () => {
                 const response = await fetch(`https://api.vitaparapharma.com/api/v2/public/product/${ProductId}`, {
 
                 });
+                setName(productData.data.product.name)
                 const data = await response.json();
                 console.log(data);
                 setProductData(data); // Update product data
@@ -331,8 +365,8 @@ const UpdateProduct = () => {
                                     <div className='flex justify-center items-center gap-3 max-[1815px]:grid'>
                                         <div className='flex items-center gap-2'>
                                             <label htmlFor="isDiscount" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Is Discount?</label>
-                                            <input id="isDiscount" type="checkbox" onChange={(e) => setDiscount(e.target.checked ? 1 : 0)} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" ></input>{/*onChange={handleAfterDiscountChange}*/}
-                                            <input placeholder='After Discount:' className='bg-[#2b2e38]  px-2 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d]' type="number" id="afterDiscount" name="afterDiscount" onChange={(e) => setpriceAfterDiscount(e.target.value)} min="0" step="0.01" />
+                                            <input id="isDiscount" type="checkbox" onChange={handleCheckboxChange} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" ></input>{/*onChange={handleAfterDiscountChange}*/}
+                                            <input placeholder='After Discount:' className='bg-[#2b2e38]  px-2 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d]' type="number" id="afterDiscount" name="afterDiscount" onChange={handleInputChange} min="0" step="0.01" />
                                         </div>
 
                                         <div className="flex items-center justify-center gap-2">
@@ -361,39 +395,39 @@ const UpdateProduct = () => {
                                     </div>
 
                                     <div className='grid justify-center items-center gap-3'>
-                                        <textarea placeholder='Description: (AR)' className='bg-[#2b2e38] max-[1815px]:w-[800px]  w-[1070px] px-8 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d] max-[1200px]:w-[500px] max-[724px]:w-[350px]'
+                                        <ReactQuill placeholder='Description: (AR)' className='text-black bg-[#ffffff] max-[1815px]:w-[800px]  w-[1070px] px-8 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d] max-[1200px]:w-[500px] max-[724px]:w-[350px]'
                                             name="arabicDescription"
                                             id="arabicDescription"
                                             value={arabicDescription}
-                                            onChange={(e) => setarabicDescription(e.target.value)} required />
-                                        <textarea placeholder='Description: (EN)' className='bg-[#2b2e38] max-[1815px]:w-[800px] w-[1070px] px-8 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d] max-[1200px]:w-[500px] max-[724px]:w-[350px]'
+                                            onChange={handleArabicDescriptionChange} required />
+                                        <ReactQuill placeholder='Description: (EN)' className='text-black bg-[#ffffff] max-[1815px]:w-[800px] w-[1070px] px-8 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d] max-[1200px]:w-[500px] max-[724px]:w-[350px]'
                                             name="description"
                                             id="description"
                                             value={description}
-                                            onChange={(e) => setDescription(e.target.value)} required />
-                                        <textarea placeholder='Description: (FR)' className='bg-[#2b2e38] max-[1815px]:w-[800px] w-[1070px] px-8 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d] max-[1200px]:w-[500px] max-[724px]:w-[350px]'
+                                            onChange={handleEnglishDescriptionChange} required />
+                                        <ReactQuill placeholder='Description: (FR)' className='text-black bg-[#ffffff] max-[1815px]:w-[800px] w-[1070px] px-8 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d] max-[1200px]:w-[500px] max-[724px]:w-[350px]'
                                             name="frenchDescription"
                                             id="frenchDescription"
                                             value={frenchDescription}
-                                            onChange={(e) => setfrenchDescription(e.target.value)} required />
+                                            onChange={handleFrenchDescriptionChange} required />
                                     </div>
-
+                                    {/* <ReactQuill theme="snow" value={value} onChange={setValue} /> */}
                                     <div className='grid justify-center items-center gap-3'>
-                                        <textarea placeholder='About: (AR)' className='bg-[#2b2e38] max-[1815px]:w-[800px] w-[1070px] px-8 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d] max-[1200px]:w-[500px] max-[724px]:w-[350px]'
+                                        <ReactQuill placeholder='About: (AR)' className='text-black bg-[#ffffff] max-[1815px]:w-[800px] w-[1070px] px-8 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d] max-[1200px]:w-[500px] max-[724px]:w-[350px]'
                                             name="arabicAbout"
                                             id="arabicAbout"
                                             value={arabicAbout}
-                                            onChange={(e) => setarabicAbout(e.target.value)} />
-                                        <textarea placeholder='About: (EN)' className='bg-[#2b2e38] max-[1815px]:w-[800px] w-[1070px] px-8 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d] max-[1200px]:w-[500px] max-[724px]:w-[350px]'
+                                            onChange={handleArabicAboutChange} />
+                                        <ReactQuill placeholder='About: (EN)' className='text-black bg-[#ffffff] max-[1815px]:w-[800px] w-[1070px] px-8 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d] max-[1200px]:w-[500px] max-[724px]:w-[350px]'
                                             name="about"
                                             id="about"
                                             value={about}
-                                            onChange={(e) => setAbout(e.target.value)} />
-                                        <textarea placeholder='About: (FR)' className='bg-[#2b2e38] max-[1815px]:w-[800px] w-[1070px] px-8 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d] max-[1200px]:w-[500px] max-[724px]:w-[350px]'
+                                            onChange={handleEnglishAboutChange} />
+                                        <ReactQuill placeholder='About: (FR)' className=' text-black bg-[#ffffff] max-[1815px]:w-[800px] w-[1070px] px-8 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d] max-[1200px]:w-[500px] max-[724px]:w-[350px]'
                                             name="frenchAbout"
                                             id="frenchAbout"
                                             value={frenchAbout}
-                                            onChange={(e) => setfrenchAbout(e.target.value)} />
+                                            onChange={handleFrenchAboutChange} />
                                     </div>
 
                                     <div>
@@ -404,24 +438,24 @@ const UpdateProduct = () => {
                                     {productData.data.product.pictures.map((picture, index) => (
                                         <div key={index} className=''>
                                             <img key={index} src={picture} alt={`picture`} className="product-image rounded-lg w-[270px]" />
-                                            <button key={index} className='bg-red-500 rounded-md mt-4 px-2 py-1' onClick={() => {handleDeleteImage(productData.data.product.productId, picture.substring(picture.lastIndexOf("/") + 1));}}>Delete</button>
+                                            <button key={index} className='bg-red-500 rounded-md mt-4 px-2 py-1' onClick={() => { handleDeleteImage(productData.data.product.productId, picture.substring(picture.lastIndexOf("/") + 1)); }}>Delete</button>
                                         </div>
 
 
                                     ))}
                                 </div>
                                 {
-                                    productData.data.product.pictures.length !== 5?(
+                                    productData.data.product.pictures.length !== 5 ? (
 
-                                <div className='grid justify-center items-center gap-3 '>
-                                    <label className="block mb-2 text-sm font-medium text-white translate-y-1" htmlFor="imageUpload">Select Image:</label>
-                                    <input type="file"
-                                            onChange={handleImageChange}
-                                        id="imageUpload"// Restrict file types to images
-                                        className=" bg-slate-700 text-black text-sm file:cursor-pointer cursor-pointer file:border-0 file:py-2 file:px-4 file:mr-4 file:bg-[#8465F2] file:hover:bg-[#5735d1] file:text-white rounded" required accept="image/*" />
-                                        <button className=' cursor-pointer bg-green-600 rounded-md px-2 py-1' onClick={handleImageUpload} disabled={!selectedFile}>Upload Image</button>
-                                </div>
-                                    ):(
+                                        <div className='grid justify-center items-center gap-3 '>
+                                            <label className="block mb-2 text-sm font-medium text-white translate-y-1" htmlFor="imageUpload">Select Image:</label>
+                                            <input type="file"
+                                                onChange={handleImageChange}
+                                                id="imageUpload"// Restrict file types to images
+                                                className=" bg-slate-700 text-black text-sm file:cursor-pointer cursor-pointer file:border-0 file:py-2 file:px-4 file:mr-4 file:bg-[#8465F2] file:hover:bg-[#5735d1] file:text-white rounded" required accept="image/*" />
+                                            <button className=' cursor-pointer bg-green-600 rounded-md px-2 py-1' onClick={handleImageUpload} disabled={!selectedFile}>Upload Image</button>
+                                        </div>
+                                    ) : (
                                         <p>Max images 5</p>
                                     )
                                 }

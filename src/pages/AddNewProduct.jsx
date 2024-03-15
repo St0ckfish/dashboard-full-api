@@ -3,6 +3,8 @@ import NavBar from '../components/NavBar';
 import Select from 'react-select';
 import { getAllCategory } from '../api/Api';
 import { AddProduct } from '../api/Api';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 const AddNewProduct = () => {
     const [englishName, setenglishName] = useState('');
@@ -18,12 +20,30 @@ const AddNewProduct = () => {
     const [price, setprice] = useState('');
     const [stockQuantity, setstockQuantity] = useState('');
     const [priceAfterDiscount, setpriceAfterDiscount] = useState('');
-    const [isDiscount, setisDiscount] = useState('');
+    const [isDiscount, setisDiscount] = useState(false);
     const [options, setOptions] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [selectedImages, setSelectedImages] = useState([]);
     const [authorizationToken, setAuthorizationToken] = useState(''); // For authorization token
 
+    const handleEnglishDescriptionChange = (content) => {
+        setenglishDescription(content);
+    };
+    const handleArabicDescriptionChange = (content) => {
+        setarabicDescription(content);
+    };
+    const handleFrenchDescriptionChange = (content) => {
+        setfrenchDescription(content);
+    };
+    const handleEnglishAboutChange = (content) => {
+        setenglishAbout(content);
+    };
+    const handleArabicAboutChange = (content) => {
+        setarabicAbout(content);
+    };
+    const handleFrenchAboutChange = (content) => {
+        setfrenchAbout(content);
+    };
     const handleImageChange = (event) => {
         const newImages = event.target.files;
 
@@ -70,6 +90,18 @@ const AddNewProduct = () => {
         fetchData();
     }, [categoryId]);
 
+    const handleInputChange = (event) => {
+        setpriceAfterDiscount(event.target.value);
+    };
+
+    const handleCheckboxChange = (event) => {
+        event.target.checked ? true : false
+        setisDiscount(event.target.checked);
+        if (!event.target.checked === false) {
+            setpriceAfterDiscount(0);
+        }
+    };
+
     const handleCategoryChange = (selectedOption) => {
         console.log('Selected option:', selectedOption);
         if (selectedOption) {
@@ -103,7 +135,7 @@ const AddNewProduct = () => {
         formData.append('priceAfterDiscount', priceAfterDiscount);
         formData.append('isDiscount', isDiscount);
         formData.append('stockQuantity', stockQuantity);
-        
+
         for (let i = 0; i < selectedImages.length; i++) {
             const image = selectedImages[i];
             const customName = `image${i + 1}`; // names like image1, image2, etc.
@@ -122,23 +154,23 @@ const AddNewProduct = () => {
             const data = await response.json();
             if (!response.ok) {
                 console.log(data);
-                
+
+                setenglishName('');
+                setarabicName('');
+                setfrenchName('');
+                setarabicAbout('');
+                setenglishAbout('');
+                setfrenchAbout('');
+                setarabicDescription('');
+                setenglishDescription('');
+                setfrenchDescription('');
+                setcategoryId('');
+                setprice('');
+                setstockQuantity('');
+                setpriceAfterDiscount('');
+                setisDiscount('');
+                setSelectedImages(null)
             }
-            setenglishName('');
-            setarabicName('');
-            setfrenchName('');
-            setarabicAbout('');
-            setenglishAbout('');
-            setfrenchAbout('');
-            setarabicDescription('');
-            setenglishDescription('');
-            setfrenchDescription('');
-            setcategoryId('');
-            setprice('');
-            setstockQuantity('');
-            setpriceAfterDiscount('');
-            setisDiscount('');
-            setSelectedImages(null)
 
             console.log('Product created successfully:', data);
 
@@ -153,6 +185,7 @@ const AddNewProduct = () => {
         console.log('Authorization token:', authorizationToken);
 
     };
+
     return (
         <>
             <div className="">
@@ -186,8 +219,8 @@ const AddNewProduct = () => {
                             <div className='flex justify-center items-center gap-3 max-[1815px]:grid'>
                                 <div className='flex items-center gap-2'>
                                     <label htmlFor="isDiscount" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Is Discount?</label>
-                                    <input id="isDiscount" type="checkbox" onChange={(e) => setisDiscount(e.target.checked ? 1 : 0)} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" ></input>{/*onChange={handleAfterDiscountChange}*/}
-                                    <input placeholder='After Discount:' className='bg-[#2b2e38]  px-2 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d]' type="number" id="afterDiscount" name="afterDiscount" onChange={(e) => setpriceAfterDiscount(e.target.value)} min="0" step="0.01" />
+                                    <input id="isDiscount" type="checkbox" onChange={handleCheckboxChange} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" ></input>{/*onChange={handleAfterDiscountChange}*/}
+                                    <input placeholder='After Discount:' className='bg-[#2b2e38]  px-2 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d]' type="number" id="afterDiscount" name="afterDiscount" onChange={handleInputChange} min="0" step="0.01" />
                                 </div>
 
                                 <div className="flex items-center justify-center gap-2">
@@ -216,39 +249,39 @@ const AddNewProduct = () => {
                             </div>
 
                             <div className='grid justify-center items-center gap-3'>
-                                <textarea placeholder='Description: (AR)' className='bg-[#2b2e38] max-[1815px]:w-[800px]  w-[1070px] px-8 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d] max-[1200px]:w-[500px] max-[724px]:w-[350px]'
+                                <ReactQuill placeholder='Description: (AR)' className='text-black bg-[#ffffff] max-[1815px]:w-[800px]  w-[1070px] px-8 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d] max-[1200px]:w-[500px] max-[724px]:w-[350px]'
                                     name="arabicDescription"
                                     id="arabicDescription"
                                     value={arabicDescription}
-                                    onChange={(e) => setarabicDescription(e.target.value)} required />
-                                <textarea placeholder='Description: (EN)' className='bg-[#2b2e38] max-[1815px]:w-[800px] w-[1070px] px-8 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d] max-[1200px]:w-[500px] max-[724px]:w-[350px]'
+                                    onChange={handleArabicDescriptionChange} required />
+                                <ReactQuill placeholder='Description: (EN)' className='text-black bg-[#ffffff] max-[1815px]:w-[800px] w-[1070px] px-8 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d] max-[1200px]:w-[500px] max-[724px]:w-[350px]'
                                     name="englishDescription"
                                     id="englishDescription"
                                     value={englishDescription}
-                                    onChange={(e) => setenglishDescription(e.target.value)} required />
-                                <textarea placeholder='Description: (FR)' className='bg-[#2b2e38] max-[1815px]:w-[800px] w-[1070px] px-8 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d] max-[1200px]:w-[500px] max-[724px]:w-[350px]'
+                                    onChange={handleEnglishDescriptionChange} required />
+                                <ReactQuill placeholder='Description: (FR)' className='text-black bg-[#ffffff] max-[1815px]:w-[800px] w-[1070px] px-8 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d] max-[1200px]:w-[500px] max-[724px]:w-[350px]'
                                     name="frenchDescription"
                                     id="frenchDescription"
                                     value={frenchDescription}
-                                    onChange={(e) => setfrenchDescription(e.target.value)} required />
+                                    onChange={handleFrenchDescriptionChange} required />
                             </div>
 
                             <div className='grid justify-center items-center gap-3'>
-                                <textarea placeholder='About: (AR)' className='bg-[#2b2e38] max-[1815px]:w-[800px] w-[1070px] px-8 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d] max-[1200px]:w-[500px] max-[724px]:w-[350px]'
+                                <ReactQuill placeholder='About: (AR)' className='text-black bg-[#ffffff] max-[1815px]:w-[800px] w-[1070px] px-8 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d] max-[1200px]:w-[500px] max-[724px]:w-[350px]'
                                     name="arabicAbout"
                                     id="arabicAbout"
                                     value={arabicAbout}
-                                    onChange={(e) => setarabicAbout(e.target.value)} />
-                                <textarea placeholder='About: (EN)' className='bg-[#2b2e38] max-[1815px]:w-[800px] w-[1070px] px-8 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d] max-[1200px]:w-[500px] max-[724px]:w-[350px]'
+                                    onChange={handleArabicAboutChange} />
+                                <ReactQuill placeholder='About: (EN)' className='text-black bg-[#ffffff] max-[1815px]:w-[800px] w-[1070px] px-8 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d] max-[1200px]:w-[500px] max-[724px]:w-[350px]'
                                     name="englishAbout"
                                     id="englishAbout"
                                     value={englishAbout}
-                                    onChange={(e) => setenglishAbout(e.target.value)} />
-                                <textarea placeholder='About: (FR)' className='bg-[#2b2e38] max-[1815px]:w-[800px] w-[1070px] px-8 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d] max-[1200px]:w-[500px] max-[724px]:w-[350px]'
+                                    onChange={handleEnglishAboutChange} />
+                                <ReactQuill placeholder='About: (FR)' className='text-black bg-[#ffffff] max-[1815px]:w-[800px] w-[1070px] px-8 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d] max-[1200px]:w-[500px] max-[724px]:w-[350px]'
                                     name="frenchAbout"
                                     id="frenchAbout"
                                     value={frenchAbout}
-                                    onChange={(e) => setfrenchAbout(e.target.value)} />
+                                    onChange={handleFrenchAboutChange} />
                             </div>
 
                             <div className='flex justify-center items-center gap-3 '>
