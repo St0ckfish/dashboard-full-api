@@ -110,11 +110,21 @@ const UpdateProduct = () => {
                 const response = await fetch(`https://api.vitaparapharma.com/api/v2/public/product/${ProductId}`, {
 
                 });
+ 
                 const data = await response.json();
                 console.log(data);
                 setProductData(data); // Update product data
                 setName(data.data.product.name)
+                setarabicName(data.data.product.arabicName)
+                setfrenchName(data.data.product.frenchName)
+                setAbout(data.data.product.about)
+                setarabicAbout(data.data.product.arabicAbout)
+                setfrenchAbout(data.data.product.frenchAbout)
+                setDescription(data.data.product.description)
+                setarabicDescription(data.data.product.arabicDescription)
+                setfrenchDescription(data.data.product.frenchDescription)
                 console.log('Authorization token:', authorizationToken);
+
                 
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -208,11 +218,24 @@ const UpdateProduct = () => {
             }
             setcategoryId('');
             setDiscount('');
-            setAbout('')
-            setName('')
+            setAbout('');
+            setName('');
+            setarabicDescription('');
+            setDescription('');
+            setfrenchDescription('');
+            setarabicAbout('');
+            setfrenchAbout('');
+            setarabicName('');
+            setfrenchName('');
+            setprice('');
+            setpriceAfterDiscount('');
+            setstockQuantity('');
 
 
-            console.log('Product created successfully:', data);
+                alert('Product edited successfully:)');
+            
+
+            console.log('Product edited successfully:', data);
 
         } catch (error) {
             console.error('Error submitting form:', error);
@@ -413,21 +436,21 @@ const UpdateProduct = () => {
                                     </div>
                                     {/* <ReactQuill theme="snow" value={value} onChange={setValue} /> */}
                                     <div className='grid justify-center items-center gap-3'>
-                                        <ReactQuill placeholder='About: (AR)' className='text-black bg-[#ffffff] max-[1815px]:w-[800px] w-[1070px] px-8 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d] max-[1200px]:w-[500px] max-[724px]:w-[350px]'
+                                        <textarea placeholder='About: (AR)' className=' bg-[#2b2e38] max-[1815px]:w-[800px] w-[1070px] px-8 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d] max-[1200px]:w-[500px] max-[724px]:w-[350px]'
                                             name="arabicAbout"
                                             id="arabicAbout"
                                             value={arabicAbout}
-                                            onChange={handleArabicAboutChange} />
-                                        <ReactQuill placeholder='About: (EN)' className='text-black bg-[#ffffff] max-[1815px]:w-[800px] w-[1070px] px-8 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d] max-[1200px]:w-[500px] max-[724px]:w-[350px]'
+                                            onChange={(e) => setarabicAbout(e.target.value)} />
+                                        <textarea placeholder='About: (EN)' className=' bg-[#2b2e38] max-[1815px]:w-[800px] w-[1070px] px-8 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d] max-[1200px]:w-[500px] max-[724px]:w-[350px]'
                                             name="about"
                                             id="about"
                                             value={about}
-                                            onChange={handleEnglishAboutChange} />
-                                        <ReactQuill placeholder='About: (FR)' className=' text-black bg-[#ffffff] max-[1815px]:w-[800px] w-[1070px] px-8 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d] max-[1200px]:w-[500px] max-[724px]:w-[350px]'
+                                            onChange={(e) => setAbout(e.target.value)} />
+                                        <textarea placeholder='About: (FR)' className=' bg-[#2b2e38] max-[1815px]:w-[800px] w-[1070px] px-8 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d] max-[1200px]:w-[500px] max-[724px]:w-[350px]'
                                             name="frenchAbout"
                                             id="frenchAbout"
                                             value={frenchAbout}
-                                            onChange={handleFrenchAboutChange} />
+                                            onChange={(e) => setfrenchAbout(e.target.value)} />
                                     </div>
 
                                     <div>

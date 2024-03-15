@@ -155,22 +155,23 @@ const AddNewProduct = () => {
             if (!response.ok) {
                 console.log(data);
 
-                setenglishName('');
-                setarabicName('');
-                setfrenchName('');
-                setarabicAbout('');
-                setenglishAbout('');
-                setfrenchAbout('');
-                setarabicDescription('');
-                setenglishDescription('');
-                setfrenchDescription('');
-                setcategoryId('');
-                setprice('');
-                setstockQuantity('');
-                setpriceAfterDiscount('');
-                setisDiscount('');
-                setSelectedImages(null)
             }
+            setenglishName('');
+            setarabicName('');
+            setfrenchName('');
+            setarabicAbout('');
+            setenglishAbout('');
+            setfrenchAbout('');
+            setarabicDescription('');
+            setenglishDescription('');
+            setfrenchDescription('');
+            setcategoryId('');
+            setprice('');
+            setstockQuantity('');
+            setpriceAfterDiscount('');
+            setisDiscount('');
+            setSelectedImages(null)
+            alert('Product created successfully:)')
 
             console.log('Product created successfully:', data);
 
@@ -267,21 +268,21 @@ const AddNewProduct = () => {
                             </div>
 
                             <div className='grid justify-center items-center gap-3'>
-                                <ReactQuill placeholder='About: (AR)' className='text-black bg-[#ffffff] max-[1815px]:w-[800px] w-[1070px] px-8 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d] max-[1200px]:w-[500px] max-[724px]:w-[350px]'
+                                <textarea placeholder='About: (AR)' className=' bg-[#2b2e38] max-[1815px]:w-[800px] w-[1070px] px-8 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d] max-[1200px]:w-[500px] max-[724px]:w-[350px]'
                                     name="arabicAbout"
                                     id="arabicAbout"
                                     value={arabicAbout}
-                                    onChange={handleArabicAboutChange} />
-                                <ReactQuill placeholder='About: (EN)' className='text-black bg-[#ffffff] max-[1815px]:w-[800px] w-[1070px] px-8 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d] max-[1200px]:w-[500px] max-[724px]:w-[350px]'
+                                    onChange={(e) => setarabicAbout(e.target.value)} />
+                                <textarea placeholder='About: (EN)' className=' bg-[#2b2e38] max-[1815px]:w-[800px] w-[1070px] px-8 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d] max-[1200px]:w-[500px] max-[724px]:w-[350px]'
                                     name="englishAbout"
                                     id="englishAbout"
                                     value={englishAbout}
-                                    onChange={handleEnglishAboutChange} />
-                                <ReactQuill placeholder='About: (FR)' className='text-black bg-[#ffffff] max-[1815px]:w-[800px] w-[1070px] px-8 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d] max-[1200px]:w-[500px] max-[724px]:w-[350px]'
+                                    onChange={(e) => setenglishAbout(e.target.value)} />
+                                <textarea placeholder='About: (FR)' className=' bg-[#2b2e38] max-[1815px]:w-[800px] w-[1070px] px-8 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d] max-[1200px]:w-[500px] max-[724px]:w-[350px]'
                                     name="frenchAbout"
                                     id="frenchAbout"
                                     value={frenchAbout}
-                                    onChange={handleFrenchAboutChange} />
+                                    onChange={(e) => setfrenchAbout(e.target.value)} />
                             </div>
 
                             <div className='flex justify-center items-center gap-3 '>
