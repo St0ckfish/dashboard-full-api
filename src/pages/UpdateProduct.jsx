@@ -110,12 +110,12 @@ const UpdateProduct = () => {
                 const response = await fetch(`https://api.vitaparapharma.com/api/v2/public/product/${ProductId}`, {
 
                 });
-                setName(productData.data.product.name)
                 const data = await response.json();
                 console.log(data);
                 setProductData(data); // Update product data
+                setName(data.data.product.name)
                 console.log('Authorization token:', authorizationToken);
-
+                
             } catch (error) {
                 console.error('Error fetching data:', error);
                 // Handle errors gracefully (e.g., display an error message)
