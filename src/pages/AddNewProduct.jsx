@@ -35,15 +35,6 @@ const AddNewProduct = () => {
     const handleFrenchDescriptionChange = (content) => {
         setfrenchDescription(content);
     };
-    const handleEnglishAboutChange = (content) => {
-        setenglishAbout(content);
-    };
-    const handleArabicAboutChange = (content) => {
-        setarabicAbout(content);
-    };
-    const handleFrenchAboutChange = (content) => {
-        setfrenchAbout(content);
-    };
     const handleImageChange = (event) => {
         const newImages = event.target.files;
 

@@ -2,6 +2,8 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/Auth';
+import { Authurization,userr } from '../api/Api';
+
 
 const Login = () => {
     const auth = useAuth();
@@ -18,12 +20,11 @@ const Login = () => {
         setError('');
         
         try {
-            const response = await fetch('https://api.vitaparapharma.com/api/v1/auth/login', {
+            const response = await fetch('https://test.vitaparapharma.com/api/v1/auth/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     email,
-                    phone,
                     password,
                 }),
             });
@@ -31,9 +32,12 @@ const Login = () => {
             if (!response.ok) {
                 throw new Error(`Email or Password are not valid`);
             }
-            auth.login(email);
+            // let s=email;
+            localStorage.setItem('myUserr',email);
             console.log(auth.user);
             const responseData = await response.json(); // Parse the response
+            auth.login(userr);
+            auth.login2(Authurization);
 
             // Check for the presence of a token in the response
             if (responseData.data.token) {
@@ -65,6 +69,7 @@ const Login = () => {
             setIsLoading(false);
         }
     };
+
 
     return (
         <>

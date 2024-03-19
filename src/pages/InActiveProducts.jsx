@@ -47,7 +47,7 @@ const InActiveProducts = () => {
 
     const handleProductStatusChange = async (productId, currentStatus) => {
         const newStatus = currentStatus === 'active' ? 'activate' : 'deactivate';
-        const apiEndpoint = `https://api.vitaparapharma.com/api/v1/custom/product/activate/${productId}`;
+        const apiEndpoint = `https://test.vitaparapharma.com/api/v1/custom/product/activate/${productId}`;
 
         try {
             const response = await fetch(apiEndpoint, {
@@ -88,7 +88,7 @@ const InActiveProducts = () => {
                     <div className=''>
                         {isLoading ? (
                             <p>Loading product details...</p>
-                        ) : productData ? (
+                        ) : productData && productData.data.products !== null ? (
                             // Display fetched product details
                             <div className='grid gap-6 '>
                                 {productData.data.products.map((product) => (

@@ -5,16 +5,26 @@ const AuthContext = createContext(null)
 export const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState(null)
+    const [toke, setToken] = useState(null)
 
     const login = (user) => {
         setUser(user)
+
     }
+    const login2 = (toke) => {
+        setToken(toke)
+
+    }
+
     const logout = () => {
-        setUser(null)
+
+        // localStorage.removeItem('myAuthorizationToken');
+        setUser(null);
+        setToken(null);
     }
 
     return (
-        <AuthContext.Provider value={{ user, login, logout }}>
+        <AuthContext.Provider value={{ user, login,login2, logout,toke }}>
             {children}
         </AuthContext.Provider>
     )

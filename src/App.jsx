@@ -14,6 +14,10 @@ import EditImage from './pages/EditImage';
 import InActiveProducts from './pages/InActiveProducts';
 import UpdateProduct from './pages/UpdateProduct';
 import { Outlet } from 'react-router-dom';
+import AddCategory from './pages/AddCategory';
+import UpdateCategory from './pages/UpdateCategory';
+import UpdateSubCategory from './pages/UpdateSubCategory';
+import AddSubCategory from './pages/AddSubCategory';
 
 const router = createBrowserRouter(
 
@@ -35,6 +39,18 @@ const router = createBrowserRouter(
 
       <Route path="inactiveproducts" element={
         <RequireAuth> <InActiveProducts /> </RequireAuth>} />
+
+      <Route path="addcategory" element={
+        <RequireAuth> <AddCategory /> </RequireAuth>} />
+
+      <Route path="updatecategory" element={
+        <RequireAuth> <UpdateCategory /> </RequireAuth>} />
+
+      <Route path="addsubcategory" element={
+        <RequireAuth> <AddSubCategory /> </RequireAuth>} />
+
+      <Route path="updatesubcategory" element={
+        <RequireAuth> <UpdateSubCategory /> </RequireAuth>} />
 
       <Route path="updateproduct" element={
         <Outlet />}>

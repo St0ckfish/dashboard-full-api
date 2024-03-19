@@ -75,7 +75,7 @@ const UpdateProduct = () => {
         const formData = new FormData();
         formData.append('image', selectedFile);
         try {
-            const response = await fetch(`https://api.vitaparapharma.com/api/v1/custom/product/picture/add/${ProductId}`, {
+            const response = await fetch(`https://test.vitaparapharma.com/api/v1/custom/product/picture/add/${ProductId}`, {
                 method: 'PUT',
                 headers: {
                     Authorization: `Bearer ${Authurization}`, // Include token with Bearer prefix
@@ -107,7 +107,7 @@ const UpdateProduct = () => {
             setIsLoading(true); // Set loading state to true
 
             try {
-                const response = await fetch(`https://api.vitaparapharma.com/api/v2/public/product/${ProductId}`, {
+                const response = await fetch(`https://test.vitaparapharma.com/api/v2/public/product/${ProductId}`, {
 
                 });
  
@@ -123,6 +123,7 @@ const UpdateProduct = () => {
                 setDescription(data.data.product.description)
                 setarabicDescription(data.data.product.arabicDescription)
                 setfrenchDescription(data.data.product.frenchDescription)
+                setcategoryId(data.data.product.categoryId)
                 console.log('Authorization token:', authorizationToken);
 
                 
@@ -187,7 +188,7 @@ const UpdateProduct = () => {
         formData.append('categoryId', categoryId);
         // formData.append('isDiscount', isDiscount);
         try {
-            const response = await fetch(`https://api.vitaparapharma.com/api/v2/custom/product/update/${ProductId}`, {
+            const response = await fetch(`https://test.vitaparapharma.com/api/v2/custom/product/update/${ProductId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -248,7 +249,7 @@ const UpdateProduct = () => {
     };
     console.log(productData);
     const handleDeleteImage = async (productId, pictureUUID) => {
-        const response = await fetch(`https://api.vitaparapharma.com/api/v1/custom/product/picture/delete/${productId}/${pictureUUID}`, {
+        const response = await fetch(`https://test.vitaparapharma.com/api/v1/custom/product/picture/delete/${productId}/${pictureUUID}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -454,14 +455,14 @@ const UpdateProduct = () => {
                                     </div>
 
                                     <div>
-                                        <input value="Add Product" className="w-[150px] py-2 bg-[#8465F2] rounded text-white cursor-pointer" type="submit" />
+                                        <input value="Add Product" className="w-[150px] py-2 bg-[#8465F2] rounded text-white cursor-pointer mb-10" type="submit" />
                                     </div>
                                 </form>
                                 <div className='grid 2xl:flex 2xl:justify-start justify-center  items-center gap-4'>
                                     {productData.data.product.pictures.map((picture, index) => (
                                         <div key={index} className=''>
                                             <img key={index} src={picture} alt={`picture`} className="product-image rounded-lg w-[270px]" />
-                                            <button key={index} className='bg-red-500 rounded-md mt-4 px-2 py-1' onClick={() => { handleDeleteImage(productData.data.product.productId, picture.substring(picture.lastIndexOf("/") + 1)); }}>Delete</button>
+                                            <button key={index} className='bg-red-500 rounded-md mt-4 px-2 py-1 mb-10' onClick={() => { handleDeleteImage(productData.data.product.productId, picture.substring(picture.lastIndexOf("/") + 1)); }}>Delete</button>
                                         </div>
 
 

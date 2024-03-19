@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/Auth';
+import { userr } from '../api/Api';
+
 
 const NavBar = () => {
     
@@ -21,6 +23,14 @@ const NavBar = () => {
     const [isOpen2, setIsOpen2] = useState(false);
     const toggleNavbar2 = () => {
         setIsOpen2(!isOpen2)
+    }
+    const [isOpen3, setIsOpen3] = useState(false);
+    const toggleNavbar3 = () => {
+        setIsOpen3(!isOpen3)
+    }
+    const [isOpen4, setIsOpen4] = useState(false);
+    const toggleNavbar4 = () => {
+        setIsOpen4(!isOpen4)
     }
     return (
         <>
@@ -53,9 +63,9 @@ const NavBar = () => {
                                             <div className="z-50 absolute right-2 top-12 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600" id="dropdown-user">
                                                 <div className="px-4 py-3" role="none">
                                                     {
-                                                        auth.user !== null && (
+                                                        userr !== null && (
                                                     <p className="text-sm text-gray-900 dark:text-white" role="none">
-                                                    {auth.user.substring(0, auth.user.indexOf('@'))}
+                                                    {userr.substring(0, userr.indexOf('@'))}
                                                     </p>
 
                                                         )
@@ -63,7 +73,7 @@ const NavBar = () => {
                                                         
                                                     }
                                                     <p className="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
-                                                        {auth.user}
+                                                        {userr}
                                                     </p>
                                                 </div>
                                                 <ul className="py-1" role="none">
@@ -118,13 +128,47 @@ const NavBar = () => {
                                 }
                             </li>
                             <li>
-                                <Link to="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                                    <svg className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
+                                <button onClick={toggleNavbar3} type="button" className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+                                <svg className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
                                         <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
                                         <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
                                     </svg>
-                                    <span className="ms-3">Dashboard</span>
-                                </Link>
+                                    <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Category</span>
+                                    <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
+                                    </svg>
+                                </button>{
+                                    isOpen3 && (
+                                        <ul id="dropdown-example" className=" py-2 space-y-2">
+                                            <li>
+                                                <Link to="/addcategory" className="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-blue-500 dark:hover:bg-gray-700">Add Category</Link>
+                                            </li>
+                                            <li>
+                                                <Link to="/updatecategory" className="flex items-center w-full p-2  transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-green-500 dark:hover:bg-gray-700">Get all Categorys</Link>
+                                            </li>
+                                        </ul>
+                                    )
+                                }
+                            </li>
+                            <li>
+                                <button onClick={toggleNavbar4} type="button" className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+                                <svg className="h-6 w-6 text-gray-400"  width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <rect x="8" y="4" width="12" height="12" rx="2" />  <path d="M16 16v2a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2v-8a2 2 0 0 1 2 -2h2" /></svg>
+                                    <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">SUBCategory</span>
+                                    <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
+                                    </svg>
+                                </button>{
+                                    isOpen4 && (
+                                        <ul id="dropdown-example" className=" py-2 space-y-2">
+                                            <li>
+                                                <Link to="/addsubcategory" className="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-blue-500 dark:hover:bg-gray-700">Add SUBCategory</Link>
+                                            </li>
+                                            <li>
+                                                <Link to="/updatesubcategory" className="flex items-center w-full p-2  transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-green-500 dark:hover:bg-gray-700">Get all SUBCategorys</Link>
+                                            </li>
+                                        </ul>
+                                    )
+                                }
                             </li>
                             <li>
                                 <Link to="/home" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">

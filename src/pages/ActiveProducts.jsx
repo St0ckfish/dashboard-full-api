@@ -4,7 +4,6 @@ import { Authurization, Active } from '../api/Api';
 import { Link } from 'react-router-dom';
 
 const ActiveProducts = () => {
-    const notify = () => toast("Wow so easy!");
 
     const [productData, setProductData] = useState(null);
     const [authorizationToken, setAuthorizationToken] = useState(''); // For authorization token
@@ -46,7 +45,7 @@ const ActiveProducts = () => {
 
     const handleProductStatusChange = async (productId, currentStatus) => {
         const newStatus = currentStatus === 'active' ? 'deactivate' : 'active';
-        const apiEndpoint = `https://api.vitaparapharma.com/api/v1/custom/product/deactivate/${productId}`;
+        const apiEndpoint = `https://test.vitaparapharma.com/api/v1/custom/product/deactivate/${productId}`;
 
         try {
             const response = await fetch(apiEndpoint, {
