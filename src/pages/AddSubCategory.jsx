@@ -55,7 +55,7 @@ const AddSubCategory = () => {
     const handleSubmit = async (event) => {  //2update new
         event.preventDefault();
         try {
-            const response = await fetch(`https://test.vitaparapharma.com/api/v1/admin/category/new`, {
+            const response = await fetch(`https://test.vitaparapharma.com/api/v2/admin/category/new`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
