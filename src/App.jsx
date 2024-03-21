@@ -18,6 +18,10 @@ import AddCategory from './pages/AddCategory';
 import UpdateCategory from './pages/UpdateCategory';
 import UpdateSubCategory from './pages/UpdateSubCategory';
 import AddSubCategory from './pages/AddSubCategory';
+import AddAdvertisement from './pages/AddAdvertisement';
+import GetAllAdvertisements from './pages/GetAllAdvertisements';
+import AddBlogs from './pages/AddBlogs';
+import GetAllBlogs from './pages/GetAllBlogs';
 
 const router = createBrowserRouter(
 
@@ -51,6 +55,18 @@ const router = createBrowserRouter(
 
       <Route path="updatesubcategory" element={
         <RequireAuth> <UpdateSubCategory /> </RequireAuth>} />
+
+      <Route path="addadvertisement" element={
+        <RequireAuth> <AddAdvertisement /> </RequireAuth>} />
+
+      <Route path="getalladvertisements" element={
+        <RequireAuth> <GetAllAdvertisements /> </RequireAuth>} />
+
+      <Route path="addblogs" element={
+        <RequireAuth> <AddBlogs /> </RequireAuth>} />
+
+      <Route path="getallblogs" element={
+        <RequireAuth> <GetAllBlogs /> </RequireAuth>} />
 
       <Route path="updateproduct" element={
         <Outlet />}>

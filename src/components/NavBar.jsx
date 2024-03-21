@@ -32,6 +32,14 @@ const NavBar = () => {
     const toggleNavbar4 = () => {
         setIsOpen4(!isOpen4)
     }
+    const [isOpen5, setIsOpen5] = useState(false);
+    const toggleNavbar5 = () => {
+        setIsOpen5(!isOpen5)
+    }
+    const [isOpen6, setIsOpen6] = useState(false);
+    const toggleNavbar6 = () => {
+        setIsOpen6(!isOpen6)
+    }
     return (
         <>
             <div className=''>
@@ -144,7 +152,7 @@ const NavBar = () => {
                                                 <Link to="/addcategory" className="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-blue-500 dark:hover:bg-gray-700">Add Category</Link>
                                             </li>
                                             <li>
-                                                <Link to="/updatecategory" className="flex items-center w-full p-2  transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-green-500 dark:hover:bg-gray-700">Get all Categorys</Link>
+                                                <Link to="/updatecategory" className="flex items-center w-full p-2  transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-green-500 dark:hover:bg-gray-700">All Categorys</Link>
                                             </li>
                                         </ul>
                                     )
@@ -164,7 +172,47 @@ const NavBar = () => {
                                                 <Link to="/addsubcategory" className="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-blue-500 dark:hover:bg-gray-700">Add SUBCategory</Link>
                                             </li>
                                             <li>
-                                                <Link to="/updatesubcategory" className="flex items-center w-full p-2  transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-green-500 dark:hover:bg-gray-700">Get all SUBCategorys</Link>
+                                                <Link to="/updatesubcategory" className="flex items-center w-full p-2  transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-green-500 dark:hover:bg-gray-700">All SUBCategorys</Link>
+                                            </li>
+                                        </ul>
+                                    )
+                                }
+                            </li>
+                            <li>
+                                <button onClick={toggleNavbar5} type="button" className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+                                <svg className="h-6 w-6 text-gray-400"  width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <rect x="3" y="5" width="18" height="14" rx="2" />  <path d="M7 15v-4a2 2 0 0 1 4 0v4" />  <line x1="7" y1="13" x2="11" y2="13" />  <path d="M17 9v6h-1.5a1.5 1.5 0 1 1 1.5 -1.5" /></svg>
+                                    <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Advertisement</span>
+                                    <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
+                                    </svg>
+                                </button>{
+                                    isOpen5 && (
+                                        <ul id="dropdown-example" className=" py-2 space-y-2">
+                                            <li>
+                                                <Link to="/addadvertisement" className="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-blue-500 dark:hover:bg-gray-700">Add Advertisement</Link>
+                                            </li>
+                                            <li>
+                                                <Link to="/getalladvertisements" className="flex items-center w-full p-2  transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-green-500 dark:hover:bg-gray-700">All Advertisement</Link>
+                                            </li>
+                                        </ul>
+                                    )
+                                }
+                            </li>
+                            <li>
+                                <button onClick={toggleNavbar6} type="button" className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="#c9c9c9" fillRule="evenodd" d="M7.784 1.356a2.75 2.75 0 0 0-3.186 2.231l-2.43 13.787a2.75 2.75 0 0 0 2.23 3.186l11.818 2.084a2.75 2.75 0 0 0 3.185-2.23l2.432-13.788a2.75 2.75 0 0 0-2.231-3.186zM9.06 5.643A.75.75 0 1 0 8.8 7.12l7.878 1.39a.75.75 0 0 0 .26-1.478zm-1.563 4.548a.75.75 0 0 1 .869-.608l7.878 1.389a.75.75 0 1 1-.26 1.477l-7.879-1.39a.75.75 0 0 1-.608-.868m.174 3.33a.75.75 0 1 0-.26 1.477l4.924.869a.75.75 0 1 0 .26-1.478z" clipRule="evenodd"></path></svg>
+                                    <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Blog Post</span>
+                                    <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
+                                    </svg>
+                                </button>{
+                                    isOpen6 && (
+                                        <ul id="dropdown-example" className=" py-2 space-y-2">
+                                            <li>
+                                                <Link to="/addblogs" className="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-blue-500 dark:hover:bg-gray-700">Add Blogs</Link>
+                                            </li>
+                                            <li>
+                                                <Link to="/getallblogs" className="flex items-center w-full p-2  transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-green-500 dark:hover:bg-gray-700">All Blogs</Link>
                                             </li>
                                         </ul>
                                     )
