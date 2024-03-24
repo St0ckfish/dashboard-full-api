@@ -40,6 +40,10 @@ const NavBar = () => {
     const toggleNavbar6 = () => {
         setIsOpen6(!isOpen6)
     }
+    const [isOpen7, setIsOpen7] = useState(false);
+    const toggleNavbar7 = () => {
+        setIsOpen7(!isOpen7)
+    }
     return (
         <>
             <div className=''>
@@ -214,6 +218,30 @@ const NavBar = () => {
                                             <li>
                                                 <Link to="/getallblogs" className="flex items-center w-full p-2  transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-green-500 dark:hover:bg-gray-700">All Blogs</Link>
                                             </li>
+                                        </ul>
+                                    )
+                                }
+                            </li>
+                            <li>
+                                <button onClick={toggleNavbar7} type="button" className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="#c9c9c9" d="M21 5H3a1 1 0 0 0-1 1v4h.893c.996 0 1.92.681 2.08 1.664A2.001 2.001 0 0 1 3 14H2v4a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-4h-1a2.001 2.001 0 0 1-1.973-2.336c.16-.983 1.084-1.664 2.08-1.664H22V6a1 1 0 0 0-1-1M11 17H9v-2h2zm0-4H9v-2h2zm0-4H9V7h2z"></path></svg>
+                                    <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Coupons</span>
+                                    <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
+                                    </svg>
+                                </button>{
+                                    isOpen7 && (
+                                        <ul id="dropdown-example" className=" py-2 space-y-2">
+                                            <li>
+                                                <Link to="/addcoupon" className="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-gray-400 dark:hover:bg-gray-700">Add Coupon</Link>
+                                            </li>
+                                            <li>
+                                                <Link to="/addcouponnall" className="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-gray-400 dark:hover:bg-gray-700">Add Coupon & Notify All Users </Link>
+                                            </li>
+                                            <li>
+                                                <Link to="/addcouponns" className="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-gray-400 dark:hover:bg-gray-700">Add Coupon & Notify Selected Users</Link>
+                                            </li>
+                                            
                                         </ul>
                                     )
                                 }

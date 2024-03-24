@@ -22,6 +22,9 @@ import AddAdvertisement from './pages/AddAdvertisement';
 import GetAllAdvertisements from './pages/GetAllAdvertisements';
 import AddBlogs from './pages/AddBlogs';
 import GetAllBlogs from './pages/GetAllBlogs';
+import AddCoupon from './pages/AddCoupon';
+import AddCouponNAll from './pages/AddCouponNAll';
+import AddCouponNS from './pages/AddCouponNS';
 
 const router = createBrowserRouter(
 
@@ -67,6 +70,15 @@ const router = createBrowserRouter(
 
       <Route path="getallblogs" element={
         <RequireAuth> <GetAllBlogs /> </RequireAuth>} />
+
+      <Route path="addcoupon" element={
+        <RequireAuth> <AddCoupon /> </RequireAuth>} />
+
+      <Route path="addcouponnall" element={
+        <RequireAuth> <AddCouponNAll /> </RequireAuth>} />
+
+      <Route path="addcouponns" element={
+        <RequireAuth> <AddCouponNS /> </RequireAuth>} />
 
       <Route path="updateproduct" element={
         <Outlet />}>

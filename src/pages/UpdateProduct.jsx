@@ -110,7 +110,7 @@ const UpdateProduct = () => {
                 const response = await fetch(`https://test.vitaparapharma.com/api/v2/public/product/${ProductId}`, {
 
                 });
- 
+
                 const data = await response.json();
                 console.log(data);
                 setProductData(data); // Update product data

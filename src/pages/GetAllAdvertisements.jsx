@@ -339,7 +339,7 @@ const GetAllAdvertisements = () => {
                                                             <p>{product.status}</p>
                                                             {isLoading3 ? <p>Loading product details...</p> :
 
-                                                                <select value={advertisementStatus} onChange={handleSelectChange} className='text-black p-2 rounded-md'>
+                                                                <select value={advertisementStatus} onChange={handleSelectChange} className='text-black p-2 rounded-md outline-none'>
                                                                     <option className='font-bold text-blue-700' value={product.status}>{product.status}</option>
                                                                     {productData3.data.statuses.map((option) => (
                                                                         <option key={option} value={option}>
