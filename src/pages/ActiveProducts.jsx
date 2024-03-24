@@ -45,7 +45,7 @@ const ActiveProducts = () => {
 
     const handleProductStatusChange = async (productId, currentStatus) => {
         const newStatus = currentStatus === 'active' ? 'deactivate' : 'active';
-        const apiEndpoint = `https://test.vitaparapharma.com/api/v1/custom/product/deactivate/${productId}`;
+        const apiEndpoint = `https://api.vitaparapharma.com/api/v1/custom/product/deactivate/${productId}`;
 
         try {
             const response = await fetch(apiEndpoint, {

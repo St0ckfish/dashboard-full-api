@@ -39,7 +39,7 @@ const AddAdvertisement = () => {
         }
 
         try {
-            const response = await axios.post('https://test.vitaparapharma.com/api/v2/custom/advertisement/new', formData, {
+            const response = await axios.post('https://api.vitaparapharma.com/api/v2/custom/advertisement/new', formData, {
                 headers: {
                     Authorization: `Bearer ${Authurization}`,
                     'Content-Type': 'multipart/form-data',

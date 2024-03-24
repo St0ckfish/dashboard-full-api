@@ -22,7 +22,7 @@ const AddCouponNAll = () => {
         const fetchData = async () => {
             setIsLoading(true);
             try {
-                const response = await fetch(`https://test.vitaparapharma.com/api/v1/public/product/all`);
+                const response = await fetch(`https://api.vitaparapharma.com/api/v1/public/product/all`);
 
                 if (!response.ok) {
                     throw new Error('API request failed');
@@ -58,7 +58,7 @@ const AddCouponNAll = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('https://test.vitaparapharma.com/api/v2/admin/coupon/new/customer/all', {
+            const response = await fetch('https://api.vitaparapharma.com/api/v2/admin/coupon/new/customer/all', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -79,7 +79,8 @@ const AddCouponNAll = () => {
             if(response.ok){
                 const data = await response.json();
                 console.log('Response:', data);
-                // alert(`coupon code: ${data.data.code}`)
+
+                alert(`Coupon Added and notify all :)`)
             }
         } catch (error) {
             console.error('Error sending data:', error);

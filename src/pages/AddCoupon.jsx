@@ -20,7 +20,7 @@ const AddCoupon = () => {
         const fetchData = async () => {
             setIsLoading(true);
             try {
-                const response = await fetch(`https://test.vitaparapharma.com/api/v1/public/product/all`);
+                const response = await fetch(`https://api.vitaparapharma.com/api/v1/public/product/all`);
 
                 if (!response.ok) {
                     throw new Error('API request failed');
@@ -56,7 +56,7 @@ const AddCoupon = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('https://test.vitaparapharma.com/api/v2/admin/coupon/new', {
+            const response = await fetch('https://api.vitaparapharma.com/api/v2/admin/coupon/new', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

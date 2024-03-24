@@ -29,7 +29,7 @@ const UpdateSubCategory = () => {
             setIsLoading(true); // Set loading state to true
 
             try {
-                const response = await fetch('https://test.vitaparapharma.com/api/v1/public/category/all', {
+                const response = await fetch('https://api.vitaparapharma.com/api/v1/public/category/all', {
                 });
                 const data = await response.json();
                 console.log(data);
@@ -50,7 +50,7 @@ const UpdateSubCategory = () => {
 
     const handleProductStatusChange = async (categoryId, currentStatus) => {
         const newStatus = currentStatus === 'active' ? 'delete' : 'active';
-        const apiEndpoint = `https://test.vitaparapharma.com/api/v1/admin/category/delete/${categoryId}`;
+        const apiEndpoint = `https://api.vitaparapharma.com/api/v1/admin/category/delete/${categoryId}`;
 
         try {
             const response = await fetch(apiEndpoint, {
@@ -96,7 +96,7 @@ const UpdateSubCategory = () => {
         setIsLoading2(true); // Set loading state to true
 
         try {
-            const response2 = await fetch(`https://test.vitaparapharma.com/api/v1/public/category/all-lang/${categoryId}`, {
+            const response2 = await fetch(`https://api.vitaparapharma.com/api/v1/public/category/all-lang/${categoryId}`, {
                 headers: {
                     Authorization: `Bearer ${Authurization}`,
                 }
@@ -125,7 +125,7 @@ const UpdateSubCategory = () => {
         const fetchData = async () => {
             setIsLoading(true);
             try {
-                const response = await fetch(`https://test.vitaparapharma.com/api/v1/public/main/category/all`);
+                const response = await fetch(`https://api.vitaparapharma.com/api/v1/public/main/category/all`);
 
                 if (!response.ok) {
                     throw new Error('API request failed');
@@ -162,7 +162,7 @@ const UpdateSubCategory = () => {
     const handleSubmit = async (event) => {  //2update new
         event.preventDefault();
         try {
-            const response = await fetch(`https://test.vitaparapharma.com/api/v2/admin/category/update/${idcategory}`, {
+            const response = await fetch(`https://api.vitaparapharma.com/api/v2/admin/category/update/${idcategory}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

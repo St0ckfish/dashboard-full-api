@@ -30,7 +30,7 @@ const GetAllAdvertisements = () => {
             setIsLoading3(true); // Set loading state to true
 
             try {
-                const response = await fetch('https://test.vitaparapharma.com/api/v1/custom/advertisement/status/all', {
+                const response = await fetch('https://api.vitaparapharma.com/api/v1/custom/advertisement/status/all', {
                     headers: {
                         Authorization: `Bearer ${Authurization}`,
                         // 'Content-Type': 'application/json',
@@ -58,7 +58,7 @@ const GetAllAdvertisements = () => {
 
     const sendSelectedOptionToSecondAPI = async (selectedValue) => {
         try {
-            const response = await fetch('https://test.vitaparapharma.com/api/v1/custom/advertisement/status', {
+            const response = await fetch('https://api.vitaparapharma.com/api/v1/custom/advertisement/status', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -92,7 +92,7 @@ const GetAllAdvertisements = () => {
             setIsLoading(true); // Set loading state to true
 
             try {
-                const response = await fetch('https://test.vitaparapharma.com/api/v1/public/advertisement/all', {
+                const response = await fetch('https://api.vitaparapharma.com/api/v1/public/advertisement/all', {
                 });
                 const data = await response.json();
                 console.log(data);
@@ -114,7 +114,7 @@ const GetAllAdvertisements = () => {
         setIsLoading2(true); // Set loading state to true
 
         try {
-            const response2 = await fetch(`https://test.vitaparapharma.com/api/v2/custom/advertisement/${categoryId}`, {
+            const response2 = await fetch(`https://api.vitaparapharma.com/api/v2/custom/advertisement/${categoryId}`, {
                 headers: {
                     Authorization: `Bearer ${Authurization}`,
                 }
@@ -143,7 +143,7 @@ const GetAllAdvertisements = () => {
 
     const handleProductStatusChange = async (categoryId, currentStatus) => {
         const newStatus = currentStatus === 'active' ? 'delete' : 'active';
-        const apiEndpoint = `https://test.vitaparapharma.com/api/v1/custom/advertisement/delete/${categoryId}`;
+        const apiEndpoint = `https://api.vitaparapharma.com/api/v1/custom/advertisement/delete/${categoryId}`;
 
         try {
             const response = await fetch(apiEndpoint, {
@@ -186,7 +186,7 @@ const GetAllAdvertisements = () => {
     const handleSubmit = async (event) => {  //2update new
         event.preventDefault();
         try {
-            const response = await fetch(`https://test.vitaparapharma.com/api/v2/custom/advertisement/update/${idcategory}`, {
+            const response = await fetch(`https://api.vitaparapharma.com/api/v2/custom/advertisement/update/${idcategory}`, {
                 method: 'PUT',
                 headers: {
                     Authorization: `Bearer ${Authurization}`,
@@ -235,7 +235,7 @@ const GetAllAdvertisements = () => {
 
 
     const handleDeleteImage = async (productId) => {
-        const response = await fetch(`https://test.vitaparapharma.com/api/v1/custom/advertisement/picture/delete/${productId}`, {
+        const response = await fetch(`https://api.vitaparapharma.com/api/v1/custom/advertisement/picture/delete/${productId}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -264,7 +264,7 @@ const GetAllAdvertisements = () => {
         const formData = new FormData();
         formData.append('image', selectedImages);
         try {
-            const response = await fetch(`https://test.vitaparapharma.com/api/v1/custom/advertisement/picture/add/${idcategory}`, {
+            const response = await fetch(`https://api.vitaparapharma.com/api/v1/custom/advertisement/picture/add/${idcategory}`, {
                 method: 'PUT',
                 headers: {
                     Authorization: `Bearer ${Authurization}`, // Include token with Bearer prefix
@@ -296,7 +296,7 @@ const GetAllAdvertisements = () => {
                 <div className='text-white grid justify-center items-center w-[1800px] max-[1815px]:w-[800px] max-[1563px]:w-[600px] h-screen max-[628px]:w-[200px]'>
                     <div>
                         {isLoading ? (
-                            <p>Loading product details...</p>
+                            <p>Loading Advertisement details...</p>
                         ) : productData ? (
                             // Display fetched product details 
                             <div className='grid gap-6'>

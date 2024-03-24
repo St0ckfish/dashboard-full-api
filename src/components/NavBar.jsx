@@ -241,6 +241,9 @@ const NavBar = () => {
                                             <li>
                                                 <Link to="/addcouponns" className="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-gray-400 dark:hover:bg-gray-700">Add Coupon & Notify Selected Users</Link>
                                             </li>
+                                            <li>
+                                                <Link to="/allcoupons" className="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-gray-400 dark:hover:bg-gray-700">All Coupons</Link>
+                                            </li>
                                             
                                         </ul>
                                     )

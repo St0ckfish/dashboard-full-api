@@ -20,7 +20,7 @@ const AddSubCategory = () => {
         const fetchData = async () => {
             setIsLoading(true);
             try {
-                const response = await fetch(`https://test.vitaparapharma.com/api/v1/public/main/category/all`);
+                const response = await fetch(`https://api.vitaparapharma.com/api/v1/public/main/category/all`);
 
                 if (!response.ok) {
                     throw new Error('API request failed');
@@ -55,7 +55,7 @@ const AddSubCategory = () => {
     const handleSubmit = async (event) => {  //2update new
         event.preventDefault();
         try {
-            const response = await fetch(`https://test.vitaparapharma.com/api/v2/admin/category/new`, {
+            const response = await fetch(`https://api.vitaparapharma.com/api/v2/admin/category/new`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
