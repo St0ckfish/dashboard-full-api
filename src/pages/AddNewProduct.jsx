@@ -18,6 +18,7 @@ const AddNewProduct = () => {
     const [frenchDescription, setfrenchDescription] = useState('');
     const [categoryId, setcategoryId] = useState('');
     const [price, setprice] = useState('');
+    const [weight, setWeight] = useState('');
     const [stockQuantity, setstockQuantity] = useState('');
     const [priceAfterDiscount, setpriceAfterDiscount] = useState('');
     const [isDiscount, setisDiscount] = useState(false);
@@ -45,10 +46,10 @@ const AddNewProduct = () => {
         }
 
         const validImages = Array.from(newImages) // Convert FileList to array for validation
-            .filter((image) => image.size <= 30720); // Maximum 30 KB per image (30 * 1024 bytes)
+            .filter((image) => image.size <= 61440); // Maximum 30 KB per image (30 * 1024 bytes)
 
         if (validImages.length !== newImages.length) {
-            alert('Error: Some images exceed the 30 KB size limit.');
+            alert('Error: Some images exceed the 60 KB size limit.');
         }
 
         setSelectedImages(validImages); // Update state with validated images
@@ -123,6 +124,7 @@ const AddNewProduct = () => {
         formData.append('frenchDescription', frenchDescription);
         formData.append('categoryId', categoryId);
         formData.append('price', price);
+        formData.append('weight', weight);
         formData.append('priceAfterDiscount', priceAfterDiscount);
         formData.append('isDiscount', isDiscount);
         formData.append('stockQuantity', stockQuantity);
@@ -158,6 +160,7 @@ const AddNewProduct = () => {
             setfrenchDescription('');
             setcategoryId('');
             setprice('');
+            setWeight('');
             setstockQuantity('');
             setpriceAfterDiscount('');
             setisDiscount('');
@@ -212,12 +215,13 @@ const AddNewProduct = () => {
                                 <div className='flex items-center gap-2'>
                                     <label htmlFor="isDiscount" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Is Discount?</label>
                                     <input id="isDiscount" type="checkbox" onChange={handleCheckboxChange} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" ></input>{/*onChange={handleAfterDiscountChange}*/}
-                                    <input placeholder='After Discount:' className='bg-[#2b2e38]  px-2 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d]' type="number" id="afterDiscount" name="afterDiscount" onChange={handleInputChange} min="0" step="0.01" />
+                                    <input placeholder='After Discount:' className='bg-[#2b2e38] w-[250px]  px-2 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d]' type="number" id="afterDiscount" name="afterDiscount" onChange={handleInputChange} min="0" step="0.01" />
                                 </div>
 
-                                <div className="flex items-center justify-center gap-2">
-                                    <input placeholder='Price:' className='bg-[#2b2e38] px-2 py-2 rounded-xl w-[150px] border border-[#41434d] focus:outline outline-[#41434d]' type="number" id="price" name="price" onChange={(e) => setprice(e.target.value)} min="0" step="0.01" required /> {/*onChange={handleChange}*/}
-                                    <input placeholder='Stock Quantity:' className='bg-[#2b2e38] px-2 py-2 w-[150px]  rounded-xl border border-[#41434d] focus:outline outline-[#41434d]' type="number" id="stockQuantity" name="stockQuantity" onChange={(e) => setstockQuantity(e.target.value)} min="0" required /> {/*onChange={handleChange}*/}
+                                <div className="flex items-center justify-center gap-2 max-[524px]:grid">
+                                    <input placeholder='Weight:' className=' bg-[#2b2e38] px-2 py-2 rounded-xl w-[150px] max-[524px]:w-[350px] border border-[#41434d] focus:outline outline-[#41434d]' type="number" id="weight" name="weight" onChange={(e) => setWeight(e.target.value)} min="0" step="0.01" required /> {/*onChange={handleChange}*/}
+                                    <input placeholder='Price:' className='bg-[#2b2e38] px-2 py-2 rounded-xl w-[150px] max-[524px]:w-[350px] border border-[#41434d] focus:outline outline-[#41434d]' type="number" id="price" name="price" onChange={(e) => setprice(e.target.value)} min="0" step="0.01" required /> {/*onChange={handleChange}*/}
+                                    <input placeholder='Stock Quantity:' className='bg-[#2b2e38] px-2 py-2 w-[150px] max-[524px]:w-[350px]  rounded-xl border border-[#41434d] focus:outline outline-[#41434d]' type="number" id="stockQuantity" name="stockQuantity" onChange={(e) => setstockQuantity(e.target.value)} min="0" required /> {/*onChange={handleChange}*/}
                                 </div>
                                 <Select
                                     placeholder={"Category Name"}

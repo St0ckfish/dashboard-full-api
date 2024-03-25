@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Authurization } from '../api/Api';
+import { Authurization,getAllCategory ,DeleteSubCategoryBtnapi,UpdateSubCategoryDataapi,getAllCategorysapi,GetAllSubCategoryDataapi} from '../api/Api';
 import Select from 'react-select';
 import NavBar from '../components/NavBar';
 
@@ -29,7 +29,7 @@ const UpdateSubCategory = () => {
             setIsLoading(true); // Set loading state to true
 
             try {
-                const response = await fetch('https://api.vitaparapharma.com/api/v1/public/category/all', {
+                const response = await fetch(getAllCategory, {
                 });
                 const data = await response.json();
                 console.log(data);
@@ -38,7 +38,6 @@ const UpdateSubCategory = () => {
 
             } catch (error) {
                 console.error('Error fetching data:', error);
-                // Handle errors gracefully (e.g., display an error message)
             } finally {
                 setIsLoading(false); // Set loading state to false
             }
@@ -50,11 +49,11 @@ const UpdateSubCategory = () => {
 
     const handleProductStatusChange = async (categoryId, currentStatus) => {
         const newStatus = currentStatus === 'active' ? 'delete' : 'active';
-        const apiEndpoint = `https://api.vitaparapharma.com/api/v1/admin/category/delete/${categoryId}`;
+        const apiEndpoint = DeleteSubCategoryBtnapi+categoryId;
 
         try {
             const response = await fetch(apiEndpoint, {
-                method: 'DELETE', // Use POST for status updates
+                method: 'DELETE', 
                 headers: {
                     Authorization: `Bearer ${Authurization}`,
                     Accept: 'application/json',
@@ -96,7 +95,7 @@ const UpdateSubCategory = () => {
         setIsLoading2(true); // Set loading state to true
 
         try {
-            const response2 = await fetch(`https://api.vitaparapharma.com/api/v1/public/category/all-lang/${categoryId}`, {
+            const response2 = await fetch(GetAllSubCategoryDataapi+categoryId, {
                 headers: {
                     Authorization: `Bearer ${Authurization}`,
                 }
@@ -125,7 +124,7 @@ const UpdateSubCategory = () => {
         const fetchData = async () => {
             setIsLoading(true);
             try {
-                const response = await fetch(`https://api.vitaparapharma.com/api/v1/public/main/category/all`);
+                const response = await fetch(getAllCategorysapi);
 
                 if (!response.ok) {
                     throw new Error('API request failed');
@@ -162,7 +161,7 @@ const UpdateSubCategory = () => {
     const handleSubmit = async (event) => {  //2update new
         event.preventDefault();
         try {
-            const response = await fetch(`https://api.vitaparapharma.com/api/v2/admin/category/update/${idcategory}`, {
+            const response = await fetch(UpdateSubCategoryDataapi+idcategory, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

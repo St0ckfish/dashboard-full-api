@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import NavBar from '../components/NavBar';
 import Select from 'react-select';
 import { getAllCategory } from '../api/Api';
-import { Authurization } from '../api/Api';
+import { Authurization,UpdateProductImgapi ,GetAllProductDataapi,UpdateProductDataapi,DeleteProductImgapi} from '../api/Api';
 import { useParams } from 'react-router-dom'; // Import useParams hook
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -14,13 +14,13 @@ const UpdateProduct = () => {
         setIsOpen(!isOpen)
     }
     const [selectedFile, setSelectedFile] = useState(null);
-    // const [buttonText, setButtonText] = useState('Delete');
     const { ProductId } = useParams()
     const [productData, setProductData] = useState(null);
     const [name, setName] = useState('');
     const [arabicName, setarabicName] = useState('');
     const [frenchName, setfrenchName] = useState('');
     const [arabicAbout, setarabicAbout] = useState('');
+    const [weight, setWeight] = useState('');
     const [about, setAbout] = useState('');
     const [frenchAbout, setfrenchAbout] = useState('');
     const [arabicDescription, setarabicDescription] = useState('');
@@ -44,15 +44,6 @@ const UpdateProduct = () => {
     const handleFrenchDescriptionChange = (content) => {
         setfrenchDescription(content);
     };
-    const handleEnglishAboutChange = (content) => {
-        setAbout(content);
-    };
-    const handleArabicAboutChange = (content) => {
-        setarabicAbout(content);
-    };
-    const handleFrenchAboutChange = (content) => {
-        setfrenchAbout(content);
-    };
     const handleInputChange = (event) => {
         setpriceAfterDiscount(event.target.value);
     };
@@ -75,7 +66,7 @@ const UpdateProduct = () => {
         const formData = new FormData();
         formData.append('image', selectedFile);
         try {
-            const response = await fetch(`https://api.vitaparapharma.com/api/v1/custom/product/picture/add/${ProductId}`, {
+            const response = await fetch(UpdateProductImgapi+ProductId, {
                 method: 'PUT',
                 headers: {
                     Authorization: `Bearer ${Authurization}`, // Include token with Bearer prefix
@@ -91,7 +82,7 @@ const UpdateProduct = () => {
                 // ... (implementation details)
             } else {
                 console.error('Error uploading image:', await response.text());
-                alert('Error uploading image: must be less than 30kb');
+                alert('Error uploading image: must be less than 60kb');
                 // Handle upload error (e.g., display an error message)
             }
         } catch (error) {
@@ -107,7 +98,7 @@ const UpdateProduct = () => {
             setIsLoading(true); // Set loading state to true
 
             try {
-                const response = await fetch(`https://api.vitaparapharma.com/api/v2/public/product/${ProductId}`, {
+                const response = await fetch(GetAllProductDataapi+ProductId, {
 
                 });
 
@@ -118,6 +109,7 @@ const UpdateProduct = () => {
                 setarabicName(data.data.product.arabicName)
                 setfrenchName(data.data.product.frenchName)
                 setAbout(data.data.product.about)
+                setWeight(data.data.product.weight)
                 setarabicAbout(data.data.product.arabicAbout)
                 setfrenchAbout(data.data.product.frenchAbout)
                 setDescription(data.data.product.description)
@@ -188,7 +180,7 @@ const UpdateProduct = () => {
         formData.append('categoryId', categoryId);
         // formData.append('isDiscount', isDiscount);
         try {
-            const response = await fetch(`https://api.vitaparapharma.com/api/v2/custom/product/update/${ProductId}`, {
+            const response = await fetch(UpdateProductDataapi+ProductId, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -196,6 +188,7 @@ const UpdateProduct = () => {
                 },
                 body: JSON.stringify({
                     name,
+                    weight,
                     description,
                     about,
                     price,
@@ -221,6 +214,7 @@ const UpdateProduct = () => {
             setDiscount('');
             setAbout('');
             setName('');
+            setWeight('')
             setarabicDescription('');
             setDescription('');
             setfrenchDescription('');
@@ -249,7 +243,7 @@ const UpdateProduct = () => {
     };
     console.log(productData);
     const handleDeleteImage = async (productId, pictureUUID) => {
-        const response = await fetch(`https://api.vitaparapharma.com/api/v1/custom/product/picture/delete/${productId}/${pictureUUID}`, {
+        const response = await fetch(`${DeleteProductImgapi}${productId}/${pictureUUID}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -390,12 +384,13 @@ const UpdateProduct = () => {
                                         <div className='flex items-center gap-2'>
                                             <label htmlFor="isDiscount" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Is Discount?</label>
                                             <input id="isDiscount" type="checkbox" onChange={handleCheckboxChange} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" ></input>{/*onChange={handleAfterDiscountChange}*/}
-                                            <input placeholder='After Discount:' className='bg-[#2b2e38]  px-2 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d]' type="number" id="afterDiscount" name="afterDiscount" onChange={handleInputChange} min="0" step="0.01" />
+                                            <input placeholder='After Discount:' className='bg-[#2b2e38]  px-2 py-2 rounded-xl border w-[250px] border-[#41434d] focus:outline outline-[#41434d]' type="number" id="afterDiscount" name="afterDiscount" onChange={handleInputChange} min="0" step="0.01" />
                                         </div>
 
-                                        <div className="flex items-center justify-center gap-2">
-                                            <input placeholder='Price:' className='bg-[#2b2e38] px-2 py-2 rounded-xl w-[150px] border border-[#41434d] focus:outline outline-[#41434d]' type="number" id="price" name="price" onChange={(e) => setprice(e.target.value)} min="0" step="0.01" required /> {/*onChange={handleChange}*/}
-                                            <input placeholder='Stock Quantity:' className='bg-[#2b2e38] px-2 py-2 w-[150px]  rounded-xl border border-[#41434d] focus:outline outline-[#41434d]' type="number" id="stockQuantity" name="stockQuantity" onChange={(e) => setstockQuantity(e.target.value)} min="0" required /> {/*onChange={handleChange}*/}
+                                        <div className="flex items-center justify-center gap-2 max-[524px]:grid">
+                                            <input placeholder='Weight:' className=' bg-[#2b2e38] px-2 py-2 rounded-xl w-[150px] max-[524px]:w-[350px] border border-[#41434d] focus:outline outline-[#41434d]' type="number" id="weight" name="weight" onChange={(e) => setWeight(e.target.value)} min="0" step="0.01" required /> {/*onChange={handleChange}*/}
+                                            <input placeholder='Price:' className='bg-[#2b2e38] px-2 py-2 rounded-xl w-[150px] max-[524px]:w-[350px] border border-[#41434d] focus:outline outline-[#41434d]' type="number" id="price" name="price" onChange={(e) => setprice(e.target.value)} min="0" step="0.01" required /> {/*onChange={handleChange}*/}
+                                            <input placeholder='Stock Quantity:' className='bg-[#2b2e38] px-2 py-2 w-[150px] max-[524px]:w-[350px]  rounded-xl border border-[#41434d] focus:outline outline-[#41434d]' type="number" id="stockQuantity" name="stockQuantity" onChange={(e) => setstockQuantity(e.target.value)} min="0" required /> {/*onChange={handleChange}*/}
                                         </div>
                                         <Select
                                             placeholder={"Category Name"}

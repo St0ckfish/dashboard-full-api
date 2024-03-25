@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Authurization } from '../api/Api';
+import { Authurization,GetAllBlogsapi,GetAllBlogsDataapi,DeleteBlogsBtnapi,DeleteBlogsImgBtnapi,UpdateBlogsapi,PutBlogsImgBtnapi } from '../api/Api';
 import NavBar from '../components/NavBar';
 
 const GetAllBlogs = () => {
@@ -27,7 +27,7 @@ const GetAllBlogs = () => {
             setIsLoading(true); // Set loading state to true
 
             try {
-                const response = await fetch('https://api.vitaparapharma.com/api/v1/public/post/all', {
+                const response = await fetch(GetAllBlogsapi, {
                 });
                 const data = await response.json();
                 console.log(data);
@@ -49,7 +49,7 @@ const GetAllBlogs = () => {
         setIsLoading2(true); // Set loading state to true
 
         try {
-            const response2 = await fetch(`https://api.vitaparapharma.com/api/v2/content/post/${categoryId}`, {
+            const response2 = await fetch(GetAllBlogsDataapi+categoryId, {
                 headers: {
                     Authorization: `Bearer ${Authurization}`,
                 }
@@ -75,7 +75,7 @@ const GetAllBlogs = () => {
 
     const handleProductStatusChange = async (categoryId, currentStatus) => {
         const newStatus = currentStatus === 'active' ? 'delete' : 'active';
-        const apiEndpoint = `https://api.vitaparapharma.com/api/v1/content/post/delete/${categoryId}`;
+        const apiEndpoint = DeleteBlogsBtnapi+categoryId;
 
         try {
             const response = await fetch(apiEndpoint, {
@@ -118,7 +118,7 @@ const GetAllBlogs = () => {
     const handleSubmit = async (event) => {  //2update new
         event.preventDefault();
         try {
-            const response = await fetch(`https://api.vitaparapharma.com/api/v2/content/post/update/${idcategory}`, {
+            const response = await fetch(UpdateBlogsapi+idcategory, {
                 method: 'PUT',
                 headers: {
                     Authorization: `Bearer ${Authurization}`,
@@ -162,7 +162,7 @@ const GetAllBlogs = () => {
 
 
     const handleDeleteImage = async (productId) => {
-        const response = await fetch(`https://api.vitaparapharma.com/api/v1/content/post/picture/delete/${productId}`, {
+        const response = await fetch(DeleteBlogsImgBtnapi+productId, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -191,7 +191,7 @@ const GetAllBlogs = () => {
         const formData = new FormData();
         formData.append('image', selectedImages);
         try {
-            const response = await fetch(`https://api.vitaparapharma.com/api/v1/content/post/picture/add/${idcategory}`, {
+            const response = await fetch(PutBlogsImgBtnapi+idcategory, {
                 method: 'PUT',
                 headers: {
                     Authorization: `Bearer ${Authurization}`, // Include token with Bearer prefix

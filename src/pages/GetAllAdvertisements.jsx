@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Authurization } from '../api/Api';
+import { Authurization,GetAdvertisementStatusapi ,PutAdvertisementStatusapi,GetAllAdvertisementapi,GetAllAdvertisementDataapi,DeleteAdvertisementapi,UpdateAdvertisementapi,DeleteAdvertisementImgapi,PutAdvertisementImgapi} from '../api/Api';
 import NavBar from '../components/NavBar';
 import ReactQuill from 'react-quill';
 
@@ -30,7 +30,7 @@ const GetAllAdvertisements = () => {
             setIsLoading3(true); // Set loading state to true
 
             try {
-                const response = await fetch('https://api.vitaparapharma.com/api/v1/custom/advertisement/status/all', {
+                const response = await fetch(GetAdvertisementStatusapi, {
                     headers: {
                         Authorization: `Bearer ${Authurization}`,
                         // 'Content-Type': 'application/json',
@@ -58,7 +58,7 @@ const GetAllAdvertisements = () => {
 
     const sendSelectedOptionToSecondAPI = async (selectedValue) => {
         try {
-            const response = await fetch('https://api.vitaparapharma.com/api/v1/custom/advertisement/status', {
+            const response = await fetch(PutAdvertisementStatusapi, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -92,7 +92,7 @@ const GetAllAdvertisements = () => {
             setIsLoading(true); // Set loading state to true
 
             try {
-                const response = await fetch('https://api.vitaparapharma.com/api/v1/public/advertisement/all', {
+                const response = await fetch(GetAllAdvertisementapi, {
                 });
                 const data = await response.json();
                 console.log(data);
@@ -114,7 +114,7 @@ const GetAllAdvertisements = () => {
         setIsLoading2(true); // Set loading state to true
 
         try {
-            const response2 = await fetch(`https://api.vitaparapharma.com/api/v2/custom/advertisement/${categoryId}`, {
+            const response2 = await fetch(GetAllAdvertisementDataapi+categoryId, {
                 headers: {
                     Authorization: `Bearer ${Authurization}`,
                 }
@@ -143,7 +143,7 @@ const GetAllAdvertisements = () => {
 
     const handleProductStatusChange = async (categoryId, currentStatus) => {
         const newStatus = currentStatus === 'active' ? 'delete' : 'active';
-        const apiEndpoint = `https://api.vitaparapharma.com/api/v1/custom/advertisement/delete/${categoryId}`;
+        const apiEndpoint = DeleteAdvertisementapi+categoryId;
 
         try {
             const response = await fetch(apiEndpoint, {
@@ -186,7 +186,7 @@ const GetAllAdvertisements = () => {
     const handleSubmit = async (event) => {  //2update new
         event.preventDefault();
         try {
-            const response = await fetch(`https://api.vitaparapharma.com/api/v2/custom/advertisement/update/${idcategory}`, {
+            const response = await fetch(UpdateAdvertisementapi+idcategory, {
                 method: 'PUT',
                 headers: {
                     Authorization: `Bearer ${Authurization}`,
@@ -235,7 +235,7 @@ const GetAllAdvertisements = () => {
 
 
     const handleDeleteImage = async (productId) => {
-        const response = await fetch(`https://api.vitaparapharma.com/api/v1/custom/advertisement/picture/delete/${productId}`, {
+        const response = await fetch(DeleteAdvertisementImgapi+productId, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -264,7 +264,7 @@ const GetAllAdvertisements = () => {
         const formData = new FormData();
         formData.append('image', selectedImages);
         try {
-            const response = await fetch(`https://api.vitaparapharma.com/api/v1/custom/advertisement/picture/add/${idcategory}`, {
+            const response = await fetch(PutAdvertisementImgapi+idcategory, {
                 method: 'PUT',
                 headers: {
                     Authorization: `Bearer ${Authurization}`, // Include token with Bearer prefix

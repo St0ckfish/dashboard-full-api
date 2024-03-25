@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import NavBar from '../components/NavBar';
-import { Authurization, InActive } from '../api/Api';
+import { Authurization, InActive,ActivateButtonapi } from '../api/Api';
 import { Link } from 'react-router-dom';
 
 const InActiveProducts = () => {
@@ -47,7 +47,7 @@ const InActiveProducts = () => {
 
     const handleProductStatusChange = async (productId, currentStatus) => {
         const newStatus = currentStatus === 'active' ? 'activate' : 'deactivate';
-        const apiEndpoint = `https://api.vitaparapharma.com/api/v1/custom/product/activate/${productId}`;
+        const apiEndpoint = ActivateButtonapi+productId;
 
         try {
             const response = await fetch(apiEndpoint, {

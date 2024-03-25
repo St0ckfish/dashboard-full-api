@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import NavBar from '../components/NavBar';
-import { Authurization ,getAllCategorysapi} from '../api/Api';
+import { Authurization ,getAllCategorysapi,DeleteCategoryBtn,GetAllCategoryDataapi,UpdateAllCategoryDataapi} from '../api/Api';
 import { Link } from 'react-router-dom';
 
 const UpdateCategory = () => {
@@ -47,7 +47,7 @@ const UpdateCategory = () => {
 
     const handleProductStatusChange = async (categoryId, currentStatus) => {
         const newStatus = currentStatus === 'active' ? 'delete' : 'active';
-        const apiEndpoint = `https://api.vitaparapharma.com/api/v1/admin/main/category/delete/${categoryId}`;
+        const apiEndpoint = DeleteCategoryBtn+categoryId;
 
         try {
             const response = await fetch(apiEndpoint, {
@@ -93,7 +93,7 @@ const UpdateCategory = () => {
             setIsLoading2(true); // Set loading state to true
 
             try {
-                const response2 = await fetch(`https://api.vitaparapharma.com/api/v1/public/main-category/all-lang/${categoryId}`, {
+                const response2 = await fetch(GetAllCategoryDataapi+categoryId, {
                     headers: {
                         Authorization: `Bearer ${Authurization}`,
                     }
@@ -124,7 +124,7 @@ const UpdateCategory = () => {
     const handleSubmit = async (event) => {  //2update new
         event.preventDefault();
         try {
-            const response = await fetch(`https://api.vitaparapharma.com/api/v2/admin/main/category/update/${idcategory}`, {
+            const response = await fetch(UpdateAllCategoryDataapi+idcategory, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
