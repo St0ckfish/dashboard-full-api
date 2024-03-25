@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import NavBar from '../components/NavBar';
-import { Authurization } from '../api/Api';
+import { Authurization,Addcatrgoryapi } from '../api/Api';
 
 const AddCategory = () => {
     const [name, setName] = useState('');
@@ -12,7 +12,7 @@ const AddCategory = () => {
     const handleSubmit = async (event) => {  //2update new
         event.preventDefault();
         try {
-            const response = await fetch(`https://api.vitaparapharma.com/api/v2/admin/main/category/new`, {
+            const response = await fetch(Addcatrgoryapi, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

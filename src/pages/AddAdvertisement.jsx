@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import NavBar from '../components/NavBar';
 import { Authurization } from '../api/Api';
+import { AddAdvertisementapi } from '../api/Api';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import axios from 'axios';
@@ -39,7 +40,7 @@ const AddAdvertisement = () => {
         }
 
         try {
-            const response = await axios.post('https://api.vitaparapharma.com/api/v2/custom/advertisement/new', formData, {
+            const response = await axios.post(AddAdvertisementapi, formData, {
                 headers: {
                     Authorization: `Bearer ${Authurization}`,
                     'Content-Type': 'multipart/form-data',

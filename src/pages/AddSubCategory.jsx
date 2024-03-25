@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import NavBar from '../components/NavBar';
-import { Authurization } from '../api/Api';
+import { Authurization,getAllCategorysapi,AddSubcatrgoryapi } from '../api/Api';
 import Select from 'react-select';
 
 const AddSubCategory = () => {
@@ -20,7 +20,7 @@ const AddSubCategory = () => {
         const fetchData = async () => {
             setIsLoading(true);
             try {
-                const response = await fetch(`https://api.vitaparapharma.com/api/v1/public/main/category/all`);
+                const response = await fetch(getAllCategorysapi);
 
                 if (!response.ok) {
                     throw new Error('API request failed');
@@ -55,7 +55,7 @@ const AddSubCategory = () => {
     const handleSubmit = async (event) => {  //2update new
         event.preventDefault();
         try {
-            const response = await fetch(`https://api.vitaparapharma.com/api/v2/admin/category/new`, {
+            const response = await fetch(AddSubcatrgoryapi, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

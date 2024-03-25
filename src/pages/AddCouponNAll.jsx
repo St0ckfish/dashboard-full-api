@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import NavBar from '../components/NavBar';
 import Select from 'react-select';
-import { Authurization } from '../api/Api';
+import { Authurization,Addcouponnallapi,Active } from '../api/Api';
 import axios from 'axios';
 
 const AddCouponNAll = () => {
@@ -22,7 +22,7 @@ const AddCouponNAll = () => {
         const fetchData = async () => {
             setIsLoading(true);
             try {
-                const response = await fetch(`https://api.vitaparapharma.com/api/v1/public/product/all`);
+                const response = await fetch(Active);
 
                 if (!response.ok) {
                     throw new Error('API request failed');
@@ -58,7 +58,7 @@ const AddCouponNAll = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('https://api.vitaparapharma.com/api/v2/admin/coupon/new/customer/all', {
+            const response = await fetch(Addcouponnallapi, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

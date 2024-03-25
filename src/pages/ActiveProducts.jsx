@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import NavBar from '../components/NavBar';
-import { Authurization, Active } from '../api/Api';
+import { Authurization, Active,DeactivateButtonapi } from '../api/Api';
 import { Link } from 'react-router-dom';
 
 const ActiveProducts = () => {
@@ -18,12 +18,11 @@ const ActiveProducts = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            setIsLoading(true); // Set loading state to true
-
+            setIsLoading(true); 
             try {
                 const response = await fetch(Active, {
                     headers: {
-                        Authorization: `Bearer ${authorizationToken}` // Include authorization header
+                        Authorization: `Bearer ${authorizationToken}`
                     }
                 });
                 const data = await response.json();
@@ -33,9 +32,8 @@ const ActiveProducts = () => {
 
             } catch (error) {
                 console.error('Error fetching data:', error);
-                // Handle errors gracefully (e.g., display an error message)
             } finally {
-                setIsLoading(false); // Set loading state to false
+                setIsLoading(false);
             }
         };
 
@@ -45,7 +43,7 @@ const ActiveProducts = () => {
 
     const handleProductStatusChange = async (productId, currentStatus) => {
         const newStatus = currentStatus === 'active' ? 'deactivate' : 'active';
-        const apiEndpoint = `https://api.vitaparapharma.com/api/v1/custom/product/deactivate/${productId}`;
+        const apiEndpoint = DeactivateButtonapi+productId;
 
         try {
             const response = await fetch(apiEndpoint, {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import NavBar from '../components/NavBar';
 import Select from 'react-select';
-import { Authurization } from '../api/Api';
+import { Authurization,Active,Addcouponnsapi,getAllCustomersapi } from '../api/Api';
 import axios from 'axios';
 
 const AddCouponNS = () => {
@@ -30,7 +30,7 @@ const AddCouponNS = () => {
             setIsLoading3(true); // Set loading state to true
 
             try {
-                const response = await axios.get('https://api.vitaparapharma.com/api/v1/admin/customer/all', {
+                const response = await axios.get(getAllCustomersapi, {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${Authurization}` // Assuming Authurization is defined somewhere
@@ -69,7 +69,7 @@ const AddCouponNS = () => {
         const fetchData = async () => {
             setIsLoading(true);
             try {
-                const response = await fetch(`https://api.vitaparapharma.com/api/v1/public/product/all`);
+                const response = await fetch(Active);
 
                 if (!response.ok) {
                     throw new Error('API request failed');
@@ -105,7 +105,7 @@ const AddCouponNS = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('https://api.vitaparapharma.com/api/v2/admin/coupon/new/customer/all', {
+            const response = await fetch(Addcouponnsapi, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

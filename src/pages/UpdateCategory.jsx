@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import NavBar from '../components/NavBar';
-import { Authurization } from '../api/Api';
+import { Authurization ,getAllCategorysapi} from '../api/Api';
 import { Link } from 'react-router-dom';
 
 const UpdateCategory = () => {
@@ -26,7 +26,7 @@ const UpdateCategory = () => {
             setIsLoading(true); // Set loading state to true
 
             try {
-                const response = await fetch('https://api.vitaparapharma.com/api/v1/public/main/category/all', {
+                const response = await fetch(getAllCategorysapi, {
                 });
                 const data = await response.json();
                 console.log(data);

@@ -10,7 +10,6 @@ import Error from './pages/Error';
 import { AuthProvider } from './context/Auth';
 import RequireAuth from './auth/RequireAuth';
 import ActiveProducts from './pages/ActiveProducts';
-import EditImage from './pages/EditImage';
 import InActiveProducts from './pages/InActiveProducts';
 import UpdateProduct from './pages/UpdateProduct';
 import { Outlet } from 'react-router-dom';
@@ -41,9 +40,6 @@ const router = createBrowserRouter(
 
       <Route path="activeproducts" element={
         <RequireAuth> <ActiveProducts /> </RequireAuth>} />
-
-      <Route path="editimage" element={
-        <RequireAuth> <EditImage /> </RequireAuth>} />
 
       <Route path="inactiveproducts" element={
         <RequireAuth> <InActiveProducts /> </RequireAuth>} />

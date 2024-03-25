@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import NavBar from '../components/NavBar';
 import Select from 'react-select';
-import { Authurization } from '../api/Api';
+import { Authurization,Active ,Addcouponapi} from '../api/Api';
 import axios from 'axios';
 
 
@@ -20,7 +20,7 @@ const AddCoupon = () => {
         const fetchData = async () => {
             setIsLoading(true);
             try {
-                const response = await fetch(`https://api.vitaparapharma.com/api/v1/public/product/all`);
+                const response = await fetch(Active);
 
                 if (!response.ok) {
                     throw new Error('API request failed');
@@ -56,7 +56,7 @@ const AddCoupon = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('https://api.vitaparapharma.com/api/v2/admin/coupon/new', {
+            const response = await fetch(Addcouponapi, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

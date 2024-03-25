@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import NavBar from '../components/NavBar';
-import { Authurization } from '../api/Api';
+import { Authurization ,AddBlogapi} from '../api/Api';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import axios from 'axios';
@@ -39,7 +39,7 @@ const AddBlogs = () => {
         }
 
         try {
-            const response = await axios.post('https://api.vitaparapharma.com/api/v2/content/post/new', formData, {
+            const response = await axios.post(AddBlogapi, formData, {
                 headers: {
                     Authorization: `Bearer ${Authurization}`,
                     'Content-Type': 'multipart/form-data',

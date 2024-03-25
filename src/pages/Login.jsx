@@ -2,13 +2,12 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/Auth';
-import { Authurization,userr } from '../api/Api';
+import { Authurization,userr,loginapi } from '../api/Api';
 
 
 const Login = () => {
     const auth = useAuth();
     const [email, setEmail] = useState('');
-    const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -20,7 +19,7 @@ const Login = () => {
         setError('');
         
         try {
-            const response = await fetch('https://api.vitaparapharma.com/api/v1/auth/login', {
+            const response = await fetch(loginapi, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -38,26 +37,14 @@ const Login = () => {
             const responseData = await response.json(); // Parse the response
             auth.login(userr);
             auth.login2(Authurization);
-
-            // Check for the presence of a token in the response
+            
             if (responseData.data.token) {
                 const token = responseData.data.token;
                 localStorage.setItem('myAuthorizationToken', token);
-                // Store the token 
                 const lool = localStorage.getItem('myAuthorizationToken');
                 console.log(lool);
-                // Local Storage 
-                // localStorage.setItem('myAuthorizationToken', token);
-
-                // OR: Use Context API or State Management Library for secure storage
-
                 console.log('Login successful, token:', token);
-                
-
-                // Handle successful login (e.g., store token, redirect to protected route)
-                console.log('Login successful'); // Assuming you have a mechanism to handle the response in your application
-
-                // Store authentication state or token on successful login (implementation depends on your app)
+                console.log('Login successful');
 
                 navigate('/home',{replace: true});
             } // Replace with your desired protected route

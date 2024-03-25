@@ -7,25 +7,15 @@ const GetAllBlogs = () => {
     const [arabicContent, setarabicContent] = useState('');
     const [frenchContent, setfrenceContent] = useState('');
     const [selectedImages, setSelectedImages] = useState([]);
-    const [targetUrl, settargetUrl] = useState('');
-    const [startDate, setstartDate] = useState('');
-    const [endDate, setendDate] = useState('');
     const [title, setTitle] = useState('');
     const [arabicTitle, setarabicTitle] = useState('');
     const [frenchTitle, setfrenchTitle] = useState('');
-    const [arabicDescription, setArabicDescription] = useState('');
-    const [description, setDescription] = useState('');
-    const [frenchDescription, setFrenchDescription] = useState('');
     const [productData, setProductData] = useState(null);
     const [productData2, setProductData2] = useState(null);
-    const [productData3, setProductData3] = useState(null);
     const [idcategory, setIdcategory] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [isLoading2, setIsLoading2] = useState(false);
-    const [isLoading3, setIsLoading3] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
-    const [advertisementStatus, setSelectedOption] = useState('');
-    const [loading, setLoading] = useState(false);
 
     const toggleNavbar = (index) => {
         setIsOpen(isOpen === index ? null : index)
