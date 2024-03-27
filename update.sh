@@ -41,7 +41,7 @@ print_status "Changing directory to project directory ..."
 cd "$PROJECT_DIRECTORY" || { print_status "Changing directory failed."; exit 1; }
 
 # npm build
-print_status "Running Maven clean ..."
+print_status "Running npm build ..."
 npm run build >> /tmp/maven_clean_output.txt || { print_status "Maven clean failed."; exit 1; }
 
 
