@@ -140,7 +140,7 @@ const NotifySelectedCustomers = () => {
                     <div className='bg-[#1F2937] w-[1300px] max-[1815px]:translate-y-11 p-7 items-center grid translate-y-8 max-[1815px]:translate-x-[600px] max-[1626px]:translate-x-[550px] max-[1563px]:translate-x-[620px]  max-[2000px]:translate-x-24 max-[1736px]:w-[1200px]  rounded-xl border border-[#41434d] shadow-[#2c4157] max-[1536px]:w-[1000px] shadow-2xl max-[1430px]:translate-x-[500px] max-[1306px]:translate-x-[450px] max-[1278px]:w-[900px] max-[1200px]:w-[700px] max-[1056px]:translate-x-[300px] max-[964px]:translate-x-[150px] max-[854px]:translate-x-[100px] max-[764px]:translate-x-[70px] max-[724px]:w-[500px] max-[628px]:translate-x-[210px] max-[557px]:translate-x-[160px] max-[519px]:w-[400px] max-[408px]:w-[370px] max-[467px]:translate-x-[105px] max-[392px]:translate-x-[90px]'>
                         <form className='grid justify-center  gap-6 grid-cols-1' onSubmit={handleSubmit}>
                             <div>
-                                <h1 className='font-bold text-[25px]'>Add Coupon</h1>
+                                <h1 className='font-bold text-[25px]'>Send Notification for seleted users</h1>
                             </div>
 
                             {isLoading4 ? <p>Loading</p> :
@@ -225,7 +225,7 @@ const NotifySelectedCustomers = () => {
                             </div>
 
                             <div>
-                                <input value="Add Coupon" className="w-[150px] py-2 bg-[#8465F2] rounded text-white cursor-pointer" type="submit" />
+                                <input value="Send Notification" className="w-[150px] py-2 bg-[#8465F2] rounded text-white cursor-pointer" type="submit" />
                             </div>
                         </form>
                     </div>

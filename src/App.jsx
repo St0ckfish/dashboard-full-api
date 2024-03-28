@@ -27,6 +27,8 @@ import AddCouponNS from './pages/AddCouponNS';
 import AllCoupons from './pages/Allcoupons';
 import NotifyAllCustomers from './pages/NotifyAllCustomers';
 import NotifySelectedCustomers from './pages/NotifySelectedCustomers';
+import Users from './pages/Users';
+import UserPreview from './pages/UserPreview';
 
 const router = createBrowserRouter(
 
@@ -87,6 +89,12 @@ const router = createBrowserRouter(
 
       <Route path="notifyselectedcustomers" element={
         <RequireAuth> <NotifySelectedCustomers /> </RequireAuth>} />
+
+      <Route path="users" element={
+        <RequireAuth> <Users /> </RequireAuth>} />
+
+      <Route path="userpreview" element={
+        <RequireAuth> <UserPreview /> </RequireAuth>} />
 
       <Route path="updateproduct" element={
         <Outlet />}>

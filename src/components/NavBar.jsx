@@ -122,7 +122,7 @@ const NavBar = () => {
                                     <svg className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
                                         <path d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z" />
                                     </svg>
-                                    <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Product</span>
+                                    <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap font-bold">Product</span>
                                     <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                                         <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
                                     </svg>
@@ -130,13 +130,13 @@ const NavBar = () => {
                                     isOpen2 && (
                                         <ul id="dropdown-example" className=" py-2 space-y-2">
                                             <li>
-                                                <Link to="/addnewproduct" className="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-blue-500 dark:hover:bg-gray-700">Add New Product</Link>
+                                                <Link to="/addnewproduct" className="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-gray-300 dark:hover:bg-gray-700">Add New Product</Link>
                                             </li>
                                             <li>
-                                                <Link to="/activeproducts" className="flex items-center w-full p-2  transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-green-500 dark:hover:bg-gray-700">Active Products</Link>
+                                                <Link to="/activeproducts" className="flex items-center w-full p-2  transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-gray-300 dark:hover:bg-gray-700">Active Products</Link>
                                             </li>
                                             <li>
-                                                <Link to="/inactiveproducts" className="flex items-center w-full p-2  transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-red-500 dark:hover:bg-gray-700">InActive Products</Link>
+                                                <Link to="/inactiveproducts" className="flex items-center w-full p-2  transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-gray-300 dark:hover:bg-gray-700">InActive Products</Link>
                                             </li>
                                         </ul>
                                     )
@@ -148,7 +148,7 @@ const NavBar = () => {
                                         <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
                                         <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
                                     </svg>
-                                    <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Category</span>
+                                    <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap font-bold">Category</span>
                                     <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                                         <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
                                     </svg>
@@ -156,19 +156,19 @@ const NavBar = () => {
                                     isOpen3 && (
                                         <ul id="dropdown-example" className=" py-2 space-y-2">
                                             <li>
-                                                <Link to="/addcategory" className="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-blue-500 dark:hover:bg-gray-700">Add Category</Link>
+                                                <Link to="/addcategory" className="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-gray-300 dark:hover:bg-gray-700">Add Category</Link>
                                             </li>
                                             <li>
-                                                <Link to="/updatecategory" className="flex items-center w-full p-2  transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-green-500 dark:hover:bg-gray-700">All Categorys</Link>
+                                                <Link to="/updatecategory" className="flex items-center w-full p-2  transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-gray-300 dark:hover:bg-gray-700">All Categorys</Link>
                                             </li>
                                         </ul>
                                     )
                                 }
                             </li>
                             <li>
-                                <button onClick={toggleNavbar4} type="button" className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
-                                <svg className="h-6 w-6 text-gray-400"  width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <rect x="8" y="4" width="12" height="12" rx="2" />  <path d="M16 16v2a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2v-8a2 2 0 0 1 2 -2h2" /></svg>
-                                    <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">SUBCategory</span>
+                                <button onClick={toggleNavbar4} type="button" className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 " aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+                                <svg className="h-6 w-6 text-gray-400 group-hover:text-gray-100 dark:text-gray-400  dark:group-hover:text-white"  width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <rect x="8" y="4" width="12" height="12" rx="2" />  <path d="M16 16v2a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2v-8a2 2 0 0 1 2 -2h2" /></svg>
+                                    <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap font-bold">SUBCategory</span>
                                     <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                                         <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
                                     </svg>
@@ -176,10 +176,10 @@ const NavBar = () => {
                                     isOpen4 && (
                                         <ul id="dropdown-example" className=" py-2 space-y-2">
                                             <li>
-                                                <Link to="/addsubcategory" className="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-blue-500 dark:hover:bg-gray-700">Add SUBCategory</Link>
+                                                <Link to="/addsubcategory" className="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-gray-300 dark:hover:bg-gray-700">Add SUBCategory</Link>
                                             </li>
                                             <li>
-                                                <Link to="/updatesubcategory" className="flex items-center w-full p-2  transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-green-500 dark:hover:bg-gray-700">All SUBCategorys</Link>
+                                                <Link to="/updatesubcategory" className="flex items-center w-full p-2  transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-gray-300 dark:hover:bg-gray-700">All SUBCategorys</Link>
                                             </li>
                                         </ul>
                                     )
@@ -187,8 +187,8 @@ const NavBar = () => {
                             </li>
                             <li>
                                 <button onClick={toggleNavbar5} type="button" className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
-                                <svg className="h-6 w-6 text-gray-400"  width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <rect x="3" y="5" width="18" height="14" rx="2" />  <path d="M7 15v-4a2 2 0 0 1 4 0v4" />  <line x1="7" y1="13" x2="11" y2="13" />  <path d="M17 9v6h-1.5a1.5 1.5 0 1 1 1.5 -1.5" /></svg>
-                                    <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Advertisement</span>
+                                <svg className="h-6 w-6 text-gray-400 group-hover:text-gray-100 dark:text-gray-400  dark:group-hover:text-white"  width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <rect x="3" y="5" width="18" height="14" rx="2" />  <path d="M7 15v-4a2 2 0 0 1 4 0v4" />  <line x1="7" y1="13" x2="11" y2="13" />  <path d="M17 9v6h-1.5a1.5 1.5 0 1 1 1.5 -1.5" /></svg>
+                                    <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap font-bold">Advertisement</span>
                                     <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                                         <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
                                     </svg>
@@ -196,10 +196,10 @@ const NavBar = () => {
                                     isOpen5 && (
                                         <ul id="dropdown-example" className=" py-2 space-y-2">
                                             <li>
-                                                <Link to="/addadvertisement" className="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-blue-500 dark:hover:bg-gray-700">Add Advertisement</Link>
+                                                <Link to="/addadvertisement" className="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-gray-300 dark:hover:bg-gray-700">Add Advertisement</Link>
                                             </li>
                                             <li>
-                                                <Link to="/getalladvertisements" className="flex items-center w-full p-2  transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-green-500 dark:hover:bg-gray-700">All Advertisement</Link>
+                                                <Link to="/getalladvertisements" className="flex items-center w-full p-2  transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-gray-300 dark:hover:bg-gray-700">All Advertisement</Link>
                                             </li>
                                         </ul>
                                     )
@@ -207,8 +207,8 @@ const NavBar = () => {
                             </li>
                             <li>
                                 <button onClick={toggleNavbar6} type="button" className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="#c9c9c9" fillRule="evenodd" d="M7.784 1.356a2.75 2.75 0 0 0-3.186 2.231l-2.43 13.787a2.75 2.75 0 0 0 2.23 3.186l11.818 2.084a2.75 2.75 0 0 0 3.185-2.23l2.432-13.788a2.75 2.75 0 0 0-2.231-3.186zM9.06 5.643A.75.75 0 1 0 8.8 7.12l7.878 1.39a.75.75 0 0 0 .26-1.478zm-1.563 4.548a.75.75 0 0 1 .869-.608l7.878 1.389a.75.75 0 1 1-.26 1.477l-7.879-1.39a.75.75 0 0 1-.608-.868m.174 3.33a.75.75 0 1 0-.26 1.477l4.924.869a.75.75 0 1 0 .26-1.478z" clipRule="evenodd"></path></svg>
-                                    <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Blog Post</span>
+                                    <svg className="h-6 w-6 text-gray-400 group-hover:text-gray-100 dark:text-gray-400  dark:group-hover:text-white"  width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <line x1="10" y1="14" x2="21" y2="3" />  <path d="M21 3L14.5 21a.55 .55 0 0 1 -1 0L10 14L3 10.5a.55 .55 0 0 1 0 -1L21 3" /></svg>
+                                    <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap font-bold">Blog Post</span>
                                     <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                                         <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
                                     </svg>
@@ -216,10 +216,10 @@ const NavBar = () => {
                                     isOpen6 && (
                                         <ul id="dropdown-example" className=" py-2 space-y-2">
                                             <li>
-                                                <Link to="/addblogs" className="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-blue-500 dark:hover:bg-gray-700">Add Blogs</Link>
+                                                <Link to="/addblogs" className="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-gray-300 dark:hover:bg-gray-700">Add Blogs</Link>
                                             </li>
                                             <li>
-                                                <Link to="/getallblogs" className="flex items-center w-full p-2  transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-green-500 dark:hover:bg-gray-700">All Blogs</Link>
+                                                <Link to="/getallblogs" className="flex items-center w-full p-2  transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-gray-300 dark:hover:bg-gray-700">All Blogs</Link>
                                             </li>
                                         </ul>
                                     )
@@ -227,8 +227,9 @@ const NavBar = () => {
                             </li>
                             <li>
                                 <button onClick={toggleNavbar7} type="button" className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="#c9c9c9" d="M21 5H3a1 1 0 0 0-1 1v4h.893c.996 0 1.92.681 2.08 1.664A2.001 2.001 0 0 1 3 14H2v4a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-4h-1a2.001 2.001 0 0 1-1.973-2.336c.16-.983 1.084-1.664 2.08-1.664H22V6a1 1 0 0 0-1-1M11 17H9v-2h2zm0-4H9v-2h2zm0-4H9V7h2z"></path></svg>
-                                    <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Coupons</span>
+                                <svg className="h-6 w-6 text-gray-400 group-hover:text-gray-100 dark:text-gray-400  dark:group-hover:text-white"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                    <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap font-bold">Coupons</span>
                                     <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                                         <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
                                     </svg>
@@ -236,16 +237,16 @@ const NavBar = () => {
                                     isOpen7 && (
                                         <ul id="dropdown-example" className=" py-2 space-y-2">
                                             <li>
-                                                <Link to="/addcoupon" className="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-gray-400 dark:hover:bg-gray-700">Add Coupon</Link>
+                                                <Link to="/addcoupon" className="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-gray-300 dark:hover:bg-gray-700">Add Coupon</Link>
                                             </li>
                                             <li>
-                                                <Link to="/addcouponnall" className="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-gray-400 dark:hover:bg-gray-700">Add Coupon & Notify All Users </Link>
+                                                <Link to="/addcouponnall" className="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-gray-300 dark:hover:bg-gray-700">Add Coupon & Notify All Users </Link>
                                             </li>
                                             <li>
-                                                <Link to="/addcouponns" className="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-gray-400 dark:hover:bg-gray-700">Add Coupon & Notify Selected Users</Link>
+                                                <Link to="/addcouponns" className="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-gray-300 dark:hover:bg-gray-700">Add Coupon & Notify Selected Users</Link>
                                             </li>
                                             <li>
-                                                <Link to="/allcoupons" className="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-gray-400 dark:hover:bg-gray-700">All Coupons</Link>
+                                                <Link to="/allcoupons" className="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-gray-300 dark:hover:bg-gray-700">All Coupons</Link>
                                             </li>
                                             
                                         </ul>
@@ -254,8 +255,8 @@ const NavBar = () => {
                             </li>
                             <li>
                                 <button onClick={toggleNavbar8} type="button" className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
-                                <svg className="h-6 w-6 text-gray-300"  width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M10 5a2 2 0 0 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />  <path d="M9 17v1a3 3 0 0 0 6 0v-1" /></svg>
-                                    <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Notifications</span>
+                                <svg className="h-6 w-6 text-gray-400 group-hover:text-gray-100 dark:text-gray-400  dark:group-hover:text-white"  width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M10 5a2 2 0 0 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />  <path d="M9 17v1a3 3 0 0 0 6 0v-1" /></svg>
+                                    <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap font-bold">Notifications</span>
                                     <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                                         <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
                                     </svg>
@@ -263,21 +264,29 @@ const NavBar = () => {
                                     isOpen8 && (
                                         <ul id="dropdown-example" className=" py-2 space-y-2">
                                             <li>
-                                                <Link to="/notifyallcustomers" className="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-gray-400 dark:hover:bg-gray-700">Notify All Customers</Link>
+                                                <Link to="/notifyallcustomers" className="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-gray-300 dark:hover:bg-gray-700">All Customers</Link>
                                             </li>
                                             <li>
-                                                <Link to="/notifyselectedcustomers" className="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-gray-400 dark:hover:bg-gray-700">Notify Selected Customers</Link>
+                                                <Link to="/notifyselectedcustomers" className="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-gray-300 dark:hover:bg-gray-700">Selected Customers</Link>
                                             </li>                                            
                                         </ul>
                                     )
                                 }
                             </li>
                             <li>
+                                <Link to="/users" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                                    <svg className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
+                                        <path d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
+                                    </svg>
+                                    <span className="flex-1 ms-3 whitespace-nowrap font-bold">Users</span>
+                                </Link>
+                            </li>
+                            <li>
                                 <Link to="/home" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                                     <svg className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 21">
                                         <path d="M15 12a1 1 0 0 0 .962-.726l2-7A1 1 0 0 0 17 3H3.77L3.175.745A1 1 0 0 0 2.208 0H1a1 1 0 0 0 0 2h.438l.6 2.255v.019l2 7 .746 2.986A3 3 0 1 0 9 17a2.966 2.966 0 0 0-.184-1h2.368c-.118.32-.18.659-.184 1a3 3 0 1 0 3-3H6.78l-.5-2H15Z" />
                                     </svg>
-                                    <span className="flex-1 ms-3 whitespace-nowrap">Report</span>
+                                    <span className="flex-1 ms-3 whitespace-nowrap font-bold">Report</span>
                                     <span className="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">Pro</span>
                                 </Link>
                             </li>
@@ -286,16 +295,8 @@ const NavBar = () => {
                                     <svg className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                         <path d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z" />
                                     </svg>
-                                    <span className="flex-1 ms-3 whitespace-nowrap">Inbox</span>
+                                    <span className="flex-1 ms-3 whitespace-nowrap font-bold">Inbox</span>
                                     <span className="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium  rounded-full bg-[#8465F2] text-[#f8f8f8]">3</span>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="/home" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                                    <svg className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
-                                        <path d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
-                                    </svg>
-                                    <span className="flex-1 ms-3 whitespace-nowrap">Users</span>
                                 </Link>
                             </li>
                             <li>
@@ -303,7 +304,7 @@ const NavBar = () => {
                                     <svg className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
                                         <path d="M17 5.923A1 1 0 0 0 16 5h-3V4a4 4 0 1 0-8 0v1H2a1 1 0 0 0-1 .923L.086 17.846A2 2 0 0 0 2.08 20h13.84a2 2 0 0 0 1.994-2.153L17 5.923ZM7 9a1 1 0 0 1-2 0V7h2v2Zm0-5a2 2 0 1 1 4 0v1H7V4Zm6 5a1 1 0 1 1-2 0V7h2v2Z" />
                                     </svg>
-                                    <span className="flex-1 ms-3 whitespace-nowrap"> Purchase</span>
+                                    <span className="flex-1 ms-3 whitespace-nowrap font-bold"> Purchase</span>
                                 </Link>
                             </li>
 

@@ -72,27 +72,6 @@ const AddBlogs = () => {
 
                             <div className="grid justify-center items-center gap-3 max-[1815px]:grid">
 
-                                <input placeholder='Arabic Content' className='bg-[#2b2e38] w-[1070px] max-[1536px]:w-[900px] max-[1278px]:w-[700px] max-[1200px]:w-[500px] max-[724px]:w-[300px] px-6 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d]' type="text"
-                                    name="arabicContent"
-                                    id="arabicContent"
-                                    value={arabicContent}
-                                    onChange={(e) => setarabicContent(e.target.value)} required />
-
-                                <input placeholder='English Content' className='bg-[#2b2e38] w-[1070px] max-[1536px]:w-[900px] max-[1278px]:w-[700px] max-[1200px]:w-[500px] max-[724px]:w-[300px] px-6 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d]' type="text"
-                                    name="content"
-                                    id="content"
-                                    value={content}
-                                    onChange={(e) => setContent(e.target.value)} required />
-
-                                <input placeholder='French Content' className='bg-[#2b2e38] w-[1070px] max-[1536px]:w-[900px] max-[1278px]:w-[700px] max-[1200px]:w-[500px] max-[724px]:w-[300px] px-6 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d]' type="text"
-                                    name="frenchContent"
-                                    id="frenchContent"
-                                    value={frenchContent}
-                                    onChange={(e) => setfrenceContent(e.target.value)} required />
-                            </div>
-
-                            <div className="grid justify-center items-center gap-3 max-[1815px]:grid">
-
                                 <input placeholder='Arabic Title' className='bg-[#2b2e38] w-[1070px] max-[1536px]:w-[900px] max-[1278px]:w-[700px] max-[1200px]:w-[500px] max-[724px]:w-[300px] px-6 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d]' type="text"
                                     name="arabicTitle"
                                     id="arabicTitle"
@@ -112,11 +91,31 @@ const AddBlogs = () => {
                                     onChange={(e) => setfrenchTitle(e.target.value)} required />
                             </div>
 
+                            <div className="grid justify-center items-center gap-3 max-[1815px]:grid">
+
+                                <ReactQuill placeholder='Arabic Content' className='text-black bg-[#ffffff] w-[1070px] max-[1536px]:w-[900px] max-[1278px]:w-[700px] max-[1200px]:w-[500px] max-[724px]:w-[300px] px-6 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d]' type="text"
+                                    name="arabicContent"
+                                    id="arabicContent"
+                                    value={arabicContent}
+                                    onChange={setarabicContent} required />
+
+                                <ReactQuill placeholder='English Content' className='text-black bg-[#ffffff] w-[1070px] max-[1536px]:w-[900px] max-[1278px]:w-[700px] max-[1200px]:w-[500px] max-[724px]:w-[300px] px-6 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d]' type="text"
+                                    name="content"
+                                    id="content"
+                                    value={content}
+                                    onChange={setContent} required />
+
+                                <ReactQuill placeholder='French Content' className='text-black bg-[#ffffff] w-[1070px] max-[1536px]:w-[900px] max-[1278px]:w-[700px] max-[1200px]:w-[500px] max-[724px]:w-[300px] px-6 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d]' type="text"
+                                    name="frenchContent"
+                                    id="frenchContent"
+                                    value={frenchContent}
+                                    onChange={setfrenceContent} required />
+                            </div>
 
                             <div className='flex justify-center items-center gap-3 '>
                                 <label className="block mb-2 text-sm font-medium text-white translate-y-1" htmlFor="images">Upload image</label>
                                 <input type="file"
-                                    id="images"// Restrict file types to images
+                                    id="images"
                                     onChange={handleImageChange} className=" bg-slate-700 text-black text-sm file:cursor-pointer cursor-pointer file:border-0 file:py-2 file:px-4 file:mr-4 file:bg-[#8465F2] file:hover:bg-[#5735d1] file:text-white rounded" required accept="image/*" />
                             </div>
 

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Authurization,GetAllBlogsapi,GetAllBlogsDataapi,DeleteBlogsBtnapi,DeleteBlogsImgBtnapi,UpdateBlogsapi,PutBlogsImgBtnapi } from '../api/Api';
 import NavBar from '../components/NavBar';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 const GetAllBlogs = () => {
     const [content, setContent] = useState('');
@@ -243,7 +245,6 @@ const GetAllBlogs = () => {
                                             <div className='flex justify-center'>
                                                 <button className='px-3 py-1 rounded-md bg-red-600 text-white' onClick={() => {
                                                     handleProductStatusChange(product.blogPostId, product.statush);
-                                                    // Call notify after status change
                                                 }}>{product.status === 'active' ? 'Done' : 'Delete'}</button>
                                             </div>
 
@@ -259,26 +260,6 @@ const GetAllBlogs = () => {
                                                     <form className='grid justify-center text-center gap-6 grid-cols-1' onSubmit={handleSubmit}>
                                                         <div className='grid text-center justify-center items-center'>
                                                             <h1 className='font-bold text-[25px] whitespace-nowrap text-center'>Update Blog Post</h1>
-                                                        </div>
-
-                                                        <div className="grid justify-center items-center gap-3 max-[1815px]:grid">
-                                                            <input placeholder='Arabic Content' className='bg-[#2b2e38] w-[1070px] max-[1536px]:w-[900px] max-[1278px]:w-[700px] max-[1200px]:w-[500px] max-[724px]:w-[300px] px-6 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d]' type="text"
-                                                                name="arabicContent"
-                                                                id="arabicContent"
-                                                                value={arabicContent}
-                                                                onChange={(e) => setarabicContent(e.target.value)} required />
-
-                                                            <input placeholder='English Content' className='bg-[#2b2e38] w-[1070px] max-[1536px]:w-[900px] max-[1278px]:w-[700px] max-[1200px]:w-[500px] max-[724px]:w-[300px] px-6 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d]' type="text"
-                                                                name="content"
-                                                                id="content"
-                                                                value={content}
-                                                                onChange={(e) => setContent(e.target.value)} required />
-
-                                                            <input placeholder='French Content' className='bg-[#2b2e38] w-[1070px] max-[1536px]:w-[900px] max-[1278px]:w-[700px] max-[1200px]:w-[500px] max-[724px]:w-[300px] px-6 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d]' type="text"
-                                                                name="frenchContent"
-                                                                id="frenchContent"
-                                                                value={frenchContent}
-                                                                onChange={(e) => setfrenceContent(e.target.value)} required />
                                                         </div>
 
                                                         <div className="grid justify-center items-center gap-3 max-[1815px]:grid">
@@ -300,6 +281,26 @@ const GetAllBlogs = () => {
                                                                 value={frenchTitle}
                                                                 onChange={(e) => setfrenchTitle(e.target.value)} required />
                                                         </div>
+
+                                                        <div className="grid justify-center items-center gap-3 max-[1815px]:grid">
+                                                        <ReactQuill placeholder='Arabic Content' className='text-black bg-[#ffffff] w-[1070px] max-[1536px]:w-[900px] max-[1278px]:w-[700px] max-[1200px]:w-[500px] max-[724px]:w-[300px] px-6 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d]' type="text"
+                                                            name="arabicContent"
+                                                            id="arabicContent"
+                                                            value={arabicContent}
+                                                            onChange={setarabicContent} required />
+
+                                                        <ReactQuill placeholder='English Content' className='text-black bg-[#ffffff] w-[1070px] max-[1536px]:w-[900px] max-[1278px]:w-[700px] max-[1200px]:w-[500px] max-[724px]:w-[300px] px-6 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d]' type="text"
+                                                            name="content"
+                                                            id="content"
+                                                            value={content}
+                                                            onChange={setContent} required />
+
+                                                        <ReactQuill placeholder='French Content' className='text-black bg-[#ffffff] w-[1070px] max-[1536px]:w-[900px] max-[1278px]:w-[700px] max-[1200px]:w-[500px] max-[724px]:w-[300px] px-6 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d]' type="text"
+                                                            name="frenchContent"
+                                                            id="frenchContent"
+                                                            value={frenchContent}
+                                                            onChange={setfrenceContent} required />
+                                                        </div>  
 
                                                         <div>
                                                             <input value="Update Blog" className="w-[200px] py-2 bg-[#8465F2] rounded text-white cursor-pointer" type="submit" />
