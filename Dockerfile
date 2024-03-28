@@ -1,7 +1,5 @@
 FROM nginx
 
-# RUN apk add --no-cache bash
-
 COPY dist/ /usr/share/nginx/html
 
 EXPOSE 80

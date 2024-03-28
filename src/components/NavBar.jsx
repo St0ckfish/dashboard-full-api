@@ -44,6 +44,10 @@ const NavBar = () => {
     const toggleNavbar7 = () => {
         setIsOpen7(!isOpen7)
     }
+    const [isOpen8, setIsOpen8] = useState(false);
+    const toggleNavbar8 = () => {
+        setIsOpen8(!isOpen8)
+    }
     return (
         <>
             <div className=''>
@@ -58,8 +62,7 @@ const NavBar = () => {
                                     </svg>
                                 </button>
                                 <Link to="/home" className="flex ms-2 md:me-24">
-                                    <img src="/images/dashboard-8312011_1280.webp" className="h-8 me-3" alt="Logo" />
-                                    <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Logo</span>
+                                    <img src="/images/logoo 1.png" className="h-11 me-5" alt="Logo" />
                                 </Link>
                             </div>
                             <div className="flex items-center">
@@ -245,6 +248,26 @@ const NavBar = () => {
                                                 <Link to="/allcoupons" className="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-gray-400 dark:hover:bg-gray-700">All Coupons</Link>
                                             </li>
                                             
+                                        </ul>
+                                    )
+                                }
+                            </li>
+                            <li>
+                                <button onClick={toggleNavbar8} type="button" className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+                                <svg className="h-6 w-6 text-gray-300"  width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M10 5a2 2 0 0 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />  <path d="M9 17v1a3 3 0 0 0 6 0v-1" /></svg>
+                                    <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Notifications</span>
+                                    <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
+                                    </svg>
+                                </button>{
+                                    isOpen8 && (
+                                        <ul id="dropdown-example" className=" py-2 space-y-2">
+                                            <li>
+                                                <Link to="/notifyallcustomers" className="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-gray-400 dark:hover:bg-gray-700">Notify All Customers</Link>
+                                            </li>
+                                            <li>
+                                                <Link to="/notifyselectedcustomers" className="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-gray-400 dark:hover:bg-gray-700">Notify Selected Customers</Link>
+                                            </li>                                            
                                         </ul>
                                     )
                                 }

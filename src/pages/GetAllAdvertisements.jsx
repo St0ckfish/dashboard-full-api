@@ -17,12 +17,12 @@ const GetAllAdvertisements = () => {
     const [productData, setProductData] = useState(null);
     const [productData2, setProductData2] = useState(null);
     const [productData3, setProductData3] = useState(null);
+    const [advertisementStatus, setSelectedOption] = useState('');
     const [idcategory, setIdcategory] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [isLoading2, setIsLoading2] = useState(false);
     const [isLoading3, setIsLoading3] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
-    const [advertisementStatus, setSelectedOption] = useState('');
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {

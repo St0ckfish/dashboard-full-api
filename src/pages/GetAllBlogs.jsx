@@ -302,7 +302,7 @@ const GetAllBlogs = () => {
                                                         </div>
 
                                                         <div>
-                                                            <input value="Update Advertisement" className="w-[200px] py-2 bg-[#8465F2] rounded text-white cursor-pointer" type="submit" />
+                                                            <input value="Update Blog" className="w-[200px] py-2 bg-[#8465F2] rounded text-white cursor-pointer" type="submit" />
                                                         </div>
                                                     </form>
 
