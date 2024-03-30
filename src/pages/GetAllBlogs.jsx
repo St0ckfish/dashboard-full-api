@@ -224,7 +224,7 @@ const GetAllBlogs = () => {
         <div className='text-white grid justify-center items-center w-[1800px] max-[1815px]:w-[800px] max-[1563px]:w-[600px] h-screen max-[628px]:w-[200px]'>
                     <div>
                         {isLoading ? (
-                            <p>Loading product details...</p>
+                            <p>Loading details...</p>
                         ) : productData ? (
                             // Display fetched product details 
                             <div className='grid gap-6'>

@@ -184,7 +184,7 @@ const NotifySelectedCustomers = () => {
                             }
 
                             <div className='grid justify-cebter  gap-3'>
-                                {isLoading3 ? <p>Loading product details...</p> :
+                                {isLoading3 ? <p>Loading details...</p> :
 
                                 <select value={type} onChange={handleSelectChange} className='text-black p-2 rounded-md outline-none'>
                                     <option className='font-bold text-blue-700'>Select Type</option>//
