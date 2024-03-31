@@ -127,6 +127,9 @@ const Users = () => {
                                         Name
                                     </th>
                                     <th scope="col" className="px-6 py-3">
+                                        gender
+                                    </th>
+                                    <th scope="col" className="px-6 py-3">
                                         Phone
                                     </th>
                                     <th scope="col" className="px-6 py-3">
@@ -150,12 +153,26 @@ const Users = () => {
                                     {productData.data.customers.map((product, index) => (
                                         <tr key={product.customerId} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 overflow-x-auto">
                                             <th scope="row" className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                                                <img className="w-10 h-10 rounded-full" src="/images/man-light-skin-tone-beard.svg" alt="Jese image" />
+                                                {
+                                                    product.hasPicture ?
+
+                                                    <img className="w-10 h-10 rounded-full" src={product.picture} alt=" image" />
+                                                    :
+                                                    <img className="w-10 h-10 rounded-full" src="/images/man-light-skin-tone-beard.svg" alt=" image" />
+                                                }
                                                 <div className="ps-3">
                                                     <div className="text-base font-semibold">{product.firstName} {product.lastName}</div>
                                                     <div className="font-normal text-gray-300">{product.email}</div>
                                                 </div>
                                             </th>
+                                            <td className="px-6 py-4">
+                                                {product.male?
+
+                                                <img className="w-10 h-10 rounded-full" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOw1jqeyKIfWipMdt-DsUWbLfpMfbQ_-2QWA&usqp=CAU" alt=" image" />
+                                                    :
+                                                <img className="w-10 h-10 rounded-full" src="https://t3.ftcdn.net/jpg/01/37/69/42/240_F_137694239_ihbs4kHd2w3HC3KipODkBDfhltbjwwLV.jpg" alt=" image" />
+                                                }
+                                            </td>
                                             <td className="px-6 py-4">
                                                 {product.phone}
                                             </td>
