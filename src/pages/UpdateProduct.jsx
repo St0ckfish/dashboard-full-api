@@ -450,7 +450,7 @@ const UpdateProduct = () => {
                                     </div>
 
                                     <div>
-                                        <input value="Add Product" className="w-[150px] py-2 bg-[#8465F2] rounded text-white cursor-pointer mb-10" type="submit" />
+                                        <input value="Upedate Product" className="w-[150px] py-2 bg-[#8465F2] rounded text-white cursor-pointer mb-10" type="submit" />
                                     </div>
                                 </form>
                                 <div className='grid 2xl:flex 2xl:justify-start justify-center  items-center gap-4'>

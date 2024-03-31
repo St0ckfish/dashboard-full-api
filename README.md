@@ -9,3 +9,12 @@ Currently, two official plugins are available:
 
 Vitaparapharma Admin Dashboard for Vitaparapharma Website, https://www.vitaparapharma.com , it’s a system for pharmacy with multi languages  , 
 Manage all aspects of your e-commerce platform with ease. This admin dashboard controls products, categories, notifications, users, blogs, ads, and reports.
+
+Some pictures of the dashboard
+![DSA](/public/images/1.png)
+![DSA](/public/images/2.png)
+![DSA](/public/images/3.png)
+![DSA](/public/images/6.png)
+![DSA](/public/images/4.png)
+![DSA](/public/images/5.png)
+

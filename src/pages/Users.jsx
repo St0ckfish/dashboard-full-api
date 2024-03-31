@@ -119,7 +119,7 @@ const Users = () => {
             <div>
                 <NavBar />
                 <div className='text-white grid justify-center items-center py-20 h-screen w-screen overflow-x-auto '>
-                    <div className="relative overflow-x-auto shadow-md sm:rounded-lg 2xl:translate-x-[120px] xl:translate-x-[200px] lg:translate-x-[300px]  translate-y-48 m-5">
+                    <div className="relative overflow-x-auto shadow-md sm:rounded-lg 2xl:translate-x-[120px] xl:translate-x-[200px] lg:translate-x-[300px]  translate-y-48 mt-40 m-5">
                         <table className="w-[1600px] max-[1815px]:w-[1300px] text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 overflow-x-auto ">
                             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 overflow-x-auto">
                                 <tr>
@@ -228,10 +228,10 @@ const Users = () => {
                                                                     </li>
                                                                 </ul>
                                                                 <div className="py-1">
-                                                                {!product.locked ?
-                                                                    <button onClick={()=>handleEnable()} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Lock</button>
+                                                                {product.locked ?
+                                                                    <button onClick={()=>handleEnable()} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Open</button>
                                                                     :
-                                                                    <button onClick={()=>handleDisable()} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Open</button>
+                                                                    <button onClick={()=>handleDisable()} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Lock</button>
 
                                                                 }
                                                                 </div>
