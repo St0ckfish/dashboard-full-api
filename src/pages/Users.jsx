@@ -64,6 +64,10 @@ const Users = () => {
             console.error('Error submitting form:', error);
         }
     };
+    useEffect(() => {
+        handleCustomerRole();
+    }, [role]);
+    
 
     const handleEnable = async () => { 
         try {
