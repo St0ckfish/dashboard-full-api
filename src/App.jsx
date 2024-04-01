@@ -28,7 +28,9 @@ import AllCoupons from './pages/Allcoupons';
 import NotifyAllCustomers from './pages/NotifyAllCustomers';
 import NotifySelectedCustomers from './pages/NotifySelectedCustomers';
 import Users from './pages/Users';
-import UserPreview from './pages/UserPreview';
+import PreparedOrders from './pages/PreparedOrders';
+import DeliverdOrders from './pages/DeliverdOrders';
+import ShippedOrders from './pages/ShippedOrders';
 
 const router = createBrowserRouter(
 
@@ -93,8 +95,14 @@ const router = createBrowserRouter(
       <Route path="users" element={
         <RequireAuth> <Users /> </RequireAuth>} />
 
-      <Route path="userpreview" element={
-        <RequireAuth> <UserPreview /> </RequireAuth>} />
+      <Route path="preparedorders" element={
+        <RequireAuth> <PreparedOrders /> </RequireAuth>} />
+
+      <Route path="deliverdorders" element={
+        <RequireAuth> <DeliverdOrders /> </RequireAuth>} />
+
+      <Route path="shippedorders" element={
+        <RequireAuth> <ShippedOrders /> </RequireAuth>} />
 
       <Route path="updateproduct" element={
         <Outlet />}>

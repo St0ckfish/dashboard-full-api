@@ -6,8 +6,6 @@ const Users = () => {
     const [productData, setProductData] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
-    const [isLoading2, setIsLoading2] = useState(false);
-    const [productData2, setProductData2] = useState(null);
     const [customerId, setIdcategory] = useState('');
     const [role, setRole] = useState('');
     const toggleNavbar = (index) => {
@@ -186,9 +184,7 @@ const Users = () => {
                                                             <div className='flex items-center'>
                                                                 <div className="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div> Enabled
                                                             </div>
-
                                                         ) : (
-
                                                             <div className='flex items-center'>
                                                                 <div className="h-2.5 w-2.5 rounded-full bg-red-500 me-2"></div> Disabled
                                                             </div>
@@ -203,9 +199,7 @@ const Users = () => {
                                                             <div className='flex items-center'>
                                                                 <div className="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div> No
                                                             </div>
-
                                                         ) : (
-
                                                             <div className='flex items-center'>
                                                                 <div className="h-2.5 w-2.5 rounded-full bg-red-500 me-2"></div> Yes
                                                             </div>

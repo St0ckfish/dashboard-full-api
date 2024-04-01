@@ -48,6 +48,10 @@ const NavBar = () => {
     const toggleNavbar8 = () => {
         setIsOpen8(!isOpen8)
     }
+    const [isOpen9, setIsOpen9] = useState(false);
+    const toggleNavbar9 = () => {
+        setIsOpen9(!isOpen9)
+    }
     return (
         <>
             <div className=''>
@@ -268,6 +272,29 @@ const NavBar = () => {
                                             </li>
                                             <li>
                                                 <Link to="/notifyselectedcustomers" className="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-gray-300 dark:hover:bg-gray-700">Selected Customers</Link>
+                                            </li>                                            
+                                        </ul>
+                                    )
+                                }
+                            </li>
+                            <li>
+                                <button onClick={toggleNavbar9} type="button" className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+                                <svg className="h-6 w-6 text-gray-400 group-hover:text-gray-100 dark:text-gray-400  dark:group-hover:text-white"  width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <circle cx="7" cy="17" r="2" />  <circle cx="17" cy="17" r="2" />  <path d="M5 17h-2v-4m-1 -8h11v12m-4 0h6m4 0h2v-6h-8m0 -5h5l3 5" />  <line x1="3" y1="9" x2="7" y2="9" /></svg>
+                                    <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap font-bold">Orders</span>
+                                    <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
+                                    </svg>
+                                </button>{
+                                    isOpen9 && (
+                                        <ul id="dropdown-example" className=" py-2 space-y-2">
+                                            <li>
+                                                <Link to="/preparedorders" className="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-gray-300 dark:hover:bg-gray-700">Prepared Orders</Link>
+                                            </li>
+                                            <li>
+                                                <Link to="/shippedorders" className="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-gray-300 dark:hover:bg-gray-700">Shipped Orders</Link>
+                                            </li>                                            
+                                            <li>
+                                                <Link to="/deliverdorders" className="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-gray-300 dark:hover:bg-gray-700">Deliverd Orders</Link>
                                             </li>                                            
                                         </ul>
                                     )

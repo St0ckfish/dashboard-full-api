@@ -85,19 +85,6 @@ const Login = () => {
                                         required
                                     />
                                 </div>
-                                {/* <div className="grid gap-2 justify-items-start">
-                                    <label htmlFor="phone" className="text-gray-300 font-bold">Phone</label>
-                                    <input
-                                        autoComplete="off"
-                                        type="phone"
-                                        name="phone"
-                                        id="phone"
-                                        className="px-[90px] py-2 rounded-md bg-[#2b2e38] border border-[#41434d] focus:outline outline-[#41434d] text-white"
-                                        value={phone}
-                                        onChange={(e) => setPhone(e.target.value)}
-                                        required
-                                    />
-                                </div> */}
                                 <div className="grid gap-2 justify-items-start">
                                     <label htmlFor="password" className="text-gray-300 font-bold">Password</label>
                                     <input
