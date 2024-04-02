@@ -11,6 +11,7 @@ const NotifySelectedCustomers = () => {
     }
     const [expiration, setExpiration] = useState('');
     const [amount, setAmount] = useState('');
+    const [search,setSearch] = useState("");
     const [identifier, setIdentifier] = useState('');
     const [options, setOptions] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -153,7 +154,14 @@ const NotifySelectedCustomers = () => {
                                     {
                                         isOpen && (
                                             <div className='absolute right-[465px] top-[140px] h-[50px] max-[1736px]:right-[400px] max-[1536px]:right-[300px] max-[1200px]:right-[180px] max-[724px]:right-[70px] max-[519px]:right-[15px] '>
-                                                {users.data.customers.map(user => (
+                                                <div className='grid justify-center'>
+                            <form>
+                                <input placeholder='Search Email' className='bg-gray-700 mt-3 mb-3 ml-1 py-2 px-1 outline outline-gray-800' onChange={(e) => setSearch(e.target.value)} type="text" />
+                            </form>
+                        </div>
+                                                {users.data.customers.filter((product) => {
+                                        return search.toLocaleLowerCase() === '' ? product : product.email.toLocaleLowerCase().includes(search)
+                                    }).map(user => (
                                                     
                                                     <div key={user.customerId} className='flex justify-start'>
                                                         <div id="dropdownToggle" className="z-10 bg-white divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 w-[370px]">

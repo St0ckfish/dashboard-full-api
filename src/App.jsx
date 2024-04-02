@@ -31,6 +31,7 @@ import Users from './pages/Users';
 import PreparedOrders from './pages/PreparedOrders';
 import DeliverdOrders from './pages/DeliverdOrders';
 import ShippedOrders from './pages/ShippedOrders';
+import OrderPreview from './pages/OrderPreview';
 
 const router = createBrowserRouter(
 
@@ -104,6 +105,15 @@ const router = createBrowserRouter(
       <Route path="shippedorders" element={
         <RequireAuth> <ShippedOrders /> </RequireAuth>} />
 
+      <Route path="orderpreview" element={
+        <Outlet />}>
+        <Route path=':OrderId' element={
+          <RequireAuth>
+            <OrderPreview />
+          </RequireAuth>
+        } />
+      </Route>
+
       <Route path="updateproduct" element={
         <Outlet />}>
         <Route path=':ProductId' element={
@@ -111,7 +121,6 @@ const router = createBrowserRouter(
             <UpdateProduct />
           </RequireAuth>
         } />
-
       </Route>
 
       <Route index element={<Login />} />

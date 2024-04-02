@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 
 const ShippedOrders = () => {
+    const [search,setSearch] = useState("");
     const [productData, setProductData] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
@@ -78,6 +79,11 @@ console.log(customerId);
                 <NavBar/>
                 <div className='text-white grid justify-center items-center pt-20 h-screen w-screen overflow-x-auto '>
                     <div className="relative h-full overflow-x-auto shadow-md sm:rounded-lg 2xl:translate-x-[120px] xl:translate-x-[200px] lg:translate-x-[300px] m-5">
+                    <div className='grid justify-start'>
+                            <form>
+                                <input placeholder='Search Number' className='bg-gray-700 mt-3 mb-3 ml-1 py-1 px-1 rounded-md outline outline-gray-800' onChange={(e) => setSearch(e.target.value)} type="text" />
+                            </form>
+                        </div>
                         <table className="w-[1600px] h-full max-[1815px]:w-[1300px] text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 overflow-x-auto ">
                             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 overflow-x-auto">
                                 <tr>
@@ -108,7 +114,9 @@ console.log(customerId);
                                 <span>Loading customer details...</span>
                             ) : productData && productData.data.orders !== null ? (
                                 <tbody>
-                                    {productData.data.orders.map((product, index) => (
+                                    {productData.data.orders.filter((product) => {
+                                        return search.toLocaleLowerCase() === '' ? product : product.customerPhone.toLocaleLowerCase().includes(search)
+                                    }).map((product, index) => (
                                         <tr key={product.orderId} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 overflow-x-auto">
                                             <th scope="row" className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
                                                 {
@@ -118,10 +126,9 @@ console.log(customerId);
                                                     :
                                                     <img className="w-10 h-10 rounded-full" src="/images/man-light-skin-tone-beard.svg" alt=" image" />
                                                 }
-                                                <div className="ps-3">
-                                                    <div className="text-base font-semibold">{product.firstName} {product.lastName}</div>
+                                                
                                                     <div className="font-normal text-gray-300">{product.customerPhone}</div>
-                                                </div>
+                                                
                                             </th>
                                             <td className="px-6 py-4">
                                                 {
@@ -137,13 +144,13 @@ console.log(customerId);
                                             <td className="px-6 py-4">
                                                 <div className="flex items-center">
                                                     {
-                                                        product.country
+                                                        product.city
                                                     }
                                                 </div>
                                             </td>
                                             <td className="px-6 py-4">
                                                 <div className="flex items-center">
-                                                <Link to="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">View</Link>
+                                                <Link to={`/orderpreview/${product.orderId}`} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">View</Link>
                                                 </div>
                                             </td>
                                             <td className="px-6 py-4">

@@ -150,7 +150,7 @@ const AddAdvertisement = () => {
                             </div>
 
                             <div>
-                                <input value="Add Categoty" className="w-[150px] py-2 bg-[#8465F2] rounded text-white cursor-pointer" type="submit" />
+                                <input value="Add Advertisment" className="w-[150px] py-2 bg-[#8465F2] rounded text-white cursor-pointer" type="submit" />
                             </div>
                         </form>
                     </div>
