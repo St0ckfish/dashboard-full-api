@@ -3,9 +3,11 @@ export const userr = localStorage.getItem('myUserr');
 
 /* ******************APIs****************** */
 const baseUrl = 'https://api.vitaparapharma.com';
+
 export const loginapi = baseUrl+'/api/v2/auth/login';
+export const getTagsUrl = baseUrl+'/api/v4/public/tag';
 export const getAllCategory = baseUrl+'/api/v1/public/category/all';
-export const AddProduct = baseUrl+'/api/v2/custom/product/new';
+export const AddProduct = baseUrl+'/api/v4/custom/product';
 export const Active = baseUrl+'/api/v1/public/product/all';
 export const InActive = baseUrl+'/api/v1/custom/product/inactive/all';
 export const AddAdvertisementapi = baseUrl+'/api/v2/custom/advertisement/new';
