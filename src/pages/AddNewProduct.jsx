@@ -18,9 +18,6 @@ const AddNewProduct = () => {
     const [frenchDescription, setfrenchDescription] = useState('');
     const [categoryId, setcategoryId] = useState('');
     const [priceBeforeDiscount, setprice] = useState('');
-    const [englishTags, setTags] = useState([]);
-    const [arabicTags, setArabicTags] = useState([]);
-    const [frenchTags, setFrenchTags] = useState([]);
     const [weight, setWeight] = useState('');
     const [stockQuantity, setstockQuantity] = useState('');
     const [priceAfterDiscount, setpriceAfterDiscount] = useState('');
@@ -29,6 +26,9 @@ const AddNewProduct = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [selectedImages, setSelectedImages] = useState([]);
     const [authorizationToken, setAuthorizationToken] = useState(''); // For authorization token
+    const [englishTags, setTags] = useState([]);
+    const [arabicTags, setArabicTags] = useState([]);
+    const [frenchTags, setFrenchTags] = useState([]);
     const [suggestions, setSuggestions] = useState([]);
     const [tagValue, setTagValue] = useState('');
     const [tagValueA, setTagValueA] = useState('');
