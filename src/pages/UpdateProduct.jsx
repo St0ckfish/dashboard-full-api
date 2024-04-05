@@ -157,7 +157,7 @@ const UpdateProduct = () => {
                 // ... (implementation details)
             } else {
                 console.error('Error uploading image:', await response.text());
-                alert('Error uploading image: must be less than 60kb');
+                
                 // Handle upload error (e.g., display an error message)
             }
         } catch (error) {

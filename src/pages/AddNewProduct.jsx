@@ -121,11 +121,9 @@ const AddNewProduct = () => {
         }
 
         const validImages = Array.from(newImages) // Convert FileList to array for validation
-            .filter((image) => image.size <= 61440); // Maximum 30 KB per image (30 * 1024 bytes)
+            // Maximum 30 KB per image (30 * 1024 bytes)
 
-        if (validImages.length !== newImages.length) {
-            alert('Error: Some images exceed the 60 KB size limit.');
-        }
+        
 
         setSelectedImages(validImages); // Update state with validated images
     };
