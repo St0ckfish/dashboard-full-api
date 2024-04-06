@@ -29,7 +29,7 @@ const UpdateProduct = () => {
     const [categoryId, setcategoryId] = useState('');
     const [priceBeforeDiscount, setprice] = useState('');
     const [stockQuantity, setstockQuantity] = useState('');
-    const [afterDiscount, setpriceAfterDiscount] = useState('');
+    const [priceAfterDiscount, setpriceAfterDiscount] = useState('');
     const [discount, setDiscount] = useState(false);
     const [options, setOptions] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -269,7 +269,7 @@ const UpdateProduct = () => {
                     priceBeforeDiscount,
                     stockQuantity,
                     categoryId,
-                    afterDiscount,
+                    priceAfterDiscount,
                     discount,
                     arabicName,
                     arabicDescription,
