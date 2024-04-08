@@ -321,7 +321,7 @@ const UpdateProduct = () => {
     };
     console.log(productData);
     const handleDeleteImage = async (productId, pictureUUID) => {
-        const response = await fetch(`${DeleteProductImgapi}${productId}/${pictureUUID}`, {
+        const response = await fetch(`${DeleteProductImgapi}${productId}/remove?image=`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

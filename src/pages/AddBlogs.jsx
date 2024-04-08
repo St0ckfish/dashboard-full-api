@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import NavBar from '../components/NavBar';
-import { Authurization ,AddBlogapi} from '../api/Api';
+import { Authurization ,AddBlogapi, getTagsUrl} from '../api/Api';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import axios from 'axios';
@@ -8,12 +8,87 @@ import axios from 'axios';
 
 const AddBlogs = () => {
     const [selectedImages, setSelectedImages] = useState([]);
-    const [title, setTitle] = useState('');
+    const [englishTitle, setTitle] = useState('');
     const [arabicTitle, setarabicTitle] = useState('');
     const [frenchTitle, setfrenchTitle] = useState('');
-    const [content, setContent] = useState('');
+    const [englishContent, setContent] = useState('');
     const [arabicContent, setarabicContent] = useState('');
     const [frenchContent, setfrenceContent] = useState('');
+    const [englishTags, setTags] = useState([]);
+    const [arabicTags, setArabicTags] = useState([]);
+    const [frenchTags, setFrenchTags] = useState([]);
+    const [suggestions, setSuggestions] = useState([]);
+    const [tagValue, setTagValue] = useState('');
+    const [tagValueA, setTagValueA] = useState('');
+    const [tagValueF, setTagValueF] = useState('');
+
+    useEffect(() => {
+        const fetchTags = async () => {
+            try {
+                const response = await fetch(getTagsUrl);
+                const data = await response.json();
+                setSuggestions(data);
+            } catch (error) {
+                console.error('Error fetching tags:', error);
+            }
+        };
+
+        fetchTags();
+    }, [getTagsUrl]);
+
+
+
+    const handleTagInputChange = (event) => {
+        setTagValue(event.target.value);
+    };
+    const handleTagInputChangeA = (event) => {
+        setTagValueA(event.target.value);
+    };
+    const handleTagInputChangeF = (event) => {
+        setTagValueF(event.target.value);
+    };
+
+    const addTag = (tag) => {
+        if (tag.key === 'Enter' && tagValue.trim()) {
+            setTags([...englishTags, tagValue.trim()]);
+            setTagValue('');
+        }
+    };
+    const addTagA = (tag) => {
+        if (tag.key === 'Enter' && tagValueA.trim()) {
+            setArabicTags([...arabicTags, tagValueA.trim()]);
+            setTagValueA('');
+        }
+    };
+    const addTagF = (tag) => {
+        if (tag.key === 'Enter' && tagValueF.trim()) {
+            setFrenchTags([...frenchTags, tagValueF.trim()]);
+            setTagValueF('');
+        }
+    };
+
+    const handleTagSelection = (suggestion) => {
+        setTags([...englishTags, suggestion]);
+        setTagValue('');
+    };
+    const handleTagSelectionA = (suggestion) => {
+        setArabicTags([...arabicTags, suggestion]);
+        setTagValueA('');
+    };
+    const handleTagSelectionF = (suggestion) => {
+        setFrenchTags([...frenchTags, suggestion]);
+        setTagValueF('');
+    };
+
+    const handleTagRemoval = (tag) => {
+        setTags(englishTags.filter((t) => t != tag));
+    };
+    const handleTagRemovalA = (tag) => {
+        setTagValueA(arabicTags.filter((t) => t != tag));
+    };
+    const handleTagRemovalF = (tag) => {
+        setTagValueF(frenchTags.filter((t) => t != tag));
+    };
     
     const handleImageChange = (e) => {
         setSelectedImages(e.target.files[0]);
@@ -22,13 +97,13 @@ const AddBlogs = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const postData = { content,arabicContent,frenchContent,title,arabicTitle, frenchTitle };
+        const postData = { englishContent,arabicContent,frenchContent,englishTitle,arabicTitle, frenchTitle,frenchTags,arabicTags, englishTags };
 
         const formData = new FormData();
         
             formData.append('post', JSON.stringify(postData));
 
-            console.log(content,arabicContent,frenchContent,title,arabicTitle, frenchTitle);
+            console.log(englishContent,arabicContent,frenchContent,englishTitle,arabicTitle, frenchTitle);
         if (selectedImages) {
             console.log("yes")
             formData.append('image', selectedImages);
@@ -70,6 +145,121 @@ const AddBlogs = () => {
                                 <h1 className='font-bold text-[25px]'>Add Blog Post</h1>
                             </div>
 
+                            <div className='grid justify-center items-center gap-3'>
+                                <div className="input-container">
+                                    <input
+                                        className='bg-[#2b2e38] max-[1815px]:w-[800px] w-[1070px] px-8 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d] max-[1200px]:w-[500px] max-[724px]:w-[350px]'
+                                        type="text"
+                                        value={tagValue}
+                                        placeholder='English HashTags#'
+                                        onChange={handleTagInputChange}
+                                        onKeyDown={addTag}
+                                    />
+                                <ul className="tags-list flex gap-2 m-2">
+                                    {englishTags.map((tag) => (
+                                        <li key={tag} className="tag  px-2 pb-1.5 bg-slate-600 rounded-lg cursor-pointer">
+                                            {tag}
+                                            &nbsp;&nbsp;
+                                            <button className=' text-gray-400 text-[22px]' type="button" onClick={() => handleTagRemoval(tag)}>
+                                                &times;
+                                            </button>
+                                        </li>
+                                    ))}
+                                </ul>
+                                    {suggestions.data != null && (
+                                        <ul className="suggestions-list flex gap-2 m-2 bg-slate-700 rounded-lg p-2">
+                                            {suggestions.data.filter((product) => {
+                                                return tagValue.toLocaleLowerCase() === '' ? "" : product.toLocaleLowerCase().includes(tagValue)
+                                            }).map((suggestion) => (
+                                                <li
+                                                    key={suggestion}
+                                                    className="suggestion p-2 bg-slate-600 rounded-lg cursor-pointer flex-wrap" 
+                                                    onClick={() => handleTagSelection(suggestion)}
+                                                >
+                                                    {suggestion}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    )}
+                                </div>
+                            </div>
+                        <div className='grid justify-center items-center gap-3'>
+                                <div className="input-container">
+                                    <input
+                                        className='bg-[#2b2e38] max-[1815px]:w-[800px] w-[1070px] px-8 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d] max-[1200px]:w-[500px] max-[724px]:w-[350px]'
+                                        type="text"
+                                        value={tagValueA}
+                                        placeholder='Arabic HashTags#'
+                                        onChange={handleTagInputChangeA}
+                                        onKeyDown={addTagA}
+                                    />
+                                <ul className="tags-list flex gap-2 m-2">
+                                    {arabicTags.map((tag) => (
+                                        <li key={tag} className="tag  px-2 pb-1.5 bg-slate-600 rounded-lg cursor-pointer">
+                                            {tag}
+                                            &nbsp;&nbsp;
+                                            <button className=' text-gray-400 text-[22px]' type="button" onClick={() => handleTagRemovalA(tag)}>
+                                                &times;
+                                            </button>
+                                        </li>
+                                    ))}
+                                </ul>
+                                    {suggestions.data != null && (
+                                        <ul className="suggestions-list flex gap-2 m-2 bg-slate-700 rounded-lg p-2">
+                                            {suggestions.data.filter((product) => {
+                                                return tagValueA.toLocaleLowerCase() === '' ? "" : product.toLocaleLowerCase().includes(tagValueA)
+                                            }).map((suggestion) => (
+                                                <li
+                                                    key={suggestion}
+                                                    className="suggestion p-2 bg-slate-600 rounded-lg cursor-pointer flex-wrap" 
+                                                    onClick={() => handleTagSelectionA(suggestion)}
+                                                >
+                                                    {suggestion}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    )}
+                                </div>
+                            </div>
+                            <div className='grid justify-center items-center gap-3'>
+                                <div className="input-container">
+                                    <input
+                                        className='bg-[#2b2e38] max-[1815px]:w-[800px] w-[1070px] px-8 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d] max-[1200px]:w-[500px] max-[724px]:w-[350px]'
+                                        type="text"
+                                        value={tagValueF}
+                                        placeholder='French HashTags#'
+                                        onChange={handleTagInputChangeF}
+                                        onKeyDown={addTagF}
+                                    />
+                                <ul className="tags-list flex gap-2 m-2">
+                                    {frenchTags.map((tag) => (
+                                        <li key={tag} className="tag  px-2 pb-1.5 bg-slate-600 rounded-lg cursor-pointer">
+                                            {tag}
+                                            &nbsp;&nbsp;
+                                            <button className=' text-gray-400 text-[22px]' type="button" onClick={() => handleTagRemovalF(tag)}>
+                                                &times;
+                                            </button>
+                                        </li>
+                                    ))}
+                                </ul>
+                                    {suggestions.data != null && (
+                                        <ul className="suggestions-list flex gap-2 m-2 bg-slate-700 rounded-lg p-2">
+                                            {suggestions.data.filter((product) => {
+                                                return tagValueF.toLocaleLowerCase() === '' ? "" : product.toLocaleLowerCase().includes(tagValueF)
+                                            }).map((suggestion) => (
+                                                <li
+                                                    key={suggestion}
+                                                    className="suggestion p-2 bg-slate-600 rounded-lg cursor-pointer flex-wrap" 
+                                                    onClick={() => handleTagSelectionF(suggestion)}
+                                                >
+                                                    {suggestion}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    )}
+                                </div>
+                            </div>
+
                             <div className="grid justify-center items-center gap-3 max-[1815px]:grid">
 
                                 <input placeholder='Arabic Title' className='bg-[#2b2e38] w-[1070px] max-[1536px]:w-[900px] max-[1278px]:w-[700px] max-[1200px]:w-[500px] max-[724px]:w-[300px] px-6 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d]' type="text"
@@ -79,9 +269,9 @@ const AddBlogs = () => {
                                     onChange={(e) => setarabicTitle(e.target.value)} required />
 
                                 <input placeholder='English Title' className='bg-[#2b2e38] w-[1070px] max-[1536px]:w-[900px] max-[1278px]:w-[700px] max-[1200px]:w-[500px] max-[724px]:w-[300px] px-6 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d]' type="text"
-                                    name="title"
-                                    id="title"
-                                    value={title}
+                                    name="englishTitle"
+                                    id="englishTitle"
+                                    value={englishTitle}
                                     onChange={(e) => setTitle(e.target.value)} required />
 
                                 <input placeholder='French Title' className='bg-[#2b2e38] w-[1070px] max-[1536px]:w-[900px] max-[1278px]:w-[700px] max-[1200px]:w-[500px] max-[724px]:w-[300px] px-6 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d]' type="text"
@@ -100,9 +290,9 @@ const AddBlogs = () => {
                                     onChange={setarabicContent} required />
 
                                 <ReactQuill placeholder='English Content' className='text-black bg-[#ffffff] w-[1070px] max-[1536px]:w-[900px] max-[1278px]:w-[700px] max-[1200px]:w-[500px] max-[724px]:w-[300px] px-6 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d]' type="text"
-                                    name="content"
-                                    id="content"
-                                    value={content}
+                                    name="englishContent"
+                                    id="englishContent"
+                                    value={englishContent}
                                     onChange={setContent} required />
 
                                 <ReactQuill placeholder='French Content' className='text-black bg-[#ffffff] w-[1070px] max-[1536px]:w-[900px] max-[1278px]:w-[700px] max-[1200px]:w-[500px] max-[724px]:w-[300px] px-6 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d]' type="text"

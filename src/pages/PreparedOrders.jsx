@@ -144,7 +144,7 @@ console.log(customerId);
                                             <td className="px-6 py-4">
                                                 <div className="flex items-center">
                                                     {
-                                                        product.country
+                                                        product.city
                                                     }
                                                 </div>
                                             </td>

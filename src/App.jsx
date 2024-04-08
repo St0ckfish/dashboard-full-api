@@ -32,6 +32,7 @@ import PreparedOrders from './pages/PreparedOrders';
 import DeliverdOrders from './pages/DeliverdOrders';
 import ShippedOrders from './pages/ShippedOrders';
 import OrderPreview from './pages/OrderPreview';
+import Report from './pages/Report';
 
 const router = createBrowserRouter(
 
@@ -104,6 +105,9 @@ const router = createBrowserRouter(
 
       <Route path="shippedorders" element={
         <RequireAuth> <ShippedOrders /> </RequireAuth>} />
+
+      <Route path="report" element={
+        <RequireAuth> <Report /> </RequireAuth>} />
 
       <Route path="orderpreview" element={
         <Outlet />}>
