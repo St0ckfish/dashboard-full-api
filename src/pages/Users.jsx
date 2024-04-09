@@ -134,7 +134,16 @@ const Users = () => {
                                         gender
                                     </th>
                                     <th scope="col" className="px-6 py-3">
+                                        Orders
+                                    </th>
+                                    <th scope="col" className="px-6 py-3">
                                         Phone
+                                    </th>
+                                    <th scope="col" className="px-6 py-3">
+                                    Registration
+                                    </th>
+                                    <th scope="col" className="px-6 py-3">
+                                    Reports
                                     </th>
                                     <th scope="col" className="px-6 py-3">
                                         Position
@@ -180,7 +189,16 @@ const Users = () => {
                                                 }
                                             </td>
                                             <td className="px-6 py-4">
+                                                {product.orders}
+                                            </td>
+                                            <td className="px-6 py-4">
                                                 {product.phone}
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                {product.registration}
+                                            </td>
+                                            <td className="px-6 py-4 text-red-500">
+                                                {product.reports}
                                             </td>
                                             <td className="px-6 py-4">
                                                 {product.role}

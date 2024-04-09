@@ -51,7 +51,7 @@ const OrderPreview = () => {
                                     key={product.productId}>
                                     <div className=''>
                                         <div className='flex items-center gap-3 mb-2 justify-center'>
-                                            <img src={product.pictureUrl} alt="" />
+                                            <img src={product.pictureUrl} className='w-[300px]' alt="" />
                                         </div>
                                         <div className='flex items-center gap-3'>
                                             <h1 className=' text-gray-300'> {product.productName}</h1>
