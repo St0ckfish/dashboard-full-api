@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import NavBar from '../components/NavBar';
-import { Authurization, Active,DeactivateButtonapi } from '../api/Api';
+import { Authurization, Active,DeactivateButtonapi, ActivateButtonapi } from '../api/Api';
 import { Link } from 'react-router-dom';
 
 const ActiveProducts = () => {
@@ -44,11 +44,11 @@ const ActiveProducts = () => {
 
     const handleProductStatusChange = async (productId, currentStatus) => {
         const newStatus = currentStatus === 'active' ? 'deactivate' : 'active';
-        const apiEndpoint = DeactivateButtonapi+productId;
+        const apiEndpoint = ActivateButtonapi+productId+`/status?active=0`;
 
         try {
             const response = await fetch(apiEndpoint, {
-                method: 'DELETE', // Use POST for status updates
+                method: 'PUT', // Use POST for status updates
                 headers: {
                     Authorization: `Bearer ${Authurization}`,
                     Accept: 'application/json',

@@ -47,7 +47,7 @@ const InActiveProducts = () => {
 
     const handleProductStatusChange = async (productId, currentStatus) => {
         const newStatus = currentStatus === 'active' ? 'activate' : 'deactivate';
-        const apiEndpoint = ActivateButtonapi+productId;
+        const apiEndpoint = ActivateButtonapi+productId+`/status?active=1`;
 
         try {
             const response = await fetch(apiEndpoint, {
