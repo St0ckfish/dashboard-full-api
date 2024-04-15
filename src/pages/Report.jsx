@@ -105,7 +105,7 @@ const Report = () => {
                             {isLoading ? (
                                 <span>Loading customer details...</span>
                             ) : productData && productData.data.reports !== null ? (
-                                <tbody>
+                                <tbody className='h-[50px]'>
                                     {productData.data.reports.filter((product) => {
                                         return search.toLocaleLowerCase() === '' ? product : product.reportId.toLocaleLowerCase().includes(search)
                                     }).map((product, index) => (
@@ -147,6 +147,9 @@ const Report = () => {
                                                             <div id="dropdownAction" className="z-10 absolute bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
                                                                 <ul className="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownActionButton">
                                                                     
+                                                                    <li>
+                                                                        <Link to={`/viewreview/${product.reviewId}`} className='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'>View Review</Link>
+                                                                    </li>
                                                                     <li>
                                                                         <Link to={`/updateproduct/${product.productId}`} className='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'>View Product</Link>
                                                                     </li>

@@ -33,6 +33,7 @@ import DeliverdOrders from './pages/DeliverdOrders';
 import ShippedOrders from './pages/ShippedOrders';
 import OrderPreview from './pages/OrderPreview';
 import Report from './pages/Report';
+import ViewReview from './pages/ViewReview';
 
 const router = createBrowserRouter(
 
@@ -123,6 +124,15 @@ const router = createBrowserRouter(
         <Route path=':ProductId' element={
           <RequireAuth>
             <UpdateProduct />
+          </RequireAuth>
+        } />
+      </Route>
+
+      <Route path="viewreview" element={
+        <Outlet />}>
+        <Route path=':ReviewId' element={
+          <RequireAuth>
+            <ViewReview />
           </RequireAuth>
         } />
       </Route>
