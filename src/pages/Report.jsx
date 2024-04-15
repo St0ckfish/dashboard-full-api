@@ -52,7 +52,7 @@ const Report = () => {
             const data = await response.json();
             if (response.ok) {
                 console.log(data);
-                alert('Role Updated successfully:)');
+                alert('Review Deleted successfully:)');
                 console.log('Review Deleted successfully:)', data);
             }
             console.log(data);
