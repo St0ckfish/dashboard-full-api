@@ -84,10 +84,10 @@ const AddBlogs = () => {
         setTags(englishTags.filter((t) => t != tag));
     };
     const handleTagRemovalA = (tag) => {
-        setTagValueA(arabicTags.filter((t) => t != tag));
+        setArabicTags(arabicTags.filter((t) => t != tag));
     };
     const handleTagRemovalF = (tag) => {
-        setTagValueF(frenchTags.filter((t) => t != tag));
+        setFrenchTags(frenchTags.filter((t) => t != tag));
     };
     
     const handleImageChange = (e) => {
