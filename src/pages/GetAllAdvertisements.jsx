@@ -193,15 +193,15 @@ const GetAllAdvertisements = () => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    targetUrl,
-                    startDate,
-                    endDate,
-                    title,
-                    arabicTitle,
-                    frenchTitle,
-                    description,
-                    arabicDescription,
-                    frenchDescription,
+                    targetUrl: targetUrl,
+                    startDate: `${startDate}T12:11:00`,
+                    endDate: `${endDate}T12:11:00`,
+                    title: title,
+                    arabicTitle: arabicTitle,
+                    frenchTitle: frenchTitle,
+                    arabicDescription: arabicDescription,
+                    description: description,
+                    frenchDescription: frenchDescription,
                 }),
             });
             const data = await response.json();
@@ -362,7 +362,7 @@ const GetAllAdvertisements = () => {
                                                             >
                                                                 Start Date
                                                             </label>
-                                                            <input placeholder='Start Date' className='bg-[#2b2e38] w-[1070px] max-[1736px]:w-[1000px] max-[1536px]:w-[900px] max-[1278px]:w-[700px] max-[1200px]:w-[500px] max-[724px]:w-[300px] px-6 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d]' type="text"
+                                                            <input placeholder='Start Date' className='bg-[#2b2e38] w-[1070px] max-[1736px]:w-[1000px] max-[1536px]:w-[900px] max-[1278px]:w-[700px] max-[1200px]:w-[500px] max-[724px]:w-[300px] px-6 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d]' type="date"
                                                                 name="startDate"
                                                                 id="startDate"
                                                                 value={startDate}
@@ -373,7 +373,7 @@ const GetAllAdvertisements = () => {
                                                             >
                                                                 End Date
                                                             </label>
-                                                            <input placeholder='End Date' className='bg-[#2b2e38] w-[1070px] max-[1736px]:w-[1000px] max-[1536px]:w-[900px] max-[1278px]:w-[700px] max-[1200px]:w-[500px] max-[724px]:w-[300px] px-6 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d]' type="text"
+                                                            <input placeholder='End Date' className='bg-[#2b2e38] w-[1070px] max-[1736px]:w-[1000px] max-[1536px]:w-[900px] max-[1278px]:w-[700px] max-[1200px]:w-[500px] max-[724px]:w-[300px] px-6 py-2 rounded-xl border border-[#41434d] focus:outline outline-[#41434d]' type="date"
                                                                 name="endDate"
                                                                 id="endDate"
                                                                 value={endDate}
