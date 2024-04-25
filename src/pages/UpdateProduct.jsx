@@ -191,6 +191,10 @@ const UpdateProduct = () => {
                 setarabicDescription(data.data.product.arabicDescription)
                 setfrenchDescription(data.data.product.frenchDescription)
                 setcategoryId(data.data.product.categoryId)
+                setprice(data.data.product.price)
+                setpriceAfterDiscount(data.data.product.afterDiscount)
+                setDiscount(data.data.product.discount)
+                setstockQuantity(data.data.product.stockQuantity)
                 console.log('Authorization token:', authorizationToken);
 
                 
@@ -575,14 +579,14 @@ const UpdateProduct = () => {
                                     <div className='flex justify-center items-center gap-3 max-[1815px]:grid'>
                                         <div className='flex items-center gap-2'>
                                             <label htmlFor="isDiscount" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Is Discount?</label>
-                                            <input id="isDiscount" type="checkbox" onChange={handleCheckboxChange} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" ></input>{/*onChange={handleAfterDiscountChange}*/}
-                                            <input placeholder='After Discount:' className='bg-[#2b2e38]  px-2 py-2 rounded-xl border w-[250px] border-[#41434d] focus:outline outline-[#41434d]' type="number" id="afterDiscount" name="afterDiscount" onChange={handleInputChange} min="0" step="0.01" />
+                                            <input id="isDiscount" type="checkbox" checked={discount} value={discount} onChange={handleCheckboxChange} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" ></input>{/*onChange={handleAfterDiscountChange}*/}
+                                            <input placeholder='After Discount:' className='bg-[#2b2e38]  px-2 py-2 rounded-xl border w-[250px] border-[#41434d] focus:outline outline-[#41434d]' type="number" id="afterDiscount" name="afterDiscount" onChange={handleInputChange} value={priceAfterDiscount} min="0" step="0.01" />
                                         </div>
 
                                         <div className="flex items-center justify-center gap-2 max-[524px]:grid">
-                                            <input placeholder='Weight:' className=' bg-[#2b2e38] px-2 py-2 rounded-xl w-[150px] max-[524px]:w-[350px] border border-[#41434d] focus:outline outline-[#41434d]' type="number" id="weight" name="weight" onChange={(e) => setWeight(e.target.value)} min="0" step="0.01" required /> {/*onChange={handleChange}*/}
-                                            <input placeholder='Price:' className='bg-[#2b2e38] px-2 py-2 rounded-xl w-[150px] max-[524px]:w-[350px] border border-[#41434d] focus:outline outline-[#41434d]' type="number" id="priceBeforeDiscount" name="priceBeforeDiscount" onChange={(e) => setprice(e.target.value)} min="0" step="0.01" required /> {/*onChange={handleChange}*/}
-                                            <input placeholder='Stock Quantity:' className='bg-[#2b2e38] px-2 py-2 w-[150px] max-[524px]:w-[350px]  rounded-xl border border-[#41434d] focus:outline outline-[#41434d]' type="number" id="stockQuantity" name="stockQuantity" onChange={(e) => setstockQuantity(e.target.value)} min="0" required /> {/*onChange={handleChange}*/}
+                                            <input placeholder='Weight:' className=' bg-[#2b2e38] px-2 py-2 rounded-xl w-[150px] max-[524px]:w-[350px] border border-[#41434d] focus:outline outline-[#41434d]' type="number" id="weight" name="weight" value={weight} onChange={(e) => setWeight(e.target.value)} min="0" step="0.01" required /> {/*onChange={handleChange}*/}
+                                            <input placeholder='Price:' className='bg-[#2b2e38] px-2 py-2 rounded-xl w-[150px] max-[524px]:w-[350px] border border-[#41434d] focus:outline outline-[#41434d]' type="number" id="priceBeforeDiscount" name="priceBeforeDiscount" onChange={(e) => setprice(e.target.value)} value={priceBeforeDiscount} min="0" step="0.01" required /> {/*onChange={handleChange}*/}
+                                            <input placeholder='Stock Quantity:' className='bg-[#2b2e38] px-2 py-2 w-[150px] max-[524px]:w-[350px]  rounded-xl border border-[#41434d] focus:outline outline-[#41434d]' type="number" id="stockQuantity" name="stockQuantity" onChange={(e) => setstockQuantity(e.target.value)} value={stockQuantity} min="0" required /> {/*onChange={handleChange}*/}
                                         </div>
                                         <Select
                                             placeholder={"Category Name"}

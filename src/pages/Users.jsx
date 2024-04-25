@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import NavBar from '../components/NavBar';
 import { Authurization } from '../api/Api';
 
@@ -12,6 +12,7 @@ const Users = () => {
     const toggleNavbar = (index) => {
         setIsOpen(isOpen === index ? null : index)
     }
+    const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -36,7 +37,7 @@ const Users = () => {
         };
 
         fetchData();
-    }, []);
+    }, [ignored]);
 
     const handleCustomerRole = async () => { 
         try {
@@ -63,6 +64,7 @@ const Users = () => {
             console.error('Error submitting form:', error);
         }
     };
+
     useEffect(() => {
         handleCustomerRole();
     }, [role]);
@@ -88,6 +90,7 @@ const Users = () => {
         } catch (error) {
             console.error('Error submitting form:', error);
         }
+        forceUpdate();
     };
 
     const handleDisable = async () => { 
@@ -110,6 +113,7 @@ const Users = () => {
         } catch (error) {
             console.error('Error submitting form:', error);
         }
+        forceUpdate();
     };
     
     console.log(role);

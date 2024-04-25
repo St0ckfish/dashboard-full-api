@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import NavBar from '../components/NavBar';
 import { Authurization, InActive,ActivateButtonapi } from '../api/Api';
 import { Link } from 'react-router-dom';
@@ -8,6 +8,8 @@ const InActiveProducts = () => {
     const [productData, setProductData] = useState(null);
     const [authorizationToken, setAuthorizationToken] = useState(''); // For authorization token
     const [isLoading, setIsLoading] = useState(false);
+    const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
+
 
     useEffect(() => {
         const retrievedToken = localStorage.getItem('myAuthorizationToken');
@@ -42,7 +44,7 @@ const InActiveProducts = () => {
         };
 
         fetchData();
-    }, []);
+    }, [ignored]);
 
 
     const handleProductStatusChange = async (productId, currentStatus) => {
@@ -77,6 +79,7 @@ const InActiveProducts = () => {
             console.error('Error updating product status:', error);
             // Handle errors gracefully
         }
+        forceUpdate();
     };
 
     return (

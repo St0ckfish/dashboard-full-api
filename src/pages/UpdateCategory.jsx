@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import NavBar from '../components/NavBar';
 import { Authurization ,getAllCategorysapi,DeleteCategoryBtn,GetAllCategoryDataapi,UpdateAllCategoryDataapi} from '../api/Api';
 import { Link } from 'react-router-dom';
 
 const UpdateCategory = () => {
+    const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
     const [productData, setProductData] = useState(null);
     const [productData2, setProductData2] = useState(null);
     const [idcategory, setIdcategory] = useState('');
@@ -42,7 +43,7 @@ const UpdateCategory = () => {
         };
 
         fetchData();
-    }, []);
+    }, [ignored]);
 
 
     const handleProductStatusChange = async (categoryId, currentStatus) => {
@@ -84,6 +85,7 @@ const UpdateCategory = () => {
             console.error('Error delete product status:', error);
             // Handle errors gracefully
         }
+        forceUpdate();
     };
 
 
