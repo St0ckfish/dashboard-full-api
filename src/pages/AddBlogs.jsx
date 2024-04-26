@@ -129,7 +129,9 @@ const AddBlogs = () => {
                 setfrenchTitle("")
                 setSelectedImages([])
                 alert("Blog Post have been added :)")
-        } catch (error) {
+                
+            } catch (error) {
+                alert("Image size is larger than allowed")
             console.error('Error:', error);
         }
     };
